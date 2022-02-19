@@ -31,7 +31,6 @@ public class Grapple : MonoBehaviour
 
     private Quaternion desiredRotation;
     private float rotationSpeed = 15f;
-    
 
     private void Start()
     {
@@ -46,6 +45,7 @@ public class Grapple : MonoBehaviour
         if (yoinking)
         {
             Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
+            
             Vector3 direction = holdTransform.position - ropeStart.position;
             Ray yoinkRay = new Ray(ropeStart.position, direction);
             RaycastHit yoinkHit;
@@ -194,6 +194,7 @@ public class Grapple : MonoBehaviour
         Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), capsuleCollider, true);
         yorb.isKinematic = true;
         yorb.useGravity = false;
+        yorb.detectCollisions = false;
         yoinking = true;
         lr.positionCount = 2;
     }
@@ -205,6 +206,7 @@ public class Grapple : MonoBehaviour
         Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), capsuleCollider, false);
         yorb.isKinematic = false;
         yorb.useGravity = true;
+        yorb.detectCollisions = true;
         yoinking = false;
     }
 
