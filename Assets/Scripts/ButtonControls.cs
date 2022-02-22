@@ -35,6 +35,10 @@ public class ButtonControls : MonoBehaviour
         }
     }
     */
+    public void Interact()
+    {
+        toggleButtonOn();
+    }
 
     public void toggleButtonOn()
     {

@@ -8,6 +8,7 @@ public class Grapple : MonoBehaviour
 {
     public LayerMask grapplable;
     public LayerMask movable;
+    public LayerMask interactable;
     public Transform ropeStart, vision, player, orientation, grappleGun;
     public AudioController ropeCreak, ropeSlide, grappleExtend;
     public PlayerMovement pm;
@@ -140,6 +141,11 @@ public class Grapple : MonoBehaviour
                 YoinkObject();
                 return;
             }
+            if (grappleObject.CompareTag("Button"))
+            {
+                GrappleButton();
+                return;
+            }
             if (!IsInLayerMask(grappleObject, grapplable)) return;
             Rigidbody cb = grappleObject.GetComponent<Rigidbody>();
             pm.SetGrapple(true);
@@ -252,5 +258,17 @@ public class Grapple : MonoBehaviour
     public bool IsInLayerMask(GameObject obj, LayerMask layerMask)
     {
         return ((layerMask.value & (1 << obj.layer)) > 0);
+    }
+
+    private void GrappleButton()
+    {
+        // Activate button
+        ButtonControls bc = grappleObject.GetComponent<ButtonControls>();
+        if (bc != null)
+        {
+            bc.Interact();
+        }
+
+        /* TODO: animate a little grapple rope hitting the object? */
     }
 }
