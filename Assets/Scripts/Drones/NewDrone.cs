@@ -15,6 +15,9 @@ public class NewDrone : MonoBehaviour
     public Transform player;
     public bool followPlayer = false;
 
+    public bool stunned = false;
+    Rigidbody rb;
+
 
     private void Start()
     {
@@ -23,35 +26,48 @@ public class NewDrone : MonoBehaviour
 
     void Update()
     {
-        if (followPlayer == false) {
-            alarm.enabled = false;
-            if (Vector3.Distance(allWaypoints[current].transform.position, transform.position) < wpRadius)
-            {
-                current++;
-                if (current >= allWaypoints.Length)
-                {
-                    current = 0;
-                }
-            }
-            transform.position = Vector3.MoveTowards(transform.position, allWaypoints[current].transform.position, Time.deltaTime * speed);
-            var rotation = Quaternion.LookRotation(allWaypoints[current].transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+        if (stunned == true)
+        {
+            rb = this.GetComponent<Rigidbody>();
+            rb.useGravity = true;
+            rb.isKinematic = false;
         }
         else
         {
-            alarm.enabled = true;
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * speed);
-            var rotation = Quaternion.LookRotation(player.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
-            if (Vector3.Distance(transform.position, player.transform.position) > playerDistance)
+            rb = this.GetComponent<Rigidbody>();
+            rb.useGravity = false;
+            rb.isKinematic = true;
+            if (followPlayer == false)
             {
-                followPlayer = false;
+                alarm.enabled = false;
+                if (Vector3.Distance(allWaypoints[current].transform.position, transform.position) < wpRadius)
+                {
+                    current++;
+                    if (current >= allWaypoints.Length)
+                    {
+                        current = 0;
+                    }
+                }
+                transform.position = Vector3.MoveTowards(transform.position, allWaypoints[current].transform.position, Time.deltaTime * speed);
+                var rotation = Quaternion.LookRotation(allWaypoints[current].transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
             }
-            // TEMPORARY: if the drone gets too close to the player, respawn the player TODO: delete this part
-            else if (Vector3.Distance(transform.position, player.transform.position) < 1)
+            else
             {
-                followPlayer = false;
-                RespawnController.instance.Respawn();
+                alarm.enabled = true;
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * speed);
+                var rotation = Quaternion.LookRotation(player.transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+                if (Vector3.Distance(transform.position, player.transform.position) > playerDistance)
+                {
+                    followPlayer = false;
+                }
+                // TEMPORARY: if the drone gets too close to the player, respawn the player TODO: delete this part
+                else if (Vector3.Distance(transform.position, player.transform.position) < 1)
+                {
+                    followPlayer = false;
+                    RespawnController.instance.Respawn();
+                }
             }
         }
 

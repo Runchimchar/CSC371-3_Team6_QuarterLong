@@ -6,6 +6,7 @@ TagManager:
   tags:
   - waypointTest
   - CinemachineTarget
+  - Drone
   layers:
   - Default
   - TransparentFX
