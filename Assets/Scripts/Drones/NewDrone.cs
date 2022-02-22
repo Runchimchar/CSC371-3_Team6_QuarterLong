@@ -22,19 +22,19 @@ public class NewDrone : MonoBehaviour
     private void Start()
     {
         alarm = this.GetComponent<AudioSource>();
+        rb = this.GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         if (stunned == true)
         {
-            rb = this.GetComponent<Rigidbody>();
             rb.useGravity = true;
             rb.isKinematic = false;
+            StartCoroutine(waiter());
         }
         else
         {
-            rb = this.GetComponent<Rigidbody>();
             rb.useGravity = false;
             rb.isKinematic = true;
             if (followPlayer == false)
@@ -70,7 +70,11 @@ public class NewDrone : MonoBehaviour
                 }
             }
         }
+    }
 
-
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(3);
+        stunned = false;
     }
 }
