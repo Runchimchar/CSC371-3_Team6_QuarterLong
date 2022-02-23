@@ -25,7 +25,7 @@ public class NewDrone : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (stunned == true)
         {
