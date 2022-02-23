@@ -12,6 +12,7 @@ public class Grapple : MonoBehaviour
     public Transform ropeStart, vision, player, orientation, grappleGun;
     public AudioController ropeCreak, ropeSlide, grappleExtend;
     public PlayerMovement pm;
+    public float throwForce = 20f;
 
     private LineRenderer lr;
     private Vector3 grapplePoint;
@@ -29,6 +30,8 @@ public class Grapple : MonoBehaviour
     private bool playingRetract = false;
     private float retractSpeed = 1f;
     private float retractMinDistance = 0.5f;
+
+    private bool aiming = false;
 
     private Quaternion desiredRotation;
     private float rotationSpeed = 15f;
@@ -126,6 +129,14 @@ public class Grapple : MonoBehaviour
         }
     }
 
+    void OnThrow(InputValue value)
+    {
+        aiming = value.isPressed && !yoinking;
+        pm.SetAiming(aiming);
+        //if (yoinking) grappleObject.GetComponent<MovableObjectRespawn>().SetAiming(aiming);
+        if (value.isPressed && yoinking) ThrowObject();
+    }
+
     void StartGrapple()
     {
         if (joint) return;
@@ -197,7 +208,6 @@ public class Grapple : MonoBehaviour
         pm.SetYoink(true);
         UpdateGrapple();
         Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
-        Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), capsuleCollider, true);
         yorb.isKinematic = true;
         yorb.useGravity = false;
         yorb.detectCollisions = false;
@@ -209,11 +219,11 @@ public class Grapple : MonoBehaviour
     {
         pm.SetYoink(false);
         Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
-        Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), capsuleCollider, false);
         yorb.isKinematic = false;
         yorb.useGravity = true;
         yorb.detectCollisions = true;
         yoinking = false;
+        lr.positionCount = 0;
     }
 
     void DrawRope()
@@ -232,6 +242,15 @@ public class Grapple : MonoBehaviour
         }
         grapplePoint = grappleObject.transform.position - (yoinking ? Vector3.zero : grappleObjectOffset);
         //joint.connectedAnchor = grapplePoint;
+    }
+
+    void ThrowObject()
+    {
+        Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
+        Vector3 throwDir = (pm.GetAimPoint() - grappleObject.transform.position).normalized;
+        StopYoink();
+        yorb.velocity = player.GetComponentInChildren<Rigidbody>().velocity;
+        yorb.AddForce(throwDir * throwForce, ForceMode.Impulse);
     }
 
     public bool IsGrappling()

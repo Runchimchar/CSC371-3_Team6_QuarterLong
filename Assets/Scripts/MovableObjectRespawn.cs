@@ -10,6 +10,7 @@ public class MovableObjectRespawn : MonoBehaviour
     Vector3 startPosition;
     float indCurLen = 0;
     float indSpeed = 20f;
+    bool aiming = false;
     LineRenderer lr;
     Rigidbody rb;
 
@@ -27,13 +28,13 @@ public class MovableObjectRespawn : MonoBehaviour
         if (transform.position.y < respawnY)
         {
             transform.position = startPosition;
-            rb.velocity = Vector3.zero;
+            rb.angularVelocity = rb.velocity = Vector3.zero;
         }
     }
 
     private void LateUpdate()
     {
-        if (rb.isKinematic)
+        if (rb.isKinematic && !aiming)
         {
             lr.positionCount = 2;
             lr.SetPosition(0, transform.position);
@@ -51,11 +52,18 @@ public class MovableObjectRespawn : MonoBehaviour
         {
             lr.positionCount = 0;
             indCurLen = 0;
+
+            if (!rb.isKinematic) aiming = false;
         }
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, respawnY, transform.position.z));
+    }
+
+    public void SetAiming(bool newAim)
+    {
+        aiming = newAim;
     }
 }

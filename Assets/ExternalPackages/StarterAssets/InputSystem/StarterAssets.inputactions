@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aim",
+                    "name": "Throw",
                     "type": "PassThrough",
                     "id": "b2083509-8fa1-4091-a48e-be4dfe6d048a",
                     "expectedControlType": "",
@@ -271,7 +271,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Aim",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -282,7 +282,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Aim",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

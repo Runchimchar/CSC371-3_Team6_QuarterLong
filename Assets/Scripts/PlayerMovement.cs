@@ -133,11 +133,6 @@ public class PlayerMovement : MonoBehaviour
         if (value.isPressed) Jump();
     }
 
-    void OnAim(InputValue value)
-    {
-        aiming = value.isPressed;
-    }
-
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, GroundLayer);
@@ -350,6 +345,11 @@ public class PlayerMovement : MonoBehaviour
     public void SetYoink(bool newYoink)
     {
         yoinking = newYoink;
+    }
+
+    public void SetAiming(bool newAim)
+    {
+        aiming = newAim;
     }
 
     public void RespawnAt(Vector3 location, Vector2 lookRotation)
