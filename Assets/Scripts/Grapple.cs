@@ -8,6 +8,7 @@ public class Grapple : MonoBehaviour
 {
     public LayerMask grapplable;
     public LayerMask movable;
+    public LayerMask moving;
     public LayerMask interactable;
     public Transform ropeStart, vision, player, orientation, grappleGun;
     public AudioController ropeCreak, ropeSlide, grappleExtend;
@@ -20,10 +21,14 @@ public class Grapple : MonoBehaviour
     private Vector3 grappleObjectOffset;
     private float maxDistance = 100f;
     private SpringJoint joint;
+    private SpringJoint movableJoint;
+
+    private float originalSleep;
+    private float originalDrag;
+    private LayerMask originalLayer;
 
     private Transform holdTransform;
     private bool yoinking = false;
-    private float yoinkSpeed = 50f;
     private Collider capsuleCollider;
 
     private bool retracting = false;
@@ -45,27 +50,6 @@ public class Grapple : MonoBehaviour
 
     private void Update()
     {
-        if (yoinking || joint) UpdateGrapple();
-        if (yoinking)
-        {
-            Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
-            
-            Vector3 direction = holdTransform.position - ropeStart.position;
-            Ray yoinkRay = new Ray(ropeStart.position, direction);
-            RaycastHit yoinkHit;
-            if (!yorb.SweepTest(direction, out yoinkHit, direction.magnitude))
-                yorb.MovePosition(Vector3.Lerp(yorb.transform.position, holdTransform.position, yoinkSpeed * Time.deltaTime));
-            else
-            {
-                GameObject obstructor = yoinkHit.transform.gameObject;
-                Rigidbody obstructorRB = yoinkHit.rigidbody;
-                
-                if (IsInLayerMask(obstructor, pm.GetAimColliderMask()) && (obstructor.isStatic || !obstructorRB || obstructorRB.isKinematic))
-                    yorb.MovePosition(Vector3.Lerp(yorb.transform.position, ropeStart.position + (yoinkHit.distance * direction.normalized), yoinkSpeed * Time.deltaTime));
-                else
-                    yorb.MovePosition(Vector3.Lerp(yorb.transform.position, holdTransform.position, yoinkSpeed * Time.deltaTime));
-            }
-        }
         if (joint != null || yoinking) desiredRotation = Quaternion.LookRotation(grapplePoint - grappleGun.position);
         else if (pm.GetAiming()) desiredRotation = Quaternion.LookRotation(pm.GetAimPoint() - grappleGun.position);
         else desiredRotation = grappleGun.parent.rotation;
@@ -75,6 +59,7 @@ public class Grapple : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (yoinking || joint) UpdateGrapple();
         if (joint)
         {
             bool stopped = joint.maxDistance <= retractMinDistance + 0.1f || player.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.1;
@@ -133,7 +118,6 @@ public class Grapple : MonoBehaviour
     {
         aiming = value.isPressed && !yoinking;
         pm.SetAiming(aiming);
-        //if (yoinking) grappleObject.GetComponent<MovableObjectRespawn>().SetAiming(aiming);
         if (value.isPressed && yoinking) ThrowObject();
     }
 
@@ -205,25 +189,57 @@ public class Grapple : MonoBehaviour
 
     void YoinkObject()
     {
-        pm.SetYoink(true);
-        UpdateGrapple();
-        Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
-        yorb.isKinematic = true;
-        yorb.useGravity = false;
-        yorb.detectCollisions = false;
         yoinking = true;
+        pm.SetYoink(true);
+        grappleObject.GetComponent<MovableObjectRespawn>().SetYoink(true, this);
+
+        Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
+        pm.SetGrapple(true);
+
+        originalDrag = yorb.drag;
+        originalSleep = yorb.sleepThreshold;
+        originalLayer = grappleObject.layer;
+        // grappleExtend.PlayOnce();
+        // ropeCreak.PlayRepeat();
+        movableJoint = grappleObject.AddComponent<SpringJoint>();
+        movableJoint.autoConfigureConnectedAnchor = false;
+        movableJoint.enableCollision = false;
+        movableJoint.connectedAnchor = holdTransform.position;
+
+        movableJoint.maxDistance = 0;
+        movableJoint.damper = 1f;
+        movableJoint.massScale = 20f * yorb.mass;
+        
+        yorb.useGravity = false;
         lr.positionCount = 2;
+        yorb.freezeRotation = true;
+        yorb.drag = 10f;
+        yorb.sleepThreshold = 0;
+        grappleObject.layer = (int) Mathf.Log(moving.value, 2);
+        Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), player.GetComponentInChildren<CapsuleCollider>(), true);
+
+        UpdateGrapple();
     }
 
     void StopYoink()
     {
         pm.SetYoink(false);
+        grappleObject.GetComponent<MovableObjectRespawn>().SetYoink(false, this);
         Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
-        yorb.isKinematic = false;
+        //grappleExtend.PlayStop();
+        //ropeCreak.PlayStop();
+        //ropeSlide.PlayStop();
+        //playingRetract = false;
+        Destroy(movableJoint);
         yorb.useGravity = true;
-        yorb.detectCollisions = true;
         yoinking = false;
         lr.positionCount = 0;
+        yorb.freezeRotation = false;
+        yorb.drag = originalDrag;
+        yorb.sleepThreshold = originalSleep;
+        grappleObject.layer = originalLayer;
+
+        Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), player.GetComponentInChildren<CapsuleCollider>(), false);
     }
 
     void DrawRope()
@@ -241,6 +257,7 @@ public class Grapple : MonoBehaviour
             return;
         }
         grapplePoint = grappleObject.transform.position - (yoinking ? Vector3.zero : grappleObjectOffset);
+        if (yoinking) movableJoint.connectedAnchor = holdTransform.position;
         //joint.connectedAnchor = grapplePoint;
     }
 
@@ -266,6 +283,11 @@ public class Grapple : MonoBehaviour
     public Vector3 GetGrapplePoint()
     {
         return grapplePoint;
+    }
+
+    public GameObject GetGrappleObject()
+    {
+        return grappleObject;
     }
 
     public bool Grapplable()

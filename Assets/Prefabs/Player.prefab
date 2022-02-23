@@ -884,6 +884,12 @@ MonoBehaviour:
   movable:
     serializedVersion: 2
     m_Bits: 512
+  moving:
+    serializedVersion: 2
+    m_Bits: 1024
+  interactable:
+    serializedVersion: 2
+    m_Bits: 0
   ropeStart: {fileID: 5005368067997508336}
   vision: {fileID: 6632356198496105587}
   player: {fileID: 8318537527390247881}
@@ -893,6 +899,7 @@ MonoBehaviour:
   ropeSlide: {fileID: 8112227135536737336}
   grappleExtend: {fileID: 8112227135092555599}
   pm: {fileID: 8663431869148840302}
+  throwForce: 20
 --- !u!114 &8663431869148840302
 MonoBehaviour:
   m_ObjectHideFlags: 0
