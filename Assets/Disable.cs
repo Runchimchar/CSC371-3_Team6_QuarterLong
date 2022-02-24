@@ -21,6 +21,7 @@ public class Disable : MonoBehaviour
         if (thing.gameObject.tag == "Drone")
         {
             newDScript.stunned = true;
+            gameObject.active = false;
         }
     }
 }

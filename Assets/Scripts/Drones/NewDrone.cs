@@ -18,6 +18,9 @@ public class NewDrone : MonoBehaviour
     public bool stunned = false;
     Rigidbody rb;
 
+    public int timeStunned = 3;
+    public GameObject lightning;
+
 
     private void Start()
     {
@@ -29,12 +32,14 @@ public class NewDrone : MonoBehaviour
     {
         if (stunned == true)
         {
+            lightning.SetActive(true);
             rb.useGravity = true;
             rb.isKinematic = false;
             StartCoroutine(waiter());
         }
         else
         {
+            lightning.SetActive(false);
             rb.useGravity = false;
             rb.isKinematic = true;
             if (followPlayer == false)
@@ -74,7 +79,7 @@ public class NewDrone : MonoBehaviour
 
     IEnumerator waiter()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(timeStunned);
         stunned = false;
     }
 }
