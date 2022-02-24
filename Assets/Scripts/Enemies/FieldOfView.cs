@@ -10,15 +10,29 @@ public class FieldOfView : MonoBehaviour
     public List<Transform> visibleTargets = new List<Transform>();
     public Transform Player;
     [SerializeField, Range(0.0f, 20.0f)] private float _viewRadius;
+    [SerializeField, Range(0.001f, 10.0f)] private float _minViewRadius;
+    [SerializeField, Range(0.001f, 6.0f)] private float _attackRadius;
     [SerializeField, Range(0.0f, 360.0f)] private float _viewAngle;
+    [SerializeField, Range(0.0f, 360.0f)] private float _attackAngle;
+    [SerializeField, Range(0.0f, 30.0f)] private float _attackCooldown = 5.0f;
+    private float _attackTimer = 100.0f;
+    private DroneAttack _droneAttack;
     public float ViewRadius => _viewRadius;
+    public float MinViewRadius => _minViewRadius;
+    public float AttackRadius => _attackRadius;
     public float ViewAngle => _viewAngle;
+    public float AttackAngle => _attackAngle;
 
-    [SerializeField] private LayerMask _targetMask;
     [SerializeField] private LayerMask _obstacleMask;
     public void Start()
     {
+        _droneAttack = GetComponent<DroneAttack>();
         StartCoroutine(DetectPlayerWithDelay(0.2f));
+    }
+
+    public void Update()
+    {
+        _attackTimer += Time.deltaTime;
     }
 
     // Unity has unit circle with 0 at top and 90 at right
@@ -35,34 +49,29 @@ public class FieldOfView : MonoBehaviour
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 
-    public void FindVisibleTargets()
-    {
-        visibleTargets.Clear();
-        
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, _viewRadius, _targetMask);
-        for (int i = 0; i < targetsInViewRadius.Length; i++)
-        {
-            Transform target = targetsInViewRadius[i].transform;
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) < _viewAngle / 2)
-            {
-                float distToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, _obstacleMask))
-                {
-                    visibleTargets.Add(target);
-                }
-            }
-        }
-    }
-
     public void DetectPlayer()
     {
         visibleTargets.Clear();
-
-        if (Vector3.Distance(Player.position, transform.position) < _viewRadius)
+        float playerDist = Vector3.Distance(Player.position, transform.position);
+        if (_droneAttack != null && playerDist < _attackRadius && _attackTimer > _attackCooldown)
         {
             Vector3 dirToTarget = (Player.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) < _viewAngle / 2)
+            if (Vector3.Angle(transform.forward, dirToTarget) < _attackAngle)
+            {
+                float distToTarget = Vector3.Distance(transform.position, Player.position);
+                if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, _obstacleMask))
+                {
+                    visibleTargets.Add(Player);
+                    myNewDroneScript.followPlayer = true;
+                    _droneAttack.Attack();
+                    _attackTimer = 0.0f;
+                }
+            }
+        }
+        else if (playerDist < _viewRadius)
+        {
+            Vector3 dirToTarget = (Player.position - transform.position).normalized;
+            if (playerDist < _minViewRadius || Vector3.Angle(transform.forward, dirToTarget) < _viewAngle / 2)
             {
                 float distToTarget = Vector3.Distance(transform.position, Player.position);
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, _obstacleMask))
@@ -71,14 +80,6 @@ public class FieldOfView : MonoBehaviour
                     myNewDroneScript.followPlayer = true;
                 }
             }
-        }
-    }
-    public IEnumerator FindTargetsWithDelay(float delay)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(delay);
-            FindVisibleTargets();
         }
     }
 

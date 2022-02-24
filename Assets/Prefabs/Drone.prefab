@@ -1063,6 +1063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1746805377118456441}
   - component: {fileID: 1746805377118456440}
+  - component: {fileID: 8061239299967371682}
   - component: {fileID: 1746805377118456442}
   - component: {fileID: 1746805377118456443}
   - component: {fileID: 4452298787938652336}
@@ -1105,13 +1106,27 @@ MonoBehaviour:
   visibleTargets: []
   Player: {fileID: 0}
   _viewRadius: 7.3
+  _minViewRadius: 0
+  _attackRadius: 0
   _viewAngle: 60
-  _targetMask:
-    serializedVersion: 2
-    m_Bits: 0
+  _attackAngle: 0
+  _attackCooldown: 0
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 1011
+--- !u!114 &8061239299967371682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746805377118456447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f4d71541c8edd4a9d3ecf49fda90fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackDamage: 1
 --- !u!114 &1746805377118456442
 MonoBehaviour:
   m_ObjectHideFlags: 0
