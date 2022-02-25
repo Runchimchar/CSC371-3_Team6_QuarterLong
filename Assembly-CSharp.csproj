@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\AudioController.cs" />
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\About\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
+    <Compile Include="Assets\Scripts\Drones\StaticDrone.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

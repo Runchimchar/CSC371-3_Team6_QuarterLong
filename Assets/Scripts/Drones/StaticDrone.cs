@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewDrone : MonoBehaviour
+public class StaticDrone : MonoBehaviour
 {
     AudioSource alarm;
     public GameObject[] allWaypoints;
+    public GameObject staticWaypoint;
     int current = 0;
     public float speed;
-    float wpRadius = 1;
     public float playerDistance = 5;
     public float damping;
+
+    //public double rad = 0.99;
 
     public Transform player;
     public bool followPlayer = false;
@@ -20,6 +22,7 @@ public class NewDrone : MonoBehaviour
 
     public int timeStunned = 3;
     public GameObject lightning;
+
 
     private void Start()
     {
@@ -47,17 +50,32 @@ public class NewDrone : MonoBehaviour
             if (followPlayer == false)
             {
                 alarm.enabled = false;
-                if (Vector3.Distance(allWaypoints[current].transform.position, transform.position) < wpRadius)
+                if (Vector3.Distance(staticWaypoint.transform.position, transform.position) != 0)
                 {
-                    current++;
-                    if (current >= allWaypoints.Length)
-                    {
-                        current = 0;
-                    }
+                    var rotation = Quaternion.LookRotation(staticWaypoint.transform.position - transform.position);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+                    transform.position = Vector3.MoveTowards(transform.position, staticWaypoint.transform.position, Time.deltaTime * speed);
                 }
-                transform.position = Vector3.MoveTowards(transform.position, allWaypoints[current].transform.position, Time.deltaTime * speed);
-                var rotation = Quaternion.LookRotation(allWaypoints[current].transform.position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+                else 
+                {
+
+                    var rotation = Quaternion.LookRotation(allWaypoints[current].transform.position - transform.position);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+
+
+                    Vector3 dirFromAtoB = (allWaypoints[current].transform.position - transform.position).normalized;
+                    float dotProd = Vector3.Dot(dirFromAtoB, transform.forward);
+
+                    if (dotProd >= 0.99)
+                    {
+                        current++;
+                        if (current >= allWaypoints.Length)
+                        {
+                            current = 0;
+                        }
+                    }
+
+                }
             }
             else
             {
@@ -89,6 +107,7 @@ public class NewDrone : MonoBehaviour
         followPlayer = false;
     }
 
+
     void OnCollisionEnter(Collision thing)
     {
         if (thing.gameObject.layer != LayerMask.NameToLayer("Moving"))
@@ -99,6 +118,8 @@ public class NewDrone : MonoBehaviour
             }
         }
     }
+
+
 
     IEnumerator waiter()
     {
