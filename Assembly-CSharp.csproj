@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CAEC3BBE-3D47-485C-7771-F0AE24B05E87}</ProjectGuid>
+    <ProjectGuid>{A39F5B98-82CB-05F7-5DB8-671765E482C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Guns\TestPlayer.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\PlayerShootingScript.cs" />
     <Compile Include="Assets\Scripts\DoorOpenOnManyButton.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
+    <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
     <Compile Include="Assets\Scripts\RespawnCheckpoints\RespawnController.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\TestScripts\TESTDoor.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
     <Compile Include="Assets\Scripts\Doors\ADoorAnimation.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
+    <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\About\Scripts\Readme.cs" />
     <Compile Include="Assets\Disable.cs" />
     <Compile Include="Assets\Scripts\TESTAnimation.cs" />
     <Compile Include="Assets\Scripts\MovableObjectRespawn.cs" />
@@ -104,7 +106,7 @@
     <Compile Include="Assets\Scripts\ThirdPersonShooterController.cs" />
     <Compile Include="Assets\Scripts\Guns\ProjectileGun.cs" />
     <Compile Include="Assets\Scripts\AudioController.cs" />
-    <Compile Include="Assets\LightningBolt\LightningBoltScript.cs" />
+    <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
