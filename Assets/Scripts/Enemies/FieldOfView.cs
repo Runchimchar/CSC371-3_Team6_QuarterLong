@@ -6,8 +6,6 @@ using UnityEngine;
 // Code taken from Sebastian Lague
 public class FieldOfView : MonoBehaviour
 {
-    public NewDrone myNewDroneScript;
-
     public List<Transform> visibleTargets = new List<Transform>();
     public Transform Player;
     [SerializeField, Range(0.0f, 20.0f)] private float _viewRadius;
@@ -19,6 +17,8 @@ public class FieldOfView : MonoBehaviour
     private float _attackTimer = 100.0f;
     private DroneAttack _droneAttack;
     private event Action _visionEvent;
+    private event Action _playerNotSeenEvent;
+
 
     public float ViewRadius => _viewRadius;
     public float MinViewRadius => _minViewRadius;
@@ -37,6 +37,17 @@ public class FieldOfView : MonoBehaviour
     {
         _visionEvent -= fun;
     }
+
+    public void SubscribeToPlayerNotSeenEvent(Action fun)
+    {
+        _playerNotSeenEvent += fun;
+    }
+
+    public void UnsubscribeToPlayerNotSeenEvent(Action fun)
+    {
+        _playerNotSeenEvent -= fun;
+    }
+
 
     public void Start()
     {
@@ -76,10 +87,10 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, _obstacleMask))
                 {
                     visibleTargets.Add(Player);
-                    myNewDroneScript.followPlayer = true;
                     _droneAttack.Attack();
                     _attackTimer = 0.0f;
                     _visionEvent.Invoke();
+                    return;
                 }
             }
         }
@@ -92,11 +103,12 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, _obstacleMask))
                 {
                     visibleTargets.Add(Player);
-                    myNewDroneScript.followPlayer = true;
                     _visionEvent.Invoke();
+                    return;
                 }
             }
         }
+        _playerNotSeenEvent.Invoke();
     }
 
     public IEnumerator DetectPlayerWithDelay(float delay)

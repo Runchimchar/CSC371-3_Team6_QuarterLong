@@ -26,6 +26,10 @@ public class NewDrone : MonoBehaviour
     {
         alarm = this.GetComponent<AudioSource>();
         rb = this.GetComponent<Rigidbody>();
+
+        GetComponent<FieldOfView>().SubscribeToVisionEvent(seenPlayer);
+        GetComponent<FieldOfView>().SubscribeToPlayerNotSeenEvent(doesntSeePlayer);
+
     }
 
     void FixedUpdate()
@@ -75,6 +79,16 @@ public class NewDrone : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void seenPlayer()
+    {
+        followPlayer = true;
+    }
+
+    public void doesntSeePlayer()
+    {
+        followPlayer = false;
     }
 
     IEnumerator waiter()
