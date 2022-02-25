@@ -77,9 +77,10 @@ public class FieldOfView : MonoBehaviour
                 {
                     visibleTargets.Add(Player);
                     myNewDroneScript.followPlayer = true;
-                    _droneAttack.Attack();
+                    _droneAttack.Attack(Player.gameObject);
                     _attackTimer = 0.0f;
-                    _visionEvent.Invoke();
+                    if (_visionEvent != null)
+                        _visionEvent.Invoke();
                 }
             }
         }
@@ -93,7 +94,8 @@ public class FieldOfView : MonoBehaviour
                 {
                     visibleTargets.Add(Player);
                     myNewDroneScript.followPlayer = true;
-                    _visionEvent.Invoke();
+                    if (_visionEvent != null)
+                        _visionEvent.Invoke();
                 }
             }
         }
