@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class FieldOfView : MonoBehaviour
     [SerializeField, Range(0.0f, 30.0f)] private float _attackCooldown = 5.0f;
     private float _attackTimer = 100.0f;
     private DroneAttack _droneAttack;
+    private event Action _visionEvent;
+
     public float ViewRadius => _viewRadius;
     public float MinViewRadius => _minViewRadius;
     public float AttackRadius => _attackRadius;
@@ -24,6 +27,17 @@ public class FieldOfView : MonoBehaviour
     public float AttackAngle => _attackAngle;
 
     [SerializeField] private LayerMask _obstacleMask;
+
+    public void SubscribeToVisionEvent(Action fun)
+    {
+        _visionEvent += fun;
+    }
+
+    public void UnsubscribeToVisionEvent(Action fun)
+    {
+        _visionEvent -= fun;
+    }
+
     public void Start()
     {
         _droneAttack = GetComponent<DroneAttack>();
@@ -65,6 +79,7 @@ public class FieldOfView : MonoBehaviour
                     myNewDroneScript.followPlayer = true;
                     _droneAttack.Attack();
                     _attackTimer = 0.0f;
+                    _visionEvent.Invoke();
                 }
             }
         }
@@ -78,6 +93,7 @@ public class FieldOfView : MonoBehaviour
                 {
                     visibleTargets.Add(Player);
                     myNewDroneScript.followPlayer = true;
+                    _visionEvent.Invoke();
                 }
             }
         }
