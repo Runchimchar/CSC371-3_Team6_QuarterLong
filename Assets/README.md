@@ -7,4 +7,4 @@ Using Player Prefab:
 - Then, drag in PlayerAimCamera prefab.
 - Then, drag in Player prefab.
 - Then, drag in Canvas prefab.
-- Finally, assign PlayerCameraRoot (inside of Player) to the "Follow" property of the CinemachineVirtualCamera components for both PlayerAimCamera and PlayerFollowCamera.
+- Finally, assign PlayerCameraRoot (inside of Player) to both the the "Follow" and the "Look At" properties of the CinemachineVirtualCamera components for both PlayerAimCamera and PlayerFollowCamera.

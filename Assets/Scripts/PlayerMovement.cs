@@ -178,7 +178,6 @@ public class PlayerMovement : MonoBehaviour
             hitPointHit = raycastHit;
         }
         else hitPoint = ray.GetPoint(maxAimDistance);
-
         if (aiming || grappling || yoinking)
         {
             if (aiming)

@@ -924,7 +924,7 @@ MonoBehaviour:
   movementSpeed: 4
   maxSpeed: 50
   movementMultiplier: 10
-  airMultiplier: 0.3
+  airMultiplier: 0.25
   walkSpeed: 4
   sprintSpeed: 8
   acceleration: 10
