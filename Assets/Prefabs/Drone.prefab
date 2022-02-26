@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackDamage: 1
-  _lightningPrefab: {fileID: 0}
+  _lightningPrefab: {fileID: 178460, guid: a84cb58ef7faa67488076810242453b9, type: 3}
   _attackDuration: 1
 --- !u!114 &1746805377118456442
 MonoBehaviour:
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   followPlayer: 0
   stunned: 0
   timeStunned: 3
-  lightning: {fileID: 0}
+  lightning: {fileID: 6806220767560869608}
 --- !u!82 &1746805377118456443
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1909,6 +1909,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15dec7b07032b2f4aa6f855bfbe120f7, type: 3}
+--- !u!1 &6806220767560869608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 106988, guid: 15dec7b07032b2f4aa6f855bfbe120f7, type: 3}
+  m_PrefabInstance: {fileID: 6806220767560959748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6806220767561055596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 490088, guid: 15dec7b07032b2f4aa6f855bfbe120f7, type: 3}
