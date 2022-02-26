@@ -59,12 +59,16 @@
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\StarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\Editor\FieldOfViewEditor.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\PackageChecker\PackageChecker.cs" />
+    <Compile Include="Assets\LightningBolt\Editor\LightningBoltEditor.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\ScriptingDefineUtils.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\ThirdPersonStarterAssetsDeployMenu.cs" />
-    <Compile Include="Assets\LightningBolt\Editor\LightningBoltEditor.cs" />
+    <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\About\Scripts\Editor\ReadmeEditor.cs" />
+    <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\PackageChecker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\settings\PackageImportList_ShaderGraph.txt" />
     <None Include="Assets\ExternalPackages\StarterAssets\Editor\PackageChecker\PackageImportList.txt" />
+    <None Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\PackageImportList.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

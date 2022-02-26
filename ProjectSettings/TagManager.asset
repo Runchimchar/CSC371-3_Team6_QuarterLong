@@ -8,6 +8,8 @@ TagManager:
   - CinemachineTarget
   - Drone
   - Button
+  - EMP
+  - Holder
   layers:
   - Default
   - TransparentFX

@@ -21,11 +21,13 @@ public class NewDrone : MonoBehaviour
     public int timeStunned = 3;
     public GameObject lightning;
 
-
     private void Start()
     {
         alarm = this.GetComponent<AudioSource>();
         rb = this.GetComponent<Rigidbody>();
+
+        GetComponent<FieldOfView>().SubscribeToVisionEvent(seenPlayer);
+        GetComponent<FieldOfView>().SubscribeToPlayerNotSeenEvent(doesntSeePlayer);
     }
 
     void FixedUpdate()
@@ -73,6 +75,27 @@ public class NewDrone : MonoBehaviour
                     followPlayer = false;
                     RespawnController.instance.Respawn();
                 }
+            }
+        }
+    }
+
+    public void seenPlayer()
+    {
+        followPlayer = true;
+    }
+
+    public void doesntSeePlayer()
+    {
+        followPlayer = false;
+    }
+
+    void OnCollisionEnter(Collision thing)
+    {
+        if (thing.gameObject.layer != LayerMask.NameToLayer("Moving"))
+        {
+            if (thing.gameObject.tag == "EMP")
+            {
+                stunned = true;
             }
         }
     }
