@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ReelOut",
+                    "type": "PassThrough",
+                    "id": "b73baf36-e7d7-4b33-a021-7d20d9675f98",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Grapple",
                     "type": "PassThrough",
                     "id": "ca7525dd-8fd5-42d1-8e07-e8ef3c4c2b5c",
@@ -278,7 +287,7 @@
                 {
                     "name": "",
                     "id": "87966c30-c1ec-4bd4-b5b5-15c04e212505",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -311,7 +320,7 @@
                 {
                     "name": "",
                     "id": "b953766f-d136-4875-8014-ad097dbc876e",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -322,7 +331,7 @@
                 {
                     "name": "",
                     "id": "9afb8475-5663-4be2-92de-9630e4d9a6a9",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -371,6 +380,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Respawn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0f360d59-c929-411a-81bd-2e9bceae8b54",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "ReelOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9af3c7fd-180d-49c9-8aa8-ece4efc0e7eb",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ReelOut",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

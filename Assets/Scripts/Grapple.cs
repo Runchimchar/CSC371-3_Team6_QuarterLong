@@ -32,8 +32,10 @@ public class Grapple : MonoBehaviour
     private Collider capsuleCollider;
 
     private bool retracting = false;
+    private bool reelingOut = false;
     private bool playingRetract = false;
     private float retractSpeed = 1f;
+    private float currentRetractSpeed = 0f;
     private float retractMinDistance = 0.5f;
 
     private bool aiming = false;
@@ -72,14 +74,29 @@ public class Grapple : MonoBehaviour
 
             UpdateGrapple();
 
-            if (retracting)
+            if (retracting && !reelingOut)
             {
-                joint.maxDistance = Mathf.Max((joint.maxDistance + Vector3.Distance(player.position, grapplePoint)) / 2f - retractSpeed, retractMinDistance);
+                currentRetractSpeed = Mathf.Lerp(currentRetractSpeed, retractSpeed, 0.1f);
+                joint.maxDistance = Mathf.Max((joint.maxDistance + Vector3.Distance(player.position, grapplePoint)) / 2f - currentRetractSpeed, retractMinDistance);
                 if (!stopped && !playingRetract)
                 {
                     ropeSlide.PlayRepeat();
                     playingRetract = true;
                 }
+            }
+            else if (reelingOut && !retracting)
+            {
+                currentRetractSpeed = Mathf.Lerp(currentRetractSpeed, -retractSpeed, 0.1f);
+                joint.maxDistance = Mathf.Max((joint.maxDistance + Vector3.Distance(player.position, grapplePoint)) / 2f - currentRetractSpeed, retractMinDistance);
+                if (!stopped && !playingRetract)
+                {
+                    ropeSlide.PlayRepeat();
+                    playingRetract = true;
+                }
+            }
+            else
+            {
+                currentRetractSpeed = 0f;
             }
         }
     }
@@ -95,12 +112,34 @@ public class Grapple : MonoBehaviour
         else StopGrapple();
     }
 
-    void OnSprint(InputValue value)
+    //void OnSprint(InputValue value)
+    //{
+    //    if (value.isPressed)
+    //    {
+    //        retracting = true;
+    //        if (joint)
+    //        {
+    //            ropeSlide.PlayRepeat();
+    //            playingRetract = true;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        ropeSlide.PlayStop();
+    //        playingRetract = false;
+    //        retracting = false;
+    //    }
+    //}
+
+    void OnThrow(InputValue value)
     {
-        if (value.isPressed)
+        aiming = value.isPressed && !(yoinking || joint != null);
+        pm.SetAiming(aiming);
+        retracting = value.isPressed;
+        if (value.isPressed && yoinking) ThrowObject();
+        else if (retracting)
         {
-            retracting = true;
-            if (joint)
+            if (joint != null)
             {
                 ropeSlide.PlayRepeat();
                 playingRetract = true;
@@ -110,15 +149,25 @@ public class Grapple : MonoBehaviour
         {
             ropeSlide.PlayStop();
             playingRetract = false;
-            retracting = false;
         }
     }
 
-    void OnThrow(InputValue value)
+    void OnReelOut(InputValue value)
     {
-        aiming = value.isPressed && !yoinking;
-        pm.SetAiming(aiming);
-        if (value.isPressed && yoinking) ThrowObject();
+        reelingOut = value.isPressed;
+        if (value.isPressed)
+        {
+            if (joint != null)
+            {
+                ropeSlide.PlayRepeat();
+                playingRetract = true;
+            }
+        }
+        else
+        {
+            ropeSlide.PlayStop();
+            playingRetract = false;
+        }
     }
 
     void StartGrapple()
@@ -128,6 +177,7 @@ public class Grapple : MonoBehaviour
         if (Vector3.Distance(pm.GetAimPoint(), ropeStart.position) <= maxDistance)
         {
             RaycastHit hit = pm.GetHit();
+            if (!hit.transform.gameObject) return;
             grappleObject = hit.transform.gameObject;
             grapplePoint = hit.point;
             grappleObjectOffset = grappleObject.transform.position - hit.point;
