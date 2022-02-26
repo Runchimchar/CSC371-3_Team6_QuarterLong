@@ -234,6 +234,18 @@ public class PlayerMovement : MonoBehaviour
             RespawnController.instance.Respawn();
         }
     }
+    void OnSpawnNext(InputValue value) {
+        if (value.isPressed) {
+            // Notifies all listeners that key was pressed
+            RespawnController.instance.SpawnNext();
+        }
+    }
+    void OnSpawnPrev(InputValue value) {
+        if (value.isPressed) {
+            // Notifies all listeners that key was pressed
+            RespawnController.instance.SpawnPrev();
+        }
+    }
 
     void Jump()
     {

@@ -94,6 +94,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SpawnNext",
+                    "type": "Button",
+                    "id": "900218e9-e98b-4591-9507-38eae472955c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpawnPrev",
+                    "type": "Button",
+                    "id": "727da738-f3dc-45bf-be05-0121fba5b598",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -364,7 +382,7 @@
                 {
                     "name": "",
                     "id": "0218d08c-4a6e-4b8c-a743-cdbfab1e50da",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/slash",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -402,6 +420,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ReelOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5471acb-d13b-4557-9e22-77c0d2bb0eda",
+                    "path": "<Keyboard>/period",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "SpawnNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0dd1d0a5-f86e-435f-8d28-428ee7f9b45e",
+                    "path": "<Keyboard>/comma",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "SpawnPrev",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

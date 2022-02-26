@@ -5,10 +5,10 @@ using UnityEngine;
 public class RespawnController : MonoBehaviour
 {
     // Follows singleton pattern
-    public PlayerMovement pm;
-    Vector3 spawnLoc;
-    Vector2 spawnDirection;
     public static RespawnController instance;
+    public PlayerMovement pm;
+    public Checkpoint[] checkpoints;
+    int curCheckpoint;
 
     private void Awake()
     {
@@ -36,26 +36,75 @@ public class RespawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // set the default spawn point to first location in level
-        spawnLoc = pm.transform.position;
-        Vector3 rot = pm.transform.rotation.eulerAngles;
-        spawnDirection = new Vector2(rot.x, rot.y);
+        // set the default spawn point to first location in level and add it to array
+        GameObject go = new GameObject("CheckpointInit");
+        Checkpoint init = go.AddComponent<Checkpoint>();
+        init.rc = this;
+        Vector3 newPos = pm.transform.position;
+        newPos.y -= 1;
+        go.transform.position = newPos;
+        go.transform.forward = pm.transform.forward;
+        init.SetIndex(0);
+        init.SetPassedThrough();
+
+        Checkpoint[] newCheckpoints = new Checkpoint[checkpoints.Length + 1];
+        newCheckpoints[0] = init;
+        int i = 1;
+        foreach (Checkpoint cp in checkpoints)
+        {
+            newCheckpoints[i] = cp;
+            cp.SetIndex(i);
+            i++;
+        }
+        checkpoints = newCheckpoints;
+        curCheckpoint = 0;
+        //Vector3 rot = pm.transform.rotation.eulerAngles;
+        //spawnDirection = new Vector2(rot.x, rot.y);
     }
 
+    /*
     public void UpdateSpawn(Vector3 position)
     {
-        /* Note: the given position should be on the floor of the intended
-         * respawn location. */
+        // Note: the given position should be on the floor of the intended
+        // respawn location.
         position.y += 1;
         spawnLoc = position;
         Vector3 rot = pm.transform.rotation.eulerAngles;
         spawnDirection = new Vector2(rot.x, rot.y);
     }
+    */
 
     public void Respawn()
     {
         // resets the level and sends the player to the spawn point
         // TODO reset level
-        pm.RespawnAt(spawnLoc, spawnDirection);
+        Checkpoint cp = checkpoints[curCheckpoint];
+        print("RESPAWN AT CHECKPOINT " + curCheckpoint.ToString() + " LOCATION " + cp.GetSpawnLocation().ToString());
+        pm.RespawnAt(cp.GetSpawnLocation(), cp.GetSpawnDirection());
+    }
+    public void SetCurIndex(int index)
+    {
+        print("NEW INDEX" + index.ToString());
+        curCheckpoint = index;
+    }
+    public void SpawnNext()
+    {
+        if (curCheckpoint == checkpoints.Length - 1)
+        {
+            // Can't respawn at next, just respawn at current
+            print("ERROR: There is no next checkpoint");
+        }
+        else { curCheckpoint++; }
+        Respawn();
+    }
+    public void SpawnPrev()
+    {
+        if (curCheckpoint == 0)
+        {
+            // Can't respawn at last, just respawn at current
+            print("ERROR: There is no previous checkpoint");
+        }
+        else { curCheckpoint--; }
+        Respawn();
     }
 }
