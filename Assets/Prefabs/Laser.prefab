@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1241944923257161727}
   - component: {fileID: 1241944923257161724}
   - component: {fileID: 1241944923257161664}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3318945613782845204}
   - component: {fileID: 5283866317890149574}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Center Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -20,17 +20,14 @@ public class DoorOpenOnButton : MonoBehaviour
 
     void ToggleDoor()
     {
-        print("Called ToggleDoor");
         if (doorOpen)
         {
             _doorAnimator.PlayClose();
-            print("Closing door!");
             doorOpen = false;
         }
         else
         {
             _doorAnimator.PlayOpen();
-            print("Opening door!");
             doorOpen = true;
         }
     }

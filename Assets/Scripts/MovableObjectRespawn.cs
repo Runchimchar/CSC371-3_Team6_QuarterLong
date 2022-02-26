@@ -7,6 +7,7 @@ public class MovableObjectRespawn : MonoBehaviour
     [SerializeField] float respawnY;
     [SerializeField] float indicatorDistance = 5;
     [SerializeField] LayerMask colliderMask;
+    [SerializeField] bool isEMP = false;
     Vector3 startPosition;
     float indCurLen = 0;
     float indSpeed = 20f;
@@ -19,7 +20,7 @@ public class MovableObjectRespawn : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        lr = GetComponent<LineRenderer>();
+        if (!isEMP) lr = GetComponent<LineRenderer>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -36,7 +37,7 @@ public class MovableObjectRespawn : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (yoinking)
+        if (yoinking && !isEMP)
         {
             lr.positionCount = 2;
             lr.SetPosition(0, transform.position);
@@ -50,7 +51,7 @@ public class MovableObjectRespawn : MonoBehaviour
 
             lr.SetPosition(1, transform.position - new Vector3(0, indCurLen - 0.3f, 0));
         }
-        else
+        else if (!isEMP)
         {
             lr.positionCount = 0;
             indCurLen = 0;

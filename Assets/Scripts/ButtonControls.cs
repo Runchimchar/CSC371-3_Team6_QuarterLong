@@ -48,7 +48,6 @@ public class ButtonControls : MonoBehaviour
             isToggled = true;
             rend.material = activeMat;
             // TODO call related event here
-            print("ACTIVATED");
             OnButtonActivate();
             StartCoroutine(toggleButtonOff(toggleDelay));
         }
