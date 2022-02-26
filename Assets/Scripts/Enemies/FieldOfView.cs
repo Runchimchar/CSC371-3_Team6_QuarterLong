@@ -87,9 +87,10 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, _obstacleMask))
                 {
                     visibleTargets.Add(Player);
-                    _droneAttack.Attack();
+                    _droneAttack.Attack(Player.gameObject);
                     _attackTimer = 0.0f;
-                    _visionEvent.Invoke();
+                    if (_visionEvent != null)
+                        _visionEvent.Invoke();
                     return;
                 }
             }
@@ -103,7 +104,8 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, _obstacleMask))
                 {
                     visibleTargets.Add(Player);
-                    _visionEvent.Invoke();
+                    if (_visionEvent != null)
+                        _visionEvent.Invoke();
                     return;
                 }
             }

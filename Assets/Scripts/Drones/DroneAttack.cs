@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LightningBoltScript = DigitalRuby.LightningBolt.LightningBoltScript;
 
 public class DroneAttack : MonoBehaviour
 {
     [SerializeField] private int  _attackDamage = 1;
+    [SerializeField] private GameObject _lightningPrefab;
+    [SerializeField, Range(0.0f, 20.0f)] private float _attackDuration = 1.0f;
     private PlayerStatus _playerStatus;
     // Start is called before the first frame update
     void Start()
@@ -12,8 +15,14 @@ public class DroneAttack : MonoBehaviour
         _playerStatus = FindObjectOfType<PlayerStatus>();
     }
 
-    public void Attack()
+    public void Attack(GameObject player)
     {
         _playerStatus.ChangeHealth(-_attackDamage);
+        GameObject lightningObject = Instantiate(_lightningPrefab);
+        LightningBoltScript lightning = lightningObject.GetComponent<LightningBoltScript>();
+        lightning.StartObject = gameObject;
+        lightning.EndObject = player;
+        lightning.Duration = 0.01f;
+        Destroy(lightningObject, _attackDuration);
     }
 }
