@@ -22,6 +22,7 @@ public class StaticDrone : MonoBehaviour
 
     public int timeStunned = 3;
     public GameObject lightning;
+    [SerializeField] private GameObject _laser;
 
 
     private void Start()
@@ -38,6 +39,7 @@ public class StaticDrone : MonoBehaviour
         if (stunned == true)
         {
             lightning.SetActive(true);
+            _laser.SetActive(false);
             rb.useGravity = true;
             rb.isKinematic = false;
             StartCoroutine(waiter());
@@ -125,5 +127,6 @@ public class StaticDrone : MonoBehaviour
     {
         yield return new WaitForSeconds(timeStunned);
         stunned = false;
+        _laser.SetActive(true);
     }
 }
