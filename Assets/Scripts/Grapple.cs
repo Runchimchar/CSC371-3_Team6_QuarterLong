@@ -290,6 +290,8 @@ public class Grapple : MonoBehaviour
         grappleObject.layer = originalLayer;
 
         Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), player.GetComponentInChildren<CapsuleCollider>(), false);
+
+        pm.SetGrapple(false);
     }
 
     void DrawRope()

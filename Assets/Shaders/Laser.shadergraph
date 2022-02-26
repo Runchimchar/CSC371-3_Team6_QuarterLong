@@ -2001,7 +2001,7 @@
     },
     "m_SurfaceType": 1,
     "m_AlphaMode": 2,
-    "m_TwoSided": true,
+    "m_TwoSided": false,
     "m_AlphaClip": true,
     "m_CustomEditorGUI": ""
 }
