@@ -22,18 +22,10 @@ public class LaserBeam : MonoBehaviour
     {
         _attackTimer += Time.deltaTime;
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // damage the player
-            if (_attackTimer > _attackCooldown)
-            {
-                _playerStatus.ChangeHealth(-_attackDamage);
-                _attackTimer = 0.0f;
-            }
-
             // bump the player
             Vector3 forceDir = other.transform.position - _collider.ClosestPointOnBounds(other.transform.position);
             forceDir = Vector3.ProjectOnPlane(forceDir, Vector3.up);
@@ -41,6 +33,14 @@ public class LaserBeam : MonoBehaviour
                 forceDir = transform.right;
             forceDir = forceDir.normalized;
             other.attachedRigidbody.AddForce(forceDir * _pushForce, ForceMode.Impulse);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") && _attackTimer > _attackCooldown)
+        {
+            _playerStatus.ChangeHealth(-_attackDamage);
+            _attackTimer = 0.0f;
         }
     }
 }
