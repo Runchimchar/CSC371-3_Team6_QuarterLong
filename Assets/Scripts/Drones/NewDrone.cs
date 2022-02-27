@@ -69,12 +69,7 @@ public class NewDrone : MonoBehaviour
                 {
                     followPlayer = false;
                 }
-                // TEMPORARY: if the drone gets too close to the player, respawn the player TODO: delete this part
-                else if (Vector3.Distance(transform.position, player.transform.position) < 1)
-                {
-                    followPlayer = false;
-                    RespawnController.instance.Respawn();
-                }
+                
             }
         }
     }
