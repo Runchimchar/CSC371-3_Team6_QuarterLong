@@ -500,6 +500,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4246392481413847424, guid: ad383fc89da19ac42b78439ed4779d75, type: 3}
   m_PrefabInstance: {fileID: 124393980}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &124393982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4246392481413847430, guid: ad383fc89da19ac42b78439ed4779d75, type: 3}
+  m_PrefabInstance: {fileID: 124393980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &143737779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1247,6 +1252,11 @@ PrefabInstance:
 --- !u!4 &299780589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4246392481413847424, guid: ad383fc89da19ac42b78439ed4779d75, type: 3}
+  m_PrefabInstance: {fileID: 299780588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &299780590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4246392481413847430, guid: ad383fc89da19ac42b78439ed4779d75, type: 3}
   m_PrefabInstance: {fileID: 299780588}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &440740960 stripped
@@ -3692,6 +3702,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1880669466}
     m_Modifications:
+    - target: {fileID: 8813342229111829957, guid: c3200baa77fb6c0418cefd7420df9e59, type: 3}
+      propertyPath: staticWaypoint
+      value: 
+      objectReference: {fileID: 124393982}
+    - target: {fileID: 8813342229111829957, guid: c3200baa77fb6c0418cefd7420df9e59, type: 3}
+      propertyPath: allWaypoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8813342229111829957, guid: c3200baa77fb6c0418cefd7420df9e59, type: 3}
+      propertyPath: allWaypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 299780590}
     - target: {fileID: 8813342229111829976, guid: c3200baa77fb6c0418cefd7420df9e59, type: 3}
       propertyPath: m_Name
       value: StaticDrone
@@ -3702,7 +3724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8813342229111829977, guid: c3200baa77fb6c0418cefd7420df9e59, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.20411682
       objectReference: {fileID: 0}
     - target: {fileID: 8813342229111829977, guid: c3200baa77fb6c0418cefd7420df9e59, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4702,6 +4724,10 @@ PrefabInstance:
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _viewRadius
       value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _attackCooldown
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _targetMask.m_Bits

@@ -20,6 +20,8 @@ public class FieldOfView : MonoBehaviour
     private event Action _visionEvent;
     private event Action _playerNotSeenEvent;
 
+    Rigidbody rb;
+
 
     public float ViewRadius => _viewRadius;
     public float MinViewRadius => _minViewRadius;
@@ -53,6 +55,7 @@ public class FieldOfView : MonoBehaviour
     public void Start()
     {
         _droneAttack = GetComponent<DroneAttack>();
+        rb = GetComponent<Rigidbody>();
         StartCoroutine(DetectPlayerWithDelay(0.2f));
     }
 
@@ -90,6 +93,13 @@ public class FieldOfView : MonoBehaviour
                 {
                     visibleTargets.Add(Player);
                     _droneAttack.Attack(Player.gameObject);
+
+                    //
+
+
+
+                    //
+
                     _attackTimer = 0.0f;
                     // have the drone stop following the player
                     if (_playerNotSeenEvent != null)
