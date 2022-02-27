@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     public static PlayerStatus playerStatus = null;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Make singleton
         if (instance != null) {
