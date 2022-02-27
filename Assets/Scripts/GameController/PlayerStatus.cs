@@ -6,7 +6,8 @@ public class PlayerStatus : MonoBehaviour
 {
     // ------ Declare Vars ------
     // Health
-    public int maxHealth = 3;
+    public int absoluteMaxHealth = 3;
+    int maxHealth = 3;
     int currHealth = 3;
 
     // Stamina
@@ -18,6 +19,7 @@ public class PlayerStatus : MonoBehaviour
     // Setup
     void Start() {
         Invoke("LateStart", 0.01f);
+        Debug.Log("!!");
     }
 
     public void LateStart() {
@@ -42,8 +44,19 @@ public class PlayerStatus : MonoBehaviour
         HealthChangedEvent();
     }
 
+    public void ChangeMaxHealth(int amt) {
+        // Clamp between 0 and maxHealth
+        maxHealth = Clamp(maxHealth + amt, absoluteMaxHealth, 0);
+        currHealth = Clamp(currHealth + amt, maxHealth, 0);
+        HealthChangedEvent();
+    }
+
     public int GetHealth() {
         return currHealth;
+    }
+
+    public int GetMaxHealth() {
+        return maxHealth;
     }
 
     public float GetHealthRatio() {
