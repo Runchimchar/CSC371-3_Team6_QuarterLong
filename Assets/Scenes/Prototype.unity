@@ -4072,6 +4072,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 672917854901710474, guid: 1578aa47b20ce294c83b9b5d9d1c0446, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5177747582337293776, guid: 1578aa47b20ce294c83b9b5d9d1c0446, type: 3}
       propertyPath: m_Name
       value: Level EMP Hallway
@@ -5212,7 +5216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437360499653285934, guid: c5c5faa9cc43a2a4e94145048fce04f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 78.49
+      value: 99.36541
       objectReference: {fileID: 0}
     - target: {fileID: 6437360499653285934, guid: c5c5faa9cc43a2a4e94145048fce04f1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5220,7 +5224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437360499653285934, guid: c5c5faa9cc43a2a4e94145048fce04f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 189.24431
+      value: 189
       objectReference: {fileID: 0}
     - target: {fileID: 6437360499653285934, guid: c5c5faa9cc43a2a4e94145048fce04f1, type: 3}
       propertyPath: m_LocalRotation.w
