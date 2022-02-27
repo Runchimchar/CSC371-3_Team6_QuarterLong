@@ -8,9 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
-    <ProjectGuid>{A39F5B98-82CB-05F7-5DB8-671765E482C2}</ProjectGuid>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{CAEC3BBE-3D47-485C-7771-F0AE24B05E87}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -66,6 +65,7 @@
     <Compile Include="Assets\Scripts\DoorOpenTimed.cs" />
     <Compile Include="Assets\Scripts\Grapple.cs" />
     <Compile Include="Assets\Scripts\Drones\Waypoint.cs" />
+    <Compile Include="Assets\Scripts\Drones\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\PlayerShootingScript.cs" />
     <Compile Include="Assets\Scripts\DoorOpenOnManyButton.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
@@ -92,11 +92,13 @@
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\About\Scripts\Readme.cs" />
     <Compile Include="Assets\Disable.cs" />
     <Compile Include="Assets\Scripts\TESTAnimation.cs" />
+    <Compile Include="Assets\Scripts\UI\StatusUIController.cs" />
     <Compile Include="Assets\Scripts\MovableObjectRespawn.cs" />
     <Compile Include="Assets\Scripts\GameController\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Enemies\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\UI\SliderValueScript.cs" />
+    <Compile Include="Assets\Scripts\UI\StaminaImageController.cs" />
     <Compile Include="Assets\Scripts\RespawnCheckpoints\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
@@ -109,8 +111,6 @@
     <Compile Include="Assets\Scripts\ThirdPersonShooterController.cs" />
     <Compile Include="Assets\Scripts\Guns\ProjectileGun.cs" />
     <Compile Include="Assets\Scripts\AudioController.cs" />
-    <Compile Include="Assets\Scripts\Drones\LaserBeam.cs" />
-    <Compile Include="Assets\Scripts\UI\StaminaImageController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

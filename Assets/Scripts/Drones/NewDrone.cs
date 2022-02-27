@@ -21,6 +21,8 @@ public class NewDrone : MonoBehaviour
     public int timeStunned = 3;
     public GameObject lightning;
 
+    bool moving = true;
+
     private void Start()
     {
         alarm = this.GetComponent<AudioSource>();
@@ -28,6 +30,12 @@ public class NewDrone : MonoBehaviour
 
         GetComponent<FieldOfView>().SubscribeToVisionEvent(seenPlayer);
         GetComponent<FieldOfView>().SubscribeToPlayerNotSeenEvent(doesntSeePlayer);
+
+        DroneAttack da = GetComponent<DroneAttack>();
+        if(da != null)
+        {
+            da.SubscribeToDroneAttacksEvent(stopMovingDrone);
+        }
     }
 
     void Update()
@@ -44,33 +52,38 @@ public class NewDrone : MonoBehaviour
             lightning.SetActive(false);
             rb.useGravity = false;
             rb.isKinematic = true;
-            if (followPlayer == false)
+
+            var rotation = Quaternion.LookRotation(player.transform.position - transform.position);
+            
+
+            if (moving == true)
             {
-                alarm.enabled = false;
-                if (Vector3.Distance(allWaypoints[current].transform.position, transform.position) < wpRadius)
+                if (followPlayer == false)
                 {
-                    current++;
-                    if (current >= allWaypoints.Length)
+                    alarm.enabled = false;
+                    if (Vector3.Distance(allWaypoints[current].transform.position, transform.position) < wpRadius)
                     {
-                        current = 0;
+                        current++;
+                        if (current >= allWaypoints.Length)
+                        {
+                            current = 0;
+                        }
                     }
+                    transform.position = Vector3.MoveTowards(transform.position, allWaypoints[current].transform.position, Time.deltaTime * speed);
+                    rotation = Quaternion.LookRotation(allWaypoints[current].transform.position - transform.position);
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
                 }
-                transform.position = Vector3.MoveTowards(transform.position, allWaypoints[current].transform.position, Time.deltaTime * speed);
-                var rotation = Quaternion.LookRotation(allWaypoints[current].transform.position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
-            }
-            else
-            {
-                alarm.enabled = true;
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * speed);
-                var rotation = Quaternion.LookRotation(player.transform.position - transform.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
-                if (Vector3.Distance(transform.position, player.transform.position) > playerDistance)
+                else
                 {
-                    followPlayer = false;
+                    alarm.enabled = true;
+                    transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * speed);
                 }
-                
             }
+            else if(moving == false)
+            {
+                StartCoroutine(waitToMove());
+            }
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
         }
     }
 
@@ -82,6 +95,16 @@ public class NewDrone : MonoBehaviour
     public void doesntSeePlayer()
     {
         followPlayer = false;
+    }
+
+    public void movingDrone()
+    {
+        moving = true;
+    }
+
+    public void stopMovingDrone()
+    {
+        moving = false;
     }
 
     void OnCollisionEnter(Collision thing)
@@ -99,5 +122,11 @@ public class NewDrone : MonoBehaviour
     {
         yield return new WaitForSeconds(timeStunned);
         stunned = false;
+    }
+
+    IEnumerator waitToMove()
+    {
+        yield return new WaitForSeconds((float)0.5);
+        moving = true;
     }
 }

@@ -96,8 +96,8 @@ public class FieldOfView : MonoBehaviour
 
                     //
 
-
-
+                    rb.constraints = RigidbodyConstraints.FreezePosition;
+                
                     //
 
                     _attackTimer = 0.0f;
