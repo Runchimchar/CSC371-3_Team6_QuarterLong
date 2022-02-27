@@ -1617,7 +1617,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813342229111829977}
-  - component: {fileID: 8813342229111829956}
   - component: {fileID: 8813342229111829979}
   - component: {fileID: 8813342229111829978}
   - component: {fileID: 8813342229111829957}
@@ -1646,29 +1645,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8813342229111829956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8813342229111829976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2001cefabb9df7f409271158c69d17a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visibleTargets: []
-  Player: {fileID: 0}
-  _viewRadius: 6
-  _minViewRadius: 0
-  _attackRadius: 0
-  _viewAngle: 71
-  _attackAngle: 0
-  _attackCooldown: 5
-  _obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1011
 --- !u!54 &8813342229111829979
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1798,10 +1774,7 @@ MonoBehaviour:
   - {fileID: 0}
   staticWaypoint: {fileID: 0}
   speed: 3
-  playerDistance: 5
   damping: 2
-  player: {fileID: 0}
-  followPlayer: 0
   stunned: 0
   timeStunned: 3
   lightning: {fileID: 8813342227378342973}
