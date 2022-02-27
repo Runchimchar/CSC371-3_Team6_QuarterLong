@@ -1105,12 +1105,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visibleTargets: []
   Player: {fileID: 0}
-  _viewRadius: 7.3
-  _minViewRadius: 0
-  _attackRadius: 0
+  _viewRadius: 16.31
+  _minViewRadius: 5.93
+  _attackRadius: 4.25
   _viewAngle: 60
-  _attackAngle: 0
-  _attackCooldown: 0
+  _attackAngle: 116
+  _attackCooldown: 5
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 1011
@@ -1261,7 +1261,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &8276633562573959125
