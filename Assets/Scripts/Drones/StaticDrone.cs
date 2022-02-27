@@ -27,7 +27,7 @@ public class StaticDrone : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (stunned == true)
         {
