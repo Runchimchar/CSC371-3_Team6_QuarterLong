@@ -30,7 +30,7 @@ public class NewDrone : MonoBehaviour
         GetComponent<FieldOfView>().SubscribeToPlayerNotSeenEvent(doesntSeePlayer);
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (stunned == true)
         {
