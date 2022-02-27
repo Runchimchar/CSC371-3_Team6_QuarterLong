@@ -60,7 +60,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
     public float GetHealthRatio() {
-        return currHealth / maxHealth;
+        return (float)currHealth / (float)maxHealth;
     }
 
     // Stamina
