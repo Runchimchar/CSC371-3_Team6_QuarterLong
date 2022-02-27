@@ -18,16 +18,15 @@ public class StaminaImageController : MonoBehaviour
         rootPos = sliderFill.anchoredPosition;
         // Find width of image
         width = sliderFill.rect.xMax - sliderFill.rect.xMin;
-        Debug.Log("width = " + width);
         // Get parent slider
         slider = gameObject.GetComponent<Slider>();
-        Invoke("CV", 3);
+        //Invoke("CV", 3);
     }
 
     // Update position based on slider value
     public void UpdateValue(float value) {
         sliderFill.anchoredPosition = new Vector2(rootPos.x - width*((slider.maxValue-value)/slider.maxValue), rootPos.y);
-        Debug.Log("Got update, value = "+value+", anchorX = " + sliderFill.anchoredPosition.x);
+        //Debug.Log("Got update, value = "+value+", anchorX = " + sliderFill.anchoredPosition.x);
     }
 
     // Change val debug

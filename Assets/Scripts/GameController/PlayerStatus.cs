@@ -14,15 +14,32 @@ public class PlayerStatus : MonoBehaviour
     int currStamina = 100;
 
     // ------ Declare methods ------
+    
+    // Setup
+    void Start() {
+        Invoke("LateStart", 0.01f);
+    }
+
+    public void LateStart() {
+        // Set health
+        SetHealth(maxHealth);
+    }
+    
     // Health
+
+    // Event called when health changes
+    public event System.Action HealthChangedEvent = delegate { };
+
     public void SetHealth(int amt) {
         // Clamp between 0 and maxHealth
         currHealth = Clamp(amt, maxHealth, 0);
+        HealthChangedEvent();
     }
 
     public void ChangeHealth(int amt) {
         // Clamp between 0 and maxHealth
         currHealth = Clamp(currHealth + amt, maxHealth, 0);
+        HealthChangedEvent();
     }
 
     public int GetHealth() {
@@ -34,14 +51,20 @@ public class PlayerStatus : MonoBehaviour
     }
 
     // Stamina
+
+    // Event called when health changes
+    public event System.Action StaminaChangedEvent = delegate { };
+
     public void SetStamina(int amt) {
         // Clamp between 0 and maxHealth
         currStamina = Clamp(amt, maxStamina, 0);
+        StaminaChangedEvent();
     }
 
     public void ChangeStamina(int amt) {
         // Clamp between 0 and maxStamina
         currStamina = Clamp(currStamina + amt, maxStamina, 0);
+        StaminaChangedEvent();
     }
 
     public int GetStamina() {
