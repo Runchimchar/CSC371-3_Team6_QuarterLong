@@ -114,7 +114,7 @@ public class RespawnController : MonoBehaviour
         if (ps.GetHealth() <= 0)
         {
             // player is dead, reset health and respawn them
-            ps.SetHealth(ps.maxHealth);
+            ps.SetHealth(ps.GetMaxHealth());
             Respawn();
         }
     }
