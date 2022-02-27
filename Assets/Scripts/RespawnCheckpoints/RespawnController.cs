@@ -36,6 +36,8 @@ public class RespawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameController.playerStatus.HealthChangedEvent += RespawnOnDeath;
+
         // set the default spawn point to first location in level and add it to array
         GameObject go = new GameObject("CheckpointInit");
         Checkpoint init = go.AddComponent<Checkpoint>();
@@ -106,5 +108,16 @@ public class RespawnController : MonoBehaviour
         }
         else { curCheckpoint--; }
         Respawn();
+    }
+
+    public void RespawnOnDeath()
+    {
+        PlayerStatus ps = GameController.playerStatus;
+        if (ps.GetHealth() <= 0)
+        {
+            // player is dead, reset health and respawn them
+            ps.SetHealth(ps.maxHealth);
+            Respawn();
+        }
     }
 }
