@@ -14,6 +14,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField, Range(0.0f, 360.0f)] private float _viewAngle;
     [SerializeField, Range(0.0f, 360.0f)] private float _attackAngle;
     [SerializeField, Range(0.0f, 30.0f)] private float _attackCooldown = 5.0f;
+    
     private float _attackTimer = 100.0f;
     private DroneAttack _droneAttack;
     private event Action _visionEvent;
@@ -78,6 +79,7 @@ public class FieldOfView : MonoBehaviour
     {
         visibleTargets.Clear();
         float playerDist = Vector3.Distance(Player.position, transform.position);
+        // if the player is in attack range and the drone can attack
         if (_droneAttack != null && playerDist < _attackRadius && _attackTimer > _attackCooldown)
         {
             Vector3 dirToTarget = (Player.position - transform.position).normalized;
@@ -89,8 +91,9 @@ public class FieldOfView : MonoBehaviour
                     visibleTargets.Add(Player);
                     _droneAttack.Attack(Player.gameObject);
                     _attackTimer = 0.0f;
-                    if (_visionEvent != null)
-                        _visionEvent.Invoke();
+                    // have the drone stop following the player
+                    if (_playerNotSeenEvent != null)
+                        _playerNotSeenEvent.Invoke();
                     return;
                 }
             }
@@ -119,6 +122,8 @@ public class FieldOfView : MonoBehaviour
         {
             yield return new WaitForSeconds(delay);
             DetectPlayer();
+            while (_attackTimer + delay < _attackCooldown)
+                yield return null;
         }
     }
 }
