@@ -20818,6 +20818,14 @@ PrefabInstance:
       value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _attackRadius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _minViewRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _targetMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -21053,6 +21061,14 @@ PrefabInstance:
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _viewRadius
       value: 7.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _attackRadius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _minViewRadius
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _targetMask.m_Bits
@@ -21480,6 +21496,14 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _attackRadius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _minViewRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _targetMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -21843,6 +21867,14 @@ PrefabInstance:
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _viewRadius
       value: 6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _attackRadius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _minViewRadius
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _targetMask.m_Bits
@@ -22258,6 +22290,14 @@ PrefabInstance:
       value: 6.4
       objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _attackRadius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _minViewRadius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _targetMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
@@ -22414,6 +22454,14 @@ PrefabInstance:
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _viewRadius
       value: 7.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _attackRadius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _minViewRadius
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _targetMask.m_Bits
@@ -22666,6 +22714,14 @@ PrefabInstance:
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _viewRadius
       value: 7.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _attackRadius
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+      propertyPath: _minViewRadius
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: _targetMask.m_Bits

@@ -31,6 +31,12 @@ public class Grapple : MonoBehaviour
     private bool yoinking = false;
     private Collider capsuleCollider;
 
+    // Grapple button attributes (gb)
+    private bool gb = false;
+    private GameObject gbTarget;
+    private float gbSpeed = 0.5f;
+    private bool gbGoingOut = true;
+
     private bool retracting = false;
     private bool reelingOut = false;
     private bool playingRetract = false;
@@ -61,7 +67,7 @@ public class Grapple : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (yoinking || joint) UpdateGrapple();
+        if (yoinking || joint || gb) UpdateGrapple();
         if (joint)
         {
             bool stopped = joint.maxDistance <= retractMinDistance + 0.1f || player.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.1;
@@ -71,8 +77,6 @@ public class Grapple : MonoBehaviour
                 ropeSlide.PlayStop();
                 playingRetract = false;
             }
-
-            UpdateGrapple();
 
             if (retracting && !reelingOut)
             {
@@ -234,7 +238,7 @@ public class Grapple : MonoBehaviour
             StopYoink();
         }
 
-        lr.positionCount = 0;
+        if (!gb) lr.positionCount = 0;
     }
 
     void YoinkObject()
@@ -267,8 +271,6 @@ public class Grapple : MonoBehaviour
         yorb.sleepThreshold = 0;
         grappleObject.layer = (int) Mathf.Log(moving.value, 2);
         Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), player.GetComponentInChildren<CapsuleCollider>(), true);
-
-        UpdateGrapple();
     }
 
     void StopYoink()
@@ -294,21 +296,50 @@ public class Grapple : MonoBehaviour
         pm.SetGrapple(false);
     }
 
+    private void GrappleButton()
+    {
+        gb = true;
+        gbTarget = grappleObject;
+        grapplePoint = ropeStart.position;
+        gbGoingOut = true;
+        // Activate button
+        ButtonControls bc = grappleObject.GetComponent<ButtonControls>();
+        if (bc != null)
+        {
+            bc.Interact();
+        }
+
+        lr.positionCount = 2;
+    }
+
     void DrawRope()
     {
-        if (!joint && !yoinking) return;
+        if (lr.positionCount != 2) return;
         lr.SetPosition(0, ropeStart.position);
         lr.SetPosition(1, grapplePoint);
     }
 
     void UpdateGrapple()
     {
-        if (grappleObject == null)
+        if (!gb && grappleObject == null)
         {
             StopGrapple();
             return;
         }
-        grapplePoint = grappleObject.transform.position - (yoinking ? Vector3.zero : grappleObjectOffset);
+        if (gb)
+        {
+            gbGoingOut = gbGoingOut && Vector3.Distance(grapplePoint, gbTarget.transform.position) > 0.5f;
+
+            if (!(gbGoingOut || Vector3.Distance(grapplePoint, ropeStart.position) > 0.5f))
+            {
+                lr.positionCount = 0;
+                gb = false;
+            }
+
+            if (gbGoingOut) grapplePoint = Vector3.Lerp(grapplePoint, gbTarget.transform.position, gbSpeed);
+            else grapplePoint = Vector3.Lerp(grapplePoint, ropeStart.position, gbSpeed);
+        }
+        else grapplePoint = grappleObject.transform.position - (yoinking ? Vector3.zero : grappleObjectOffset);
         if (yoinking) movableJoint.connectedAnchor = holdTransform.position;
         //joint.connectedAnchor = grapplePoint;
     }
@@ -351,17 +382,5 @@ public class Grapple : MonoBehaviour
     public bool IsInLayerMask(GameObject obj, LayerMask layerMask)
     {
         return ((layerMask.value & (1 << obj.layer)) > 0);
-    }
-
-    private void GrappleButton()
-    {
-        // Activate button
-        ButtonControls bc = grappleObject.GetComponent<ButtonControls>();
-        if (bc != null)
-        {
-            bc.Interact();
-        }
-
-        /* TODO: animate a little grapple rope hitting the object? */
     }
 }

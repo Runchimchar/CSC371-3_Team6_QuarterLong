@@ -131,6 +131,7 @@ MonoBehaviour:
   colliderMask:
     serializedVersion: 2
     m_Bits: 1011
+  isEMP: 0
 --- !u!120 &7552453940401585963
 LineRenderer:
   m_ObjectHideFlags: 0
