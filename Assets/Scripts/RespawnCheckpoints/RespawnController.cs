@@ -81,12 +81,10 @@ public class RespawnController : MonoBehaviour
         // resets the level and sends the player to the spawn point
         // TODO reset level
         Checkpoint cp = checkpoints[curCheckpoint];
-        print("RESPAWN AT CHECKPOINT " + curCheckpoint.ToString() + " LOCATION " + cp.GetSpawnLocation().ToString());
         pm.RespawnAt(cp.GetSpawnLocation(), cp.GetSpawnDirection());
     }
     public void SetCurIndex(int index)
     {
-        print("NEW INDEX" + index.ToString());
         curCheckpoint = index;
     }
     public void SpawnNext()

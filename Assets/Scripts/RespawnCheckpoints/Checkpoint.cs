@@ -16,13 +16,6 @@ public class Checkpoint : MonoBehaviour
         spawnLoc.y += 1; // raises spawn point to a safe spot for player
         spawnDirection = transform.forward; // set temp direction in case we skip to checkpoint
     }
-    private void Update()
-    {
-        if (spawnIndex == 0)
-        {
-            print("SPAWNLOC OF " + this.name + spawnLoc);
-        }
-    }
     /*
     public void Init(Vector3 location, Vector2 direction)
     {
