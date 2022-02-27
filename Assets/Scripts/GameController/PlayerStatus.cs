@@ -19,7 +19,7 @@ public class PlayerStatus : MonoBehaviour
     // Setup
     void Start() {
         Invoke("LateStart", 0.01f);
-        Debug.Log("!!");
+        //Debug.Log("!!");
     }
 
     public void LateStart() {
