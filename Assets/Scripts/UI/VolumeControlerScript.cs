@@ -12,7 +12,7 @@ public class VolumeControlerScript : MonoBehaviour
         // Map 0 -> 100 val to -80 -> 0
         //float mappedVal = val * (85f / 100f) - 80f;
         float mappedVal = 24f*Mathf.Log10(val) - 43f;
-        Debug.Log(mappedVal);
+        //Debug.Log(mappedVal);
         mixer.SetFloat("volume", mappedVal);
     }
 }
