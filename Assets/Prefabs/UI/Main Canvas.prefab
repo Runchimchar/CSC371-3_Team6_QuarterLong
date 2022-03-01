@@ -1675,6 +1675,26 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_Value
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_MaxValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_MinValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 398370537507300796, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_Name
       value: Sensitivity Slider
@@ -1685,11 +1705,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 622064733697204208, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_text
-      value: 0
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 747280243599057396, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 747280243599057396, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 747280243599057396, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3463586748724270707, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_Layer
@@ -2101,6 +2129,42 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3162885668968386038}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: VolumeControlerScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 398370537507300796, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_Name
       value: Volume Slider
@@ -2111,10 +2175,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 622064733697204208, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_text
-      value: 0
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 747280243599057396, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 747280243599057396, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 747280243599057396, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3463586748724270707, guid: a772e563748ca944da16fdc97f17da34, type: 3}
@@ -2223,8 +2295,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+--- !u!1 &5140271853267745409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 398370537507300796, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+  m_PrefabInstance: {fileID: 4815088937471893309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1149665679848879219 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5559358632517528398, guid: a772e563748ca944da16fdc97f17da34, type: 3}
   m_PrefabInstance: {fileID: 4815088937471893309}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3162885668968386038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5140271853267745409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b75d81ebad10bb4d85d4db32c6eee8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 390f1b77d4595c141bc1bc9b98127bd0, type: 2}
