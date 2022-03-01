@@ -14,6 +14,9 @@ public class PlayerStatus : MonoBehaviour
     public int maxStamina = 100;
     int currStamina = 100;
 
+    // Haungs mode
+    private bool haungsMode = false;
+
     // ------ Declare methods ------
     
     // Setup
@@ -34,13 +37,21 @@ public class PlayerStatus : MonoBehaviour
 
     public void SetHealth(int amt) {
         // Clamp between 0 and maxHealth
-        currHealth = Clamp(amt, maxHealth, 0);
+        if (!haungsMode) {
+            currHealth = Clamp(amt, maxHealth, 0);
+        } else {
+            currHealth = maxHealth;
+        }
         HealthChangedEvent();
     }
 
     public void ChangeHealth(int amt) {
         // Clamp between 0 and maxHealth
-        currHealth = Clamp(currHealth + amt, maxHealth, 0);
+        if (!haungsMode) {
+            currHealth = Clamp(currHealth + amt, maxHealth, 0);
+        } else {
+            currHealth = maxHealth;
+        }
         HealthChangedEvent();
     }
 
@@ -70,13 +81,21 @@ public class PlayerStatus : MonoBehaviour
 
     public void SetStamina(int amt) {
         // Clamp between 0 and maxHealth
-        currStamina = Clamp(amt, maxStamina, 0);
+        if (!haungsMode) {
+            currStamina = Clamp(amt, maxStamina, 0);
+        } else {
+            currStamina = maxStamina;
+        }
         StaminaChangedEvent();
     }
 
     public void ChangeStamina(int amt) {
         // Clamp between 0 and maxStamina
-        currStamina = Clamp(currStamina + amt, maxStamina, 0);
+        if (!haungsMode) {
+            currStamina = Clamp(currStamina + amt, maxStamina, 0);
+        } else {
+            currStamina = maxStamina;
+        }
         StaminaChangedEvent();
     }
 
@@ -86,6 +105,13 @@ public class PlayerStatus : MonoBehaviour
 
     public float GetStaminaRatio() {
         return currStamina / maxStamina;
+    }
+
+    // Haungs Mode
+
+    public void SetHaungsMode(bool val) {
+        //Debug.Log("haungs " + val);
+        haungsMode = val;
     }
 
     // ------ Helpers ------

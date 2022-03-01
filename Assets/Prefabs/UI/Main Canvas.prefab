@@ -1403,6 +1403,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1077611865348744950}
     m_Modifications:
+    - target: {fileID: 77141845103854464, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 77141845103854464, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 77141845103854464, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6794833250877259816}
+    - target: {fileID: 77141845103854464, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 77141845103854464, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateHaungsMode
+      objectReference: {fileID: 0}
+    - target: {fileID: 77141845103854464, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HaungsModeController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 77141845103854464, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 398370537507300796, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
       propertyPath: m_Name
       value: Haungs Mode Checkbox
@@ -1513,11 +1541,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+--- !u!1 &1573394008077122318 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 398370537507300796, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
+  m_PrefabInstance: {fileID: 1176172220778585778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6734101211483862524 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5559358632517528398, guid: 43c6c225acd2b9e49bb91735915721ce, type: 3}
   m_PrefabInstance: {fileID: 1176172220778585778}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6794833250877259816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573394008077122318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99c577fd67880545b0cbbafe7e47d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3181219041107783446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2340,14 +2385,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a772e563748ca944da16fdc97f17da34, type: 3}
---- !u!1 &5140271853267745409 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 398370537507300796, guid: a772e563748ca944da16fdc97f17da34, type: 3}
-  m_PrefabInstance: {fileID: 4815088937471893309}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1149665679848879219 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5559358632517528398, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+  m_PrefabInstance: {fileID: 4815088937471893309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5140271853267745409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 398370537507300796, guid: a772e563748ca944da16fdc97f17da34, type: 3}
   m_PrefabInstance: {fileID: 4815088937471893309}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3162885668968386038
