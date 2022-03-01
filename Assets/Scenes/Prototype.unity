@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028459, g: 0.22571498, b: 0.30692363, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2894,6 +2894,10 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1850694984}
+    - target: {fileID: 555867784023188881, guid: b998ff6a1b91ce142b54e192c60e2052, type: 3}
+      propertyPath: _obstacleMask.m_Bits
+      value: 1011
+      objectReference: {fileID: 0}
     - target: {fileID: 555867784023188883, guid: b998ff6a1b91ce142b54e192c60e2052, type: 3}
       propertyPath: player
       value: 

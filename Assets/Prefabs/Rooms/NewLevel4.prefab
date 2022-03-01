@@ -21507,10 +21507,6 @@ PrefabInstance:
       propertyPath: _targetMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
-    - target: {fileID: 1746805377118456440, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
-      propertyPath: _obstacleMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 1746805377118456441, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
       propertyPath: m_RootOrder
       value: 208
