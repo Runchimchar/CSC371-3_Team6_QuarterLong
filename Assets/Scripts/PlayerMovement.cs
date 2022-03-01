@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float normalLookSensitivity, aimLookSensitivity;
     private float currentLookSensitivity;
+    private float lookSensitivityScale = 1f;
     public float RotationSmoothTime = 0.12f;
     public float movementSpeed = 4f;
     public float maxSpeed = 50f;
@@ -340,7 +341,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetLookSensitivity(float newLookSensitivity)
     {
-        currentLookSensitivity = newLookSensitivity;
+        currentLookSensitivity = newLookSensitivity * lookSensitivityScale;
+    }
+
+    public void SetLookSensitivityScale(float newScale) {
+        lookSensitivityScale = newScale;
     }
 
     public void SetRotateOnMove(bool newRotateOnMove)

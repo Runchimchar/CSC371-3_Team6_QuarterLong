@@ -1692,8 +1692,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6754475779182312963}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateSensitivity
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SensitivityController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 108143185749281136, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 398370537507300796, guid: a772e563748ca944da16fdc97f17da34, type: 3}
       propertyPath: m_Name
@@ -1825,11 +1853,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+--- !u!1 &3577420436039777598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 398370537507300796, guid: a772e563748ca944da16fdc97f17da34, type: 3}
+  m_PrefabInstance: {fileID: 3756783885334419586}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8720103792046011340 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5559358632517528398, guid: a772e563748ca944da16fdc97f17da34, type: 3}
   m_PrefabInstance: {fileID: 3756783885334419586}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6754475779182312963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577420436039777598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ffc9e0c37145b4a870b901fd4ab9c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3821039853677240129
 PrefabInstance:
   m_ObjectHideFlags: 0

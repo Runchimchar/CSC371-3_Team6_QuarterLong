@@ -12,7 +12,7 @@ public class StaminaImageController : MonoBehaviour
     private Vector2 rootPos;
     private float width;
 
-    void Start()
+    void Awake()
     {
         // Get root position of slider
         rootPos = sliderFill.anchoredPosition;
