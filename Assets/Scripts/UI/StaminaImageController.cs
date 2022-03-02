@@ -12,28 +12,29 @@ public class StaminaImageController : MonoBehaviour
     private Vector2 rootPos;
     private float width;
 
-    void Awake()
+    void Start()
     {
         // Get root position of slider
         rootPos = sliderFill.anchoredPosition;
         // Find width of image
         width = sliderFill.rect.xMax - sliderFill.rect.xMin;
         // Get parent slider
+        GetSlider();
+    }
+
+    private void GetSlider() {
         slider = gameObject.GetComponent<Slider>();
-        //Invoke("CV", 3);
+        if (slider == null) {
+            Invoke("GetSlider", 0.1f);
+        }
     }
 
     // Update position based on slider value
     public void UpdateValue(float value) {
-        sliderFill.anchoredPosition = new Vector2(rootPos.x - width*((slider.maxValue-value)/slider.maxValue), rootPos.y);
-        //Debug.Log("Got update, value = "+value+", anchorX = " + sliderFill.anchoredPosition.x);
-    }
-
-    // Change val debug
-    public void CV() {
-        slider.value -= 1;
-        if (slider.value > 0) {
-            Invoke("CV", 0.05f);
+        if (slider != null) {
+            sliderFill.anchoredPosition = new Vector2(rootPos.x - width * ((slider.maxValue - value) / slider.maxValue), rootPos.y);
+        } else {
+            slider = gameObject.GetComponent<Slider>();
         }
     }
 }
