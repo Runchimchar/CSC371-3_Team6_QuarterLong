@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 2563842730023476809}
   m_Layer: 0
   m_Name: Notification Box
-  m_TagString: Untagged
+  m_TagString: Notification Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1610,6 +1610,10 @@ PrefabInstance:
     - target: {fileID: 398370537507300796, guid: dd5fce9495c971f40a696ea9561d8c70, type: 3}
       propertyPath: m_Name
       value: Text Notification
+      objectReference: {fileID: 0}
+    - target: {fileID: 398370537507300796, guid: dd5fce9495c971f40a696ea9561d8c70, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5559358632517528398, guid: dd5fce9495c971f40a696ea9561d8c70, type: 3}
       propertyPath: m_Pivot.x

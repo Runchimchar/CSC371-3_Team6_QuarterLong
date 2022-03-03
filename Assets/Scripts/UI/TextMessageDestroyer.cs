@@ -8,6 +8,8 @@ public class TextMessageDestroyer : MonoBehaviour
     public float fadeDelay;
     public float fadeTime;
 
+    public event System.Action DestroyEvent = delegate { };
+
     private float fadeStep = 0.1f;
     
     // Start is called before the first frame update
@@ -24,6 +26,7 @@ public class TextMessageDestroyer : MonoBehaviour
         // Check if alpha is 0
         if (canvasGroup.alpha <= 0.001f) {
             Destroy(gameObject);
+            DestroyEvent();
         } else {
             Debug.Log("Invoking in " + (fadeTime * fadeStep) + " seconds");
             Invoke("FadeMessage", fadeTime * fadeStep);
