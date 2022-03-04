@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3fa9cd4f00ab654c8fb78b615af5ac6
+guid: 44f9f81acec6da747ae143996c371d13
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -1884,9 +1884,6 @@ ModelImporter:
   - first:
       95: 9500000
     second: //RootNode
-  - first:
-      74: -4566658454006340364
-    second: arm_right_lower_on_off
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -2061,11 +2058,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: arm_right_lower_on_off
+      name: arm_right_lower_always_on
       takeName: arm_right_lower_on_off
       internalID: 0
-      firstFrame: 0
-      lastFrame: 179
+      firstFrame: 68
+      lastFrame: 110
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
