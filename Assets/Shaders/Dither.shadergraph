@@ -209,9 +209,9 @@
     "m_Guid": {
         "m_GuidSerialized": "33ce5038-dd84-4974-96ba-443fc295bf76"
     },
-    "m_Name": "DitherStrength",
+    "m_Name": "_DitherStrength",
     "m_DefaultReferenceName": "Vector1_10ec5af1954e4971baa80828cdae1bb5",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_DitherStrength",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -791,7 +791,7 @@
     "m_Guid": {
         "m_GuidSerialized": "839ba45a-b200-4c9b-8079-738d86ca5dbf"
     },
-    "m_Name": "BaseColor",
+    "m_Name": "_BaseColor",
     "m_DefaultReferenceName": "Color_a58049bdac1f4dec93d2bf0b1ed372ee",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
