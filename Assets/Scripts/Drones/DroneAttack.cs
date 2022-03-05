@@ -31,8 +31,10 @@ public class DroneAttack : MonoBehaviour
 
     public void Attack(GameObject player)
     {
-        _droneAttacks.Invoke();
-        _playerStatus.ChangeHealth(-_attackDamage);
+        if (_droneAttacks != null)
+            _droneAttacks.Invoke();
+        if (_playerStatus != null)
+            _playerStatus.ChangeHealth(-_attackDamage);
         GameObject lightningObject = Instantiate(_lightningPrefab);
         LightningBoltScript lightning = lightningObject.GetComponent<LightningBoltScript>();
         lightning.StartObject = gameObject;
