@@ -2815,7 +2815,7 @@ Animator:
   m_GameObject: {fileID: 1397225362}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c3fa9cd4f00ab654c8fb78b615af5ac6, type: 3}
-  m_Controller: {fileID: 9100000, guid: a5ca770b01c81cc49a68e4647bc27234, type: 2}
+  m_Controller: {fileID: 9100000, guid: a8aa886e7974b694baac80c58a9d8d8b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -3008,6 +3008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1538337871}
   - component: {fileID: 1538337872}
+  - component: {fileID: 1538337873}
   m_Layer: 0
   m_Name: Cedric
   m_TagString: Untagged
@@ -3049,6 +3050,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1538337873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538337870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efaaa56d52b7eaf46b57cdc5399fc668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossAnim: {fileID: 1538337872}
 --- !u!1 &1546603523
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,8 +3952,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947468206}
-  m_LocalRotation: {x: -0.12856781, y: 0.568453, z: -0.08780446, w: -0.80785024}
-  m_LocalPosition: {x: -15.409685, y: -1.9105754, z: 27.457756}
+  m_LocalRotation: {x: 0.16730869, y: -0.51446897, z: 0.1012287, w: 0.83491445}
+  m_LocalPosition: {x: -6.4434814, y: 0.13858414, z: 36.05612}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
