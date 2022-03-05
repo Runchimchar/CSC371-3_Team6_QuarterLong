@@ -11,34 +11,34 @@ public class MessageController : MonoBehaviour {
     public Transform messageBox;
     public GameObject messagePrefab;
 
+    private static Dictionary<string, int> countTable = new Dictionary<string, int>();
+
     private Queue<MessageDesc> messageQueue = new Queue<MessageDesc>();
     private GameObject currentMessage = null;
 
     // Struct containing all parts of a text message
-    public readonly struct MessageDesc {
-        public MessageDesc(int number, string sender, string message) {
-            this.number = number;
+    [System.Serializable]
+    public struct MessageDesc {
+        public MessageDesc(string sender, string message) {
             this.sender = sender;
             this.message = message;
         }
-
-        public int number { get; }
-        public string sender { get; }
-        public string message { get; }
+        public string sender;
+        public string message;
     }
 
     // Setup
     void Start() {
         GetBox();
-        Invoke("TestMessages", 2f);
+        //Invoke("TestMessages", 2f);
     }
 
     // Testing messages
     private void TestMessages() {
         Debug.Log("Test start!");
 
-        MessageDesc test1 = new MessageDesc(1, "Little Nerd", "Can I get uhhhhh, uhh uhhhhh uh uhhhh uhh uhhh uhhhhhhh");
-        MessageDesc test2 = new MessageDesc(2, "Little Nerd", "MDonals hmamburgur");
+        MessageDesc test1 = new MessageDesc("Little Nerd", "Can I get uhhhhh, uhh uhhhhh uh uhhhh uhh uhhh uhhhhhhh");
+        MessageDesc test2 = new MessageDesc("Little Nerd", "MDonals hmamburgur");
 
         QueueMessage(test1);
         QueueMessage(test2);
@@ -52,8 +52,8 @@ public class MessageController : MonoBehaviour {
             messageQueue.Enqueue(message);
         }
     }
-    public void QueueMessage(int number, string sender, string message) {
-        QueueMessage(new MessageDesc(number, sender, message));
+    public void QueueMessage(string sender, string message) {
+        QueueMessage(new MessageDesc(sender, message));
     }
 
     // Look for text message box until found
@@ -73,9 +73,19 @@ public class MessageController : MonoBehaviour {
         // Setup cleanup event
         currentMessage.GetComponent<TextMessageDestroyer>().DestroyEvent += CurrentMessageDestroyed;
 
+        // Get text count
+        int number = 0;
+        if (countTable.ContainsKey(message.sender)) {
+            number = countTable[message.sender];
+        } else {
+            countTable.Add(message.sender, 1);
+            number = 1;
+        }
+        countTable[message.sender] = number + 1;
+
         // Configure message contents
         Transform bounds = currentMessage.transform.GetChild(0);
-        bounds.GetChild(NUMBER_INDEX).GetComponent<TMP_Text>().text = message.number.ToString();
+        bounds.GetChild(NUMBER_INDEX).GetComponent<TMP_Text>().text = number.ToString();
         bounds.GetChild(SENDER_INDEX).GetComponent<TMP_Text>().text = message.sender;
         bounds.GetChild(MESSAGE_INDEX).GetComponent<TMP_Text>().text = message.message;
     }

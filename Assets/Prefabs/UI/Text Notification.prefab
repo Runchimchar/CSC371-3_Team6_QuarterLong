@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 3343372166718976460}
-  fadeDelay: 4
-  fadeTime: 0.3
+  fadeDelay: 5
+  fadeTime: 0.2
 --- !u!1 &1079782330488865313
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 27
+  m_fontSize: 29.43
+  m_fontSizeBase: 29.43
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
