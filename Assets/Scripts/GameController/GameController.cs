@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance = null;
     public static PlayerStatus playerStatus = null;
+    public static MessageController messageController = null;
 
     // Start is called before the first frame update
     void Awake()
@@ -21,5 +22,6 @@ public class GameController : MonoBehaviour
 
         // Convenient access to other scripts
         playerStatus = GetComponent<PlayerStatus>();
+        messageController = GetComponent<MessageController>();
     }
 }
