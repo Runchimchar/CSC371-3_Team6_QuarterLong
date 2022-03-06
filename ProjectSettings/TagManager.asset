@@ -11,6 +11,7 @@ TagManager:
   - EMP
   - Holder
   - Menu
+  - Notification Box
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Movable
   - Moving
   - Laser
-  - 
+  - Ignore Camera
   - 
   - 
   - 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4310228944547104}
   - component: {fileID: 33924010398020952}
   - component: {fileID: 23973639603928966}
-  - component: {fileID: 5090055881201369011}
+  - component: {fileID: 1217324065767846219}
   m_Layer: 0
   m_Name: Deck_WallWindowFrame_01_snaps002
   m_TagString: Untagged
@@ -55,6 +55,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -67,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -79,8 +82,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &5090055881201369011
-MeshCollider:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1217324065767846219
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -89,7 +93,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: a92d6104d14142b489c6aa44cb7e8202, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 0.5000276, y: 4.000535, z: 3.000005}
+  m_Center: {x: 0.0000011920929, y: 1.9997326, z: 1.5000025}

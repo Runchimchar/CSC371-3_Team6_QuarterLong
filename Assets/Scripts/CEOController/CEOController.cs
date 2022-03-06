@@ -5,9 +5,15 @@ using Events = System.ValueTuple<CEOController.Event, CEOController.Event, CEOCo
 
 public class CEOController : MonoBehaviour
 {
+    public Transform player, boss;
+    public RemovableObject[] removables;
+    public BossPath[] paths;
+    public int blah;
+
     public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
-    public delegate void Event();
-    public string DE = "default";
+    public delegate void Event(); // run on Unity events
+    public delegate void Activity(); // call a function once the waypoint is reached
+    public delegate bool DoneWaiting(); // check if boss is done with its activity
     //(Event,   Event, Event, Event)
     // Default, Fixed, Late,  Cleanup
 
@@ -16,9 +22,14 @@ public class CEOController : MonoBehaviour
     Events stateEvents;
     Event UpdateState, FixedUpdateState, LateUpdateState, CleanupState;
 
+    bool vulnerable;
+
+    Vector3 target;
+
     private void Start()
     {
         UpdateBossState(BossState.idle);
+        vulnerable = false;
     }
 
     private void FixedUpdate()
@@ -289,5 +300,17 @@ public class CEOController : MonoBehaviour
     public BossState GetBossState()
     {
         return state;
+    }
+
+    public bool GetVulnerable()
+    {
+        return vulnerable;
+    }
+
+
+
+    void NavToWaypoint(Vector3 position)
+    {
+
     }
 }
