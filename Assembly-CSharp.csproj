@@ -119,6 +119,9 @@
     <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
     <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
     <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
+    <Compile Include="Assets\Scripts\GameController\MessageController.cs" />
+    <Compile Include="Assets\Scripts\MessageTriggerController.cs" />
+    <Compile Include="Assets\Scripts\UI\TextMessageDestroyer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
