@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2509909358123129847}
   - component: {fileID: 1168480810892520832}
   - component: {fileID: 7937626581079450327}
+  - component: {fileID: 2556843071049519749}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -56,5 +57,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d5989a08a0a3e4b82df9e7544f33c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  absoluteMaxHealth: 3
   maxStamina: 100
+--- !u!114 &2556843071049519749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601356695206103972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818699a37bf2cdc43ac0baa248454c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageBox: {fileID: 0}
+  messagePrefab: {fileID: 398370537507300796, guid: dd5fce9495c971f40a696ea9561d8c70, type: 3}
