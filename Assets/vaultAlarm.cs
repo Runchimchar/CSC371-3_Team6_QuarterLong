@@ -8,7 +8,6 @@ public class vaultAlarm : MonoBehaviour
     AudioSource alarm;
     public Transform player;
 
-
     // Start is called before the first frame update
     void Start()
     {
