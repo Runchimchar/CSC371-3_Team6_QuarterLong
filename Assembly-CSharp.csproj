@@ -117,6 +117,15 @@
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
     <Compile Include="Assets\JailDrone.cs" />
+    <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
+    <Compile Include="Assets\Scripts\GameController\MessageController.cs" />
+    <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
+    <Compile Include="Assets\Scripts\MessageTriggerController.cs" />
+    <Compile Include="Assets\Scripts\CEOController\BossAnimation.cs" />
+    <Compile Include="Assets\Scripts\CEOController\BossPath.cs" />
+    <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
+    <Compile Include="Assets\Scripts\UI\TextMessageDestroyer.cs" />
+    <Compile Include="Assets\vaultAlarm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
