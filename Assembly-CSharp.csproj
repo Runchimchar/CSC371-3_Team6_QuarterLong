@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CAEC3BBE-3D47-485C-7771-F0AE24B05E87}</ProjectGuid>
+    <ProjectGuid>{A39F5B98-82CB-05F7-5DB8-671765E482C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\Guns\TestPlayer.cs" />
     <Compile Include="Assets\Scripts\Drones\StaticDrone.cs" />
     <Compile Include="Assets\Scripts\BasicHealth.cs" />
@@ -70,6 +67,8 @@
     <Compile Include="Assets\Scripts\Useless\PlayerShootingScript.cs" />
     <Compile Include="Assets\Scripts\DoorOpenOnManyButton.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\CanvasInputs\UICanvasControllerInput.cs" />
+    <Compile Include="Assets\Scripts\CEOController\BossAnimation.cs" />
+    <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\LightningBolt\LightningBoltScript.cs" />
     <Compile Include="Assets\Scripts\RespawnCheckpoints\RespawnController.cs" />
     <Compile Include="Assets\Scripts\Useless\SimpleCameraController.cs" />
@@ -79,30 +78,36 @@
     <Compile Include="Assets\Scripts\Guns\AGun.cs" />
     <Compile Include="Assets\Scripts\Doors\RightDoorAnimation.cs" />
     <Compile Include="Assets\Scripts\DoorOpenOnButton.cs" />
+    <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
     <Compile Include="Assets\Scripts\Guns\Projectile.cs" />
     <Compile Include="Assets\Scripts\Guns\HarpoonGun.cs" />
     <Compile Include="Assets\Scripts\Drones\NewDrone.cs" />
     <Compile Include="Assets\Scripts\ToggleLightColorOnButton.cs" />
+    <Compile Include="Assets\Scripts\GameController\MessageController.cs" />
     <Compile Include="Assets\Scripts\Guns\Harpoon.cs" />
     <Compile Include="Assets\Scripts\Doors\DoubleDoorAnimator.cs" />
     <Compile Include="Assets\Scripts\Useless\TestColorSwitch.cs" />
     <Compile Include="Assets\Scripts\UI\VolumeControlerScript.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualJoystick.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
+    <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
     <Compile Include="Assets\Scripts\UI\SensitivityController.cs" />
     <Compile Include="Assets\Scripts\Doors\ADoorAnimation.cs" />
     <Compile Include="Assets\Scripts\UI\HaungsModeController.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\About\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\MessageTriggerController.cs" />
     <Compile Include="Assets\Disable.cs" />
     <Compile Include="Assets\Scripts\TESTAnimation.cs" />
     <Compile Include="Assets\Scripts\UI\StatusUIController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
+    <Compile Include="Assets\Scripts\UI\TextMessageDestroyer.cs" />
     <Compile Include="Assets\Scripts\GameController\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Enemies\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\UI\SliderValueScript.cs" />
     <Compile Include="Assets\Scripts\UI\StaminaImageController.cs" />
+    <Compile Include="Assets\Scripts\CEOController\BossPath.cs" />
     <Compile Include="Assets\Scripts\RespawnCheckpoints\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
@@ -116,16 +121,8 @@
     <Compile Include="Assets\Scripts\Guns\ProjectileGun.cs" />
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
-    <Compile Include="Assets\JailDrone.cs" />
-    <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
-    <Compile Include="Assets\Scripts\GameController\MessageController.cs" />
-    <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
-    <Compile Include="Assets\Scripts\MessageTriggerController.cs" />
-    <Compile Include="Assets\Scripts\CEOController\BossAnimation.cs" />
-    <Compile Include="Assets\Scripts\CEOController\BossPath.cs" />
-    <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
-    <Compile Include="Assets\Scripts\UI\TextMessageDestroyer.cs" />
     <Compile Include="Assets\vaultAlarm.cs" />
+    <Compile Include="Assets\JailDrone.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -376,9 +373,6 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>Library\PackageCache\com.unity.analytics@3.2.3\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression.FileSystem">
       <HintPath>Library\PackageCache\com.unity.connect.share@4.2.3\Plugins\System.IO.Compression.FileSystem.dll</HintPath>
@@ -766,9 +760,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>Library\ScriptAssemblies\Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>

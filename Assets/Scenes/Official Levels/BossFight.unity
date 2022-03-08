@@ -3997,6 +3997,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1947196126}
     m_Modifications:
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 90206152}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2067657748}
     - target: {fileID: 5925319021312029896, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
       propertyPath: m_Name
       value: Cedric

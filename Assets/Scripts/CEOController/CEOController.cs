@@ -8,7 +8,11 @@ public class CEOController : MonoBehaviour
     public Transform player, boss;
     public RemovableObject[] removables;
     public BossPath[] paths;
-    public int blah;
+
+    BossPath path;
+    BossTarget target;
+
+    Animator animator;
 
     public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
     public delegate void Event(); // run on Unity events
@@ -24,12 +28,14 @@ public class CEOController : MonoBehaviour
 
     bool vulnerable;
 
-    Vector3 target;
+    float rotationSpeed = 10f;
+    float speedMultiplier = 10f;
 
     private void Start()
     {
-        UpdateBossState(BossState.idle);
-        vulnerable = false;
+        GetPaths();
+        ResetFight();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -97,35 +103,29 @@ public class CEOController : MonoBehaviour
     Events _idle()
     {
         // Initialize here
-
+        path = paths[0];
+        target = path.NextTarget();
+        // set animator state
         return (
             new Event(() => // Update
             {
-
+                NavToWaypoint(target);
             }),
-            new Event(() => // FixedUpdate
-            {
-
-            }),
-            new Event(() => // LateUpdate
-            {
-
-            }),
-            new Event(() => // Cleanup
-            {
-
-            })
+            null,
+            null,
+            null
         );
     }
 
     Events _entry()
     {
         // Initialize here
-
+        path = paths[1];
+        target = path.NextTarget();
         return (
             new Event(() => // Update
             {
-
+                if (NavToWaypoint(target)) target = path.NextTarget();
             }),
             new Event(() => // FixedUpdate
             {
@@ -309,8 +309,71 @@ public class CEOController : MonoBehaviour
 
 
 
-    void NavToWaypoint(Vector3 position)
+    bool NavToWaypoint(Vector3 position, float speed)
     {
+        return NavToWaypoint(position, position, speed);
+    }
 
+    bool NavToWaypoint(BossTarget target)
+    {
+        if (target)
+            return NavToWaypoint(target.location.position, target.speed);
+        else
+        {
+            RotateToPoint(player.position);
+            return true;
+        }
+
+    }
+
+    bool NavToWaypoint(Vector3 position, Vector3 lookAt, float speed)
+    {
+        speed *= speedMultiplier * Time.deltaTime;
+        if (Vector3.Distance(boss.position, position) < speed + 1)
+        {
+            RotateToPoint(player.position);
+            return true;
+        }
+        boss.position = Vector3.MoveTowards(boss.position, position, speed);
+        RotateToPoint(lookAt);
+        return Vector3.Distance(boss.position, position) < speed;
+    }
+
+    void RotateToPoint(Vector3 position)
+    {
+        //boss.rotation = Quaternion.Lerp(boss.rotation, Quaternion.Euler(position - boss.position), rotationSpeed * Time.deltaTime);
+
+        //Vector3 direction = position - boss.position;
+        //Quaternion toRotation = Quaternion.FromToRotation(boss.forward, direction);
+        //boss.rotation = Quaternion.Lerp(boss.rotation, toRotation, rotationSpeed * Time.deltaTime);
+
+        //boss.LookAt(position);
+
+        Vector3 relativePos = position - boss.position;
+        Quaternion toRotation = Quaternion.LookRotation(relativePos);
+        boss.rotation = Quaternion.Lerp(boss.rotation, toRotation, rotationSpeed * Time.deltaTime);
+    }
+
+
+
+    void GetPaths()
+    {
+        paths = boss.parent.Find("BossPaths").GetComponentsInChildren<BossPath>();
+    }
+
+    void ResetFight()
+    {
+        UpdateBossState(BossState.idle); //idle
+        vulnerable = false;
+        UpdateState = FixedUpdateState = LateUpdateState = CleanupState = null;
+        foreach (BossPath path in paths)
+        {
+            path.ResetTargetNum();
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        GetPaths();
     }
 }
