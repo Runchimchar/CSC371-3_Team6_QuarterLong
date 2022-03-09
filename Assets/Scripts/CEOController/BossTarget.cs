@@ -7,19 +7,6 @@ public class BossTarget : MonoBehaviour
 {
     public Transform location;
     public float speed = 1;
-    //public CEOController.Activity activity;
-    //public CEOController.DoneWaiting doneWaiting;
-
-    //void Activity()
-    //{
-    //    activity?.Invoke();
-    //}
-
-    //bool DoneWaiting()
-    //{
-    //    bool? tmp = doneWaiting?.Invoke();
-    //    return !tmp.HasValue || tmp.Value;
-    //}
 
     private void OnDrawGizmosSelected()
     {
