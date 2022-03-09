@@ -25,6 +25,11 @@ public class BossPath : MonoBehaviour
         return path[targetNum];
     }
 
+    public bool IsLastTarget()
+    {
+        return !loopPath && targetNum >= path.Length - 1;
+    }
+
     public void ResetTargetNum()
     {
         targetNum = 0;

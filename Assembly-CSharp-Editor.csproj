@@ -65,6 +65,11 @@
     <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
     <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
     <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\Grapple.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\RespawnCheckpoints\RespawnController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\settings\PackageImportList_ShaderGraph.txt" />
