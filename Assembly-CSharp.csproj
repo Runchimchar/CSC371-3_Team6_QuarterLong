@@ -97,6 +97,7 @@
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualTouchZone.cs" />
     <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
     <Compile Include="Assets\Scripts\UI\SensitivityController.cs" />
+    <Compile Include="Assets\Scripts\DoorOnLever.cs" />
     <Compile Include="Assets\Scripts\Doors\ADoorAnimation.cs" />
     <Compile Include="Assets\Scripts\UI\HaungsModeController.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
     <Compile Include="Assets\Scripts\UI\TextMessageDestroyer.cs" />
     <Compile Include="Assets\Scripts\GameController\PlayerStatus.cs" />
+    <Compile Include="Assets\Scripts\LeverControls.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Enemies\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\UI\SliderValueScript.cs" />
@@ -126,8 +128,7 @@
     <Compile Include="Assets\Scripts\Guns\ProjectileGun.cs" />
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
-    <Compile Include="Assets\Scripts\LeverControls.cs" />
-    <Compile Include="Assets\Scripts\DoorOnLever.cs" />
+    <Compile Include="Assets\Scripts\RemoveVentCover.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

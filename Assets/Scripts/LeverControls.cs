@@ -9,7 +9,6 @@ public class LeverControls : MonoBehaviour
     // This is for a simple lever where user can press it to activate some event
     bool isToggled; // false means its down, true means its up
     bool isAnimating;
-    float animationDelay = 2f;
     public Animator anim;
     public bool canDisable; // user is allowed to turn off the lever
 
