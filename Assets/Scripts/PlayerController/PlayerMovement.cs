@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed = 50f;
     public float movementMultiplier = 10f;
     public float airMultiplier = 0.15f;
+    public float cameraSnap = 30f;
 
     [Header("Sprinting")]
     [SerializeField] float walkSpeed = 4f;
@@ -163,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RotatePlayer();
         AimAngles();
-        CinemachineCameraTarget.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        CinemachineCameraTarget.transform.rotation = Quaternion.Lerp(CinemachineCameraTarget.transform.rotation, Quaternion.Euler(xRotation, yRotation, 0), cameraSnap * Time.deltaTime);
         orientation.transform.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 

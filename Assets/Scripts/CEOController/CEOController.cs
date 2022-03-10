@@ -32,17 +32,17 @@ public class CEOController : MonoBehaviour
     float speedMultiplier = 10f;
 
     // Lasers
-    float laserSpeed = 10f;
+    float laserSpeed = -10f;
     float laserAngle;
     Quaternion laserAngleOffset;
     Transform laser;
 
     private void Start()
     {
+        laser = boss.parent.Find("Laser");
         GetPaths();
         ResetFight();
         animator = GetComponent<Animator>();
-        laser = boss.transform.Find("Laser");
 
         laserAngleOffset = laser.rotation;
     }
@@ -130,7 +130,8 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-                NavToWaypoint(target);
+                nextTarget = NavToWaypoint(target);
+                nextPath = nextTarget && path.IsLastTarget();
             }),
             new Event(() => // FixedUpdate
             {
@@ -156,6 +157,7 @@ public class CEOController : MonoBehaviour
             new Event(() => // Update
             {
                 nextTarget = NavToWaypoint(target);
+                nextPath = nextTarget && path.IsLastTarget();
             }),
             new Event(() => // FixedUpdate
             {
@@ -181,6 +183,7 @@ public class CEOController : MonoBehaviour
             new Event(() => // Update
             {
                 nextTarget = NavToWaypoint(target);
+                nextPath = nextTarget && path.IsLastTarget();
             }),
             new Event(() => // FixedUpdate
             {
@@ -378,10 +381,10 @@ public class CEOController : MonoBehaviour
         //boss.rotation = Quaternion.Lerp(boss.rotation, Quaternion.Euler(position - boss.position), rotationSpeed * Time.deltaTime);
 
         //Vector3 direction = position - boss.position;
-        //Quaternion toRotation = Quaternion.FromToRotation(boss.forward, direction);
-        //boss.rotation = Quaternion.Lerp(boss.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        //Quaternion toRotation = Quaternion.FromToRotation(body.forward, direction);
+        //body.rotation = Quaternion.Lerp(body.rotation, toRotation, rotationSpeed * Time.deltaTime);
 
-        //boss.LookAt(position);
+        //body.LookAt(position);
 
         Vector3 relativePos = position - boss.position;
         Quaternion toRotation = Quaternion.LookRotation(relativePos);
