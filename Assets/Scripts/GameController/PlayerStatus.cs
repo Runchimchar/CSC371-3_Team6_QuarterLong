@@ -14,6 +14,9 @@ public class PlayerStatus : MonoBehaviour
     public int maxStamina = 100;
     int currStamina = 100;
 
+    // Grapple
+    public bool grappleStatus = true;
+
     // Haungs mode
     private bool haungsMode = false;
 
