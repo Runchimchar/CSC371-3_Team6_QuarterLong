@@ -57,7 +57,7 @@
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\StarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\Editor\FieldOfViewEditor.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\PackageChecker\PackageChecker.cs" />
-    <Compile Include="Assets\LightningBolt\Editor\LightningBoltEditor.cs" />
+    <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\LightningBolt\Editor\LightningBoltEditor.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\ScriptingDefineUtils.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\ThirdPersonStarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\PackageChecker.cs" />
@@ -65,7 +65,11 @@
     <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
     <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
     <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
-    <Compile Include="Assets\Scripts\Drones\Waypoint.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\Grapple.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\RespawnCheckpoints\RespawnController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\settings\PackageImportList_ShaderGraph.txt" />

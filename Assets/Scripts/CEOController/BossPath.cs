@@ -8,9 +8,31 @@ public class BossPath : MonoBehaviour
     [SerializeField] BossTarget[] path;
     public bool loopPath = true;
 
+    int targetNum = 0;
+
     private void Start()
     {
         path = GetComponentsInChildren<BossTarget>();
+    }
+
+    public BossTarget NextTarget()
+    {
+        if (++targetNum >= path.Length)
+        {
+            if (loopPath) targetNum = 0;
+            else return null;
+        }
+        return path[targetNum];
+    }
+
+    public bool IsLastTarget()
+    {
+        return !loopPath && targetNum >= path.Length - 1;
+    }
+
+    public void ResetTargetNum()
+    {
+        targetNum = 0;
     }
 
     private void OnDrawGizmosSelected()

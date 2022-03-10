@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c392832a4fbc7a445b692117bc83c8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minDistanceNoDither: 3
+  fullDitherDistance: 1
 --- !u!114 &5546953320482063120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +194,6 @@ MonoBehaviour:
   m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0.1
-  m_Damping: 0.5
-  m_DampingWhenOccluded: 0.1
+  m_Damping: 2
+  m_DampingWhenOccluded: 0.05
   m_OptimalTargetDistance: 0

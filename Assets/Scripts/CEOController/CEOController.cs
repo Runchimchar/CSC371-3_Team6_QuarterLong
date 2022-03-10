@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events = System.ValueTuple<CEOController.Event, CEOController.Event, CEOController.Event, CEOController.Event>;
+// (Event,   Event, Event, Event)
+//  Default, Fixed, Late,  Cleanup
 
 public class CEOController : MonoBehaviour
 {
     public Transform player, boss;
     public RemovableObject[] removables;
     public BossPath[] paths;
-    public int blah;
+
+    BossPath path;
+    BossTarget target;
+
+    Animator animator;
 
     public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
     public delegate void Event(); // run on Unity events
-    public delegate void Activity(); // call a function once the waypoint is reached
-    public delegate bool DoneWaiting(); // check if boss is done with its activity
-    //(Event,   Event, Event, Event)
-    // Default, Fixed, Late,  Cleanup
 
     BossState state;
     bool initState;
@@ -23,17 +25,42 @@ public class CEOController : MonoBehaviour
     Event UpdateState, FixedUpdateState, LateUpdateState, CleanupState;
 
     bool vulnerable;
+    public bool nextTarget;
+    public bool nextPath;
 
-    Vector3 target;
+    float rotationSpeed = 10f;
+    float speedMultiplier = 10f;
+
+    // Lasers
+    float laserSpeed = -10f;
+    float laserAngle;
+    Quaternion laserAngleOffset;
+    Transform laser;
 
     private void Start()
     {
-        UpdateBossState(BossState.idle);
-        vulnerable = false;
+        laser = boss.parent.Find("Laser");
+        GetPaths();
+        ResetFight();
+        animator = GetComponent<Animator>();
+
+        laserAngleOffset = laser.rotation;
     }
 
     private void FixedUpdate()
     {
+        if (nextPath)
+        {
+            UpdateBossState();
+            nextPath = false;
+        }
+
+        if (nextTarget)
+        {
+            NextTarget();
+            nextTarget = false;
+        }
+
         if (_init())
         {
             CleanupState?.Invoke();
@@ -97,11 +124,14 @@ public class CEOController : MonoBehaviour
     Events _idle()
     {
         // Initialize here
-
+        path = paths[0];
+        target = path.NextTarget();
+        // set animator state
         return (
             new Event(() => // Update
             {
-
+                nextTarget = NavToWaypoint(target);
+                nextPath = nextTarget && path.IsLastTarget();
             }),
             new Event(() => // FixedUpdate
             {
@@ -121,11 +151,13 @@ public class CEOController : MonoBehaviour
     Events _entry()
     {
         // Initialize here
-
+        path = paths[1];
+        target = path.NextTarget();
         return (
             new Event(() => // Update
             {
-
+                nextTarget = NavToWaypoint(target);
+                nextPath = nextTarget && path.IsLastTarget();
             }),
             new Event(() => // FixedUpdate
             {
@@ -145,11 +177,13 @@ public class CEOController : MonoBehaviour
     Events _conversation()
     {
         // Initialize here
-
+        path = paths[2];
+        target = path.NextTarget();
         return (
             new Event(() => // Update
             {
-
+                nextTarget = NavToWaypoint(target);
+                nextPath = nextTarget && path.IsLastTarget();
             }),
             new Event(() => // FixedUpdate
             {
@@ -169,11 +203,14 @@ public class CEOController : MonoBehaviour
     Events _stage1()
     {
         // Initialize here
-
+        path = paths[3];
+        target = path.NextTarget();
+        StartLaser();
         return (
             new Event(() => // Update
             {
-
+                nextTarget = NavToWaypoint(target);
+                UpdateLaser();
             }),
             new Event(() => // FixedUpdate
             {
@@ -185,7 +222,7 @@ public class CEOController : MonoBehaviour
             }),
             new Event(() => // Cleanup
             {
-
+                StopLaser();
             })
         );
     }
@@ -309,8 +346,98 @@ public class CEOController : MonoBehaviour
 
 
 
-    void NavToWaypoint(Vector3 position)
+    bool NavToWaypoint(Vector3 position, float speed)
     {
+        return NavToWaypoint(position, position, speed);
+    }
 
+    bool NavToWaypoint(BossTarget target)
+    {
+        if (target)
+            return NavToWaypoint(target.location.position, target.speed);
+        else
+        {
+            RotateToPoint(player.position);
+            return true;
+        }
+
+    }
+
+    bool NavToWaypoint(Vector3 position, Vector3 lookAt, float speed)
+    {
+        speed *= speedMultiplier * Time.deltaTime;
+        if (Vector3.Distance(boss.position, position) < speed + 1)
+        {
+            RotateToPoint(player.position);
+            return true;
+        }
+        boss.position = Vector3.MoveTowards(boss.position, position, speed);
+        RotateToPoint(lookAt);
+        return Vector3.Distance(boss.position, position) < speed;
+    }
+
+    void RotateToPoint(Vector3 position)
+    {
+        //boss.rotation = Quaternion.Lerp(boss.rotation, Quaternion.Euler(position - boss.position), rotationSpeed * Time.deltaTime);
+
+        //Vector3 direction = position - boss.position;
+        //Quaternion toRotation = Quaternion.FromToRotation(body.forward, direction);
+        //body.rotation = Quaternion.Lerp(body.rotation, toRotation, rotationSpeed * Time.deltaTime);
+
+        //body.LookAt(position);
+
+        Vector3 relativePos = position - boss.position;
+        Quaternion toRotation = Quaternion.LookRotation(relativePos);
+        boss.rotation = Quaternion.Lerp(boss.rotation, toRotation, rotationSpeed * Time.deltaTime);
+    }
+
+
+
+    void NextTarget()
+    {
+        target = path.NextTarget();
+    }
+
+    void GetPaths()
+    {
+        paths = boss.parent.Find("BossPaths").GetComponentsInChildren<BossPath>();
+    }
+
+    void ResetFight()
+    {
+        UpdateBossState(BossState.idle); //idle
+        vulnerable = false;
+        nextPath = false;
+        nextTarget = false;
+        UpdateState = FixedUpdateState = LateUpdateState = CleanupState = null;
+        StopLaser();
+        foreach (BossPath path in paths)
+        {
+            path.ResetTargetNum();
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        GetPaths();
+    }
+
+
+
+    // Lasers
+    void StartLaser()
+    {
+        laser.rotation = laserAngleOffset;
+        laser.gameObject.SetActive(true);
+    }
+
+    void UpdateLaser()
+    {
+        laser.Rotate(Vector3.up, laserSpeed * Time.deltaTime);
+    }
+
+    void StopLaser()
+    {
+        laser.gameObject.SetActive(false);
     }
 }

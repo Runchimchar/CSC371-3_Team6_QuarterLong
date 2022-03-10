@@ -9,6 +9,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.analytics": {
+      "version": "3.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.animation.rigging": {
       "version": "1.0.3",
       "depth": 0,
@@ -109,6 +116,12 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.package-manager-ui": {
+      "version": "2.2.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.unity.postprocessing": {
       "version": "3.2.0",
       "depth": 0,
@@ -134,6 +147,13 @@
       "dependencies": {
         "com.unity.settings-manager": "1.0.2"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.purchasing": {
+      "version": "2.0.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {

@@ -660,6 +660,7 @@ GameObject:
   - component: {fileID: 4656230895546694799}
   - component: {fileID: 5925319021312029910}
   - component: {fileID: 5925319021312029911}
+  - component: {fileID: 8996611646989170700}
   m_Layer: 0
   m_Name: Cedric
   m_TagString: Untagged
@@ -674,8 +675,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5925319021312029896}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.9, y: -1.8364033, z: 38.55}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: -6.5, y: -4, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5925319022230211752}
@@ -697,8 +698,16 @@ MonoBehaviour:
   player: {fileID: 0}
   boss: {fileID: 0}
   removables: []
-  paths: []
-  blah: 0
+  paths:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nextTarget: 0
+  nextPath: 0
 --- !u!95 &5925319021312029910
 Animator:
   serializedVersion: 3
@@ -731,6 +740,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossAnim: {fileID: 5925319021312029910}
+--- !u!65 &8996611646989170700
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925319021312029896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.5, z: 2.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5925319021435352090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1266,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5925319022230211755}
-  m_LocalRotation: {x: -0.7071082, y: -1.247696e-24, z: 3.4315043e-24, w: 0.70710546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

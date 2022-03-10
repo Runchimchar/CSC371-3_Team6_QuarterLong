@@ -11,6 +11,8 @@ public class MovableObjectRespawn : MonoBehaviour
     Vector3 startPosition;
     float indCurLen = 0;
     float indSpeed = 20f;
+    float rotateSpeed = 5f;
+    float? startRotation;
     bool yoinking = false;
     Grapple grappleScript;
     LineRenderer lr;
@@ -32,6 +34,16 @@ public class MovableObjectRespawn : MonoBehaviour
             if (yoinking) grappleScript.StopGrapple();
             transform.position = startPosition;
             rb.angularVelocity = rb.velocity = Vector3.zero;
+        }
+
+        if (yoinking && !isEMP)
+        {
+            if (!startRotation.HasValue) startRotation = transform.rotation.eulerAngles.y;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(startRotation.Value * Vector3.up) * Quaternion.Euler(grappleScript.GetMovableRotationOffset() * Vector3.up), rotateSpeed * Time.fixedDeltaTime);
+        }
+        else if (!isEMP)
+        {
+            startRotation = null;
         }
     }
 

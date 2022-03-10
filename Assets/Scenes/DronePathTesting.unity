@@ -1633,6 +1633,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9be66201bc77944b1d3f2b8b655f90, type: 3}
+--- !u!1001 &2814238470094830694
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2814238468551730866, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 350717499}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730867, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814238468551730869, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
+      propertyPath: m_Name
+      value: JailDrone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec4ddad262c2c7e478d025fa1cac1363, type: 3}
 --- !u!1001 &4246392482641896109
 PrefabInstance:
   m_ObjectHideFlags: 0
