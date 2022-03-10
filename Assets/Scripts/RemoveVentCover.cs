@@ -10,7 +10,8 @@ public class RemoveVentCover : MonoBehaviour
     {
         if (pm != null) 
             pm.InteractEvent -= RemoveVent;
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+
     }
 
     private void OnTriggerEnter(Collider other)
