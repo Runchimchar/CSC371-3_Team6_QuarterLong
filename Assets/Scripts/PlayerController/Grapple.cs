@@ -30,11 +30,12 @@ public class Grapple : MonoBehaviour
     private Transform holdTransform;
     private bool yoinking = false;
     private Collider capsuleCollider;
+    private float movableRotationStart;
 
     // Grapple button attributes (gb)
     private bool gb = false;
     private GameObject gbTarget;
-    private float gbSpeed = 0.5f;
+    private float gbSpeed = 5f;
     private bool gbGoingOut = true;
 
     private bool retracting = false;
@@ -58,6 +59,7 @@ public class Grapple : MonoBehaviour
 
     private void Update()
     {
+        if (yoinking || joint || gb) UpdateGrapple();
         if (joint != null || yoinking) desiredRotation = Quaternion.LookRotation(grapplePoint - grappleGun.position);
         else if (pm.GetAiming()) desiredRotation = Quaternion.LookRotation(pm.GetAimPoint() - grappleGun.position);
         else desiredRotation = grappleGun.parent.rotation;
@@ -67,7 +69,7 @@ public class Grapple : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (yoinking || joint || gb) UpdateGrapple();
+        //if (yoinking || joint || gb) UpdateGrapple();
         if (joint)
         {
             bool stopped = joint.maxDistance <= retractMinDistance + 0.1f || player.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.1;
@@ -244,6 +246,7 @@ public class Grapple : MonoBehaviour
     void YoinkObject()
     {
         yoinking = true;
+        movableRotationStart = vision.rotation.eulerAngles.y;
         pm.SetYoink(true);
         grappleObject.GetComponent<MovableObjectRespawn>().SetYoink(true, this);
 
@@ -336,8 +339,8 @@ public class Grapple : MonoBehaviour
                 gb = false;
             }
 
-            if (gbGoingOut) grapplePoint = Vector3.Lerp(grapplePoint, gbTarget.transform.position, gbSpeed);
-            else grapplePoint = Vector3.Lerp(grapplePoint, ropeStart.position, gbSpeed);
+            if (gbGoingOut) grapplePoint = Vector3.Lerp(grapplePoint, gbTarget.transform.position, gbSpeed * Time.deltaTime);
+            else grapplePoint = Vector3.Lerp(grapplePoint, ropeStart.position, gbSpeed * Time.deltaTime);
         }
         else grapplePoint = grappleObject.transform.position - (yoinking ? Vector3.zero : grappleObjectOffset);
         if (yoinking) movableJoint.connectedAnchor = holdTransform.position;
@@ -347,7 +350,8 @@ public class Grapple : MonoBehaviour
     void ThrowObject()
     {
         Rigidbody yorb = grappleObject.GetComponent<Rigidbody>();
-        Vector3 throwDir = (pm.GetAimPoint() - grappleObject.transform.position).normalized;
+        Vector3 bias = 0.2f * Vector3.up;
+        Vector3 throwDir = ((pm.GetAimPoint() - grappleObject.transform.position).normalized + bias).normalized;
         StopYoink();
         yorb.velocity = player.GetComponentInChildren<Rigidbody>().velocity;
         yorb.AddForce(throwDir * throwForce, ForceMode.Impulse);
@@ -382,5 +386,10 @@ public class Grapple : MonoBehaviour
     public bool IsInLayerMask(GameObject obj, LayerMask layerMask)
     {
         return ((layerMask.value & (1 << obj.layer)) > 0);
+    }
+
+    public float GetMovableRotationOffset()
+    {
+        return vision.rotation.eulerAngles.y - movableRotationStart;
     }
 }
