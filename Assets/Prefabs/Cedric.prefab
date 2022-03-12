@@ -661,9 +661,9 @@ GameObject:
   - component: {fileID: 5925319021312029910}
   - component: {fileID: 5925319021312029911}
   - component: {fileID: 8996611646989170700}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cedric
-  m_TagString: Untagged
+  m_TagString: Cedric
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
