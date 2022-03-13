@@ -50,11 +50,16 @@ public class Grapple : MonoBehaviour
     private Quaternion desiredRotation;
     private float rotationSpeed = 15f;
 
+    private PlayerStatus ps;
+    private GameObject visibleGrappleGun;
+
     private void Start()
     {
         lr = GetComponent<LineRenderer>();
         holdTransform = transform.Find("PlayerCameraRoot/HoldPosition");
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        ps = FindObjectOfType<PlayerStatus>();
+        visibleGrappleGun = grappleGun.Find("GrappleGun").gameObject;
     }
 
     private void Update()
@@ -105,6 +110,8 @@ public class Grapple : MonoBehaviour
                 currentRetractSpeed = 0f;
             }
         }
+
+        visibleGrappleGun.SetActive(ps.grappleStatus);
     }
 
     private void LateUpdate()
@@ -114,6 +121,11 @@ public class Grapple : MonoBehaviour
 
     void OnGrapple(InputValue value)
     {
+        if (!ps.grappleStatus)
+        {
+            StopGrapple();
+            return;
+        }
         if (value.isPressed) StartGrapple();
         else StopGrapple();
     }
