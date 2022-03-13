@@ -16,6 +16,7 @@ public class CEOController : MonoBehaviour
     BossTarget target;
 
     BossAnimation animate;
+    GameObject stunLightning;
 
     public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
     public delegate void Event(); // run on Unity events
@@ -41,8 +42,9 @@ public class CEOController : MonoBehaviour
     private void Start()
     {
         laser = boss.parent.Find("Laser");
-        GetPaths();
+        stunLightning = boss.Find("StunLightning").gameObject;
         animate = GetComponent<BossAnimation>();
+        GetPaths();
         ResetFight();
 
         laserAngleOffset = laser.rotation;
@@ -414,6 +416,7 @@ public class CEOController : MonoBehaviour
         nextTarget = false;
         UpdateState = FixedUpdateState = LateUpdateState = CleanupState = null;
         StopLaser();
+        stunLightning.SetActive(false);
         animate.closeFlaps();
         foreach (BossPath path in paths)
         {
@@ -429,9 +432,9 @@ public class CEOController : MonoBehaviour
 
 
     // Lasers
-    void StartLaser()
+    void StartLaser(bool resetRotation = true)
     {
-        laser.rotation = laserAngleOffset;
+        if (resetRotation) laser.rotation = laserAngleOffset;
         laser.gameObject.SetActive(true);
     }
 
@@ -458,9 +461,11 @@ public class CEOController : MonoBehaviour
         animate.openFlaps();
         vulnerable = true;
         StopLaser();
+        stunLightning.SetActive(true);
         yield return new WaitForSeconds(stunTime);
         animate.closeFlaps();
         vulnerable = false;
-        StartLaser();
+        StartLaser(false);
+        stunLightning.SetActive(false);
     }
 }

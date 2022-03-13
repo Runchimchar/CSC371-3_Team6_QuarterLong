@@ -67,6 +67,9 @@
     <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
     <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
     <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
+    <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
+    <Compile Include="Assets\Scripts\Drones\NewDrone.cs" />
+    <Compile Include="Assets\Scripts\Enemies\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Grapple.cs" />
     <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
