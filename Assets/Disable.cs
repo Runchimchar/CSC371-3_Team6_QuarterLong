@@ -12,6 +12,8 @@ public class Disable : MonoBehaviour
     Quaternion startRotation;
 
     public int timeToRespawn = 2;
+    public float range = 3f;
+    public LayerMask enemy;
 
     Rigidbody rb;
 
@@ -37,6 +39,12 @@ public class Disable : MonoBehaviour
             {
                 transform.localScale = new Vector3(0, 0, 0);
                 hitEffect.Play();
+
+                Collider[] outs = Array.FindAll(
+                    Physics.OverlapSphere(transform.position, range, enemy, QueryTriggerInteraction.Ignore),
+                    x => x.gameObject.CompareTag("Cedric")
+                );
+                if (outs.Length > 0) outs[0].gameObject.GetComponent<CEOController>().Stun();
                 
 
                 StartCoroutine(waiter());

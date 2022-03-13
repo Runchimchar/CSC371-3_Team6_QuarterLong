@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\DoorOpenOnButton.cs" />
     <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
     <Compile Include="Assets\Scripts\Guns\Projectile.cs" />
+    <Compile Include="Assets\Scripts\ElevatorController.cs" />
     <Compile Include="Assets\Scripts\Guns\HarpoonGun.cs" />
     <Compile Include="Assets\Scripts\Drones\NewDrone.cs" />
     <Compile Include="Assets\Scripts\ToggleLightColorOnButton.cs" />
@@ -124,8 +125,8 @@
     <Compile Include="Assets\Scripts\Useless\ThirdPersonShooterController.cs" />
     <Compile Include="Assets\Scripts\Guns\ProjectileGun.cs" />
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
     <Compile Include="Assets\Scripts\RemoveVentCover.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -135,6 +136,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
     <None Include="Assets\ExternalPackages\StarterAssets\Environment\Shaders\Built-in_RP\Triplanar.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />

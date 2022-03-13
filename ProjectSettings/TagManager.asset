@@ -12,6 +12,7 @@ TagManager:
   - Holder
   - Menu
   - Notification Box
+  - Cedric
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Moving
   - Laser
   - Ignore Camera
-  - 
+  - Enemy
   - 
   - 
   - 
