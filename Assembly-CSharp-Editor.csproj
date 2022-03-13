@@ -54,6 +54,7 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Disable.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\StarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\Editor\FieldOfViewEditor.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\PackageChecker\PackageChecker.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\ScriptingDefineUtils.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\ThirdPersonStarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\PackageChecker.cs" />
+    <Compile Include="Assets\Scripts\CEOController\BossAnimation.cs" />
     <Compile Include="Assets\Scripts\CEOController\BossPath.cs" />
     <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
     <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />

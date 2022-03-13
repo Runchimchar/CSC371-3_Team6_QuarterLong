@@ -315,6 +315,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3a2bf103-3d44-4b15-a6d7-b11e85377c10",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e1bc96a0-0a4a-4ff0-a60b-0a2effb00508",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",

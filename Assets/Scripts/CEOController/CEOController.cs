@@ -10,11 +10,12 @@ public class CEOController : MonoBehaviour
     public Transform player, boss;
     public RemovableObject[] removables;
     public BossPath[] paths;
+    public float stunTime = 6f;
 
     BossPath path;
     BossTarget target;
 
-    Animator animator;
+    BossAnimation animate;
 
     public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
     public delegate void Event(); // run on Unity events
@@ -41,8 +42,8 @@ public class CEOController : MonoBehaviour
     {
         laser = boss.parent.Find("Laser");
         GetPaths();
+        animate = GetComponent<BossAnimation>();
         ResetFight();
-        animator = GetComponent<Animator>();
 
         laserAngleOffset = laser.rotation;
     }
@@ -365,13 +366,14 @@ public class CEOController : MonoBehaviour
 
     bool NavToWaypoint(Vector3 position, Vector3 lookAt, float speed)
     {
+        if (vulnerable) return false;
         speed *= speedMultiplier * Time.deltaTime;
         if (Vector3.Distance(boss.position, position) < speed + 1)
         {
             RotateToPoint(player.position);
             return true;
         }
-        boss.position = Vector3.MoveTowards(boss.position, position, speed);
+        if (!vulnerable) boss.position = Vector3.MoveTowards(boss.position, position, speed);
         RotateToPoint(lookAt);
         return Vector3.Distance(boss.position, position) < speed;
     }
@@ -386,6 +388,7 @@ public class CEOController : MonoBehaviour
 
         //body.LookAt(position);
 
+        if (vulnerable) return;
         Vector3 relativePos = position - boss.position;
         Quaternion toRotation = Quaternion.LookRotation(relativePos);
         boss.rotation = Quaternion.Lerp(boss.rotation, toRotation, rotationSpeed * Time.deltaTime);
@@ -411,6 +414,7 @@ public class CEOController : MonoBehaviour
         nextTarget = false;
         UpdateState = FixedUpdateState = LateUpdateState = CleanupState = null;
         StopLaser();
+        animate.closeFlaps();
         foreach (BossPath path in paths)
         {
             path.ResetTargetNum();
@@ -439,5 +443,24 @@ public class CEOController : MonoBehaviour
     void StopLaser()
     {
         laser.gameObject.SetActive(false);
+    }
+
+
+
+    // Stun
+    public void Stun()
+    {
+        StartCoroutine(StartStun());
+    }
+
+    IEnumerator StartStun()
+    {
+        animate.openFlaps();
+        vulnerable = true;
+        StopLaser();
+        yield return new WaitForSeconds(stunTime);
+        animate.closeFlaps();
+        vulnerable = false;
+        StartLaser();
     }
 }
