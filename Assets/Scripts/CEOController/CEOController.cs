@@ -43,6 +43,7 @@ public class CEOController : MonoBehaviour
 
     private void Start()
     {
+        RespawnController.instance.CustomActionsOnRespawnReset += ResetFight;
         laser = boss.parent.Find("Laser");
         stunLightning = boss.Find("StunLightning").gameObject;
         //removedParticles = new[]{

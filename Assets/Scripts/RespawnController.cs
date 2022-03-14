@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class RespawnController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class RespawnController : MonoBehaviour
     int curCheckpoint;
     public Room firstRoom;
     Room curRoom;
+    public event Action CustomActionsOnRespawnReset = delegate { };
 
     private void Awake()
     {
@@ -87,6 +89,7 @@ public class RespawnController : MonoBehaviour
         // resets the level and sends the player to the spawn point
         // TODO reset level
         curRoom.ResetRoom();
+        CustomActionsOnRespawnReset();
         Checkpoint cp = checkpoints[curCheckpoint];
         pm.RespawnAt(cp.GetSpawnLocation(), cp.GetSpawnDirection());
     }
