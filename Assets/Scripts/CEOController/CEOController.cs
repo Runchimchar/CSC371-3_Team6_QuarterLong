@@ -8,7 +8,6 @@ using Events = System.ValueTuple<CEOController.Event, CEOController.Event, CEOCo
 public class CEOController : MonoBehaviour
 {
     public Transform player, boss;
-    public RemovableObject[] removables;
     public BossPath[] paths;
     public float stunTime = 6f;
 
@@ -16,9 +15,12 @@ public class CEOController : MonoBehaviour
     BossTarget target;
 
     BossAnimation animate;
+    Animator animator;
     GameObject stunLightning;
+    GameObject[] removedParticles;
 
     public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
+    public enum RemovableItem { nozzle_back, nozzle_l, nozzle_r }; // in this order
     public delegate void Event(); // run on Unity events
 
     BossState state;
@@ -43,7 +45,13 @@ public class CEOController : MonoBehaviour
     {
         laser = boss.parent.Find("Laser");
         stunLightning = boss.Find("StunLightning").gameObject;
+        //removedParticles = new[]{
+        //    boss.Find("RemovedParticles").GetChild(0).gameObject,
+        //    boss.Find("RemovedParticles").GetChild(1).gameObject,
+        //    boss.Find("RemovedParticles").GetChild(2).gameObject
+        //};
         animate = GetComponent<BossAnimation>();
+        animator = GetComponent<Animator>();
         GetPaths();
         ResetFight();
 
@@ -237,7 +245,7 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-
+                nextTarget = NavToWaypoint(target);
             }),
             new Event(() => // FixedUpdate
             {
@@ -463,9 +471,29 @@ public class CEOController : MonoBehaviour
         StopLaser();
         stunLightning.SetActive(true);
         yield return new WaitForSeconds(stunTime);
+        if (vulnerable)
+        {
+            animate.closeFlaps();
+            vulnerable = false;
+            StartLaser(false);
+            stunLightning.SetActive(false);
+        }
+    }
+
+
+
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
+
+    public void ItemRemoved(RemovableItem item)
+    {
+        //removedParticles[(int)item].SetActive(true);
         animate.closeFlaps();
         vulnerable = false;
         StartLaser(false);
         stunLightning.SetActive(false);
+        nextPath = true;
     }
 }

@@ -287,7 +287,13 @@ public class Grapple : MonoBehaviour
         yorb.drag = 10f;
         yorb.sleepThreshold = 0;
         grappleObject.layer = (int) Mathf.Log(moving.value, 2);
-        Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), player.GetComponentInChildren<CapsuleCollider>(), true);
+        Collider grappleObjectCollider;
+        if (!grappleObject.TryGetComponent(out grappleObjectCollider))
+            grappleObjectCollider = grappleObject.GetComponentInChildren<Collider>();
+        Physics.IgnoreCollision(
+            grappleObjectCollider,
+            player.GetComponentInChildren<CapsuleCollider>(),
+            true);
     }
 
     void StopYoink()
@@ -307,8 +313,13 @@ public class Grapple : MonoBehaviour
         yorb.drag = originalDrag;
         yorb.sleepThreshold = originalSleep;
         grappleObject.layer = originalLayer;
-
-        Physics.IgnoreCollision(grappleObject.GetComponent<Collider>(), player.GetComponentInChildren<CapsuleCollider>(), false);
+        Collider grappleObjectCollider;
+        if (!grappleObject.TryGetComponent(out grappleObjectCollider))
+            grappleObjectCollider = grappleObject.GetComponentInChildren<Collider>();
+        Physics.IgnoreCollision(
+            grappleObjectCollider,
+            player.GetComponentInChildren<CapsuleCollider>(),
+            false);
 
         pm.SetGrapple(false);
     }
