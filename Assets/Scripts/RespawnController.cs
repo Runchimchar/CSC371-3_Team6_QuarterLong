@@ -9,6 +9,8 @@ public class RespawnController : MonoBehaviour
     public PlayerMovement pm;
     public Checkpoint[] checkpoints;
     int curCheckpoint;
+    public Room firstRoom;
+    Room curRoom;
 
     private void Awake()
     {
@@ -65,6 +67,7 @@ public class RespawnController : MonoBehaviour
         curCheckpoint = 0;
         //Vector3 rot = pm.transform.rotation.eulerAngles;
         //spawnDirection = new Vector2(rot.x, rot.y);
+        curRoom = firstRoom;
     }
 
     /*
@@ -83,12 +86,17 @@ public class RespawnController : MonoBehaviour
     {
         // resets the level and sends the player to the spawn point
         // TODO reset level
+        curRoom.ResetRoom();
         Checkpoint cp = checkpoints[curCheckpoint];
         pm.RespawnAt(cp.GetSpawnLocation(), cp.GetSpawnDirection());
     }
     public void SetCurIndex(int index)
     {
         curCheckpoint = index;
+    }
+    public void SetCurRoom(Room room)
+    {
+        curRoom = room;
     }
     public void SpawnNext()
     {

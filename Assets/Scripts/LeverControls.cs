@@ -35,19 +35,19 @@ public class LeverControls : MonoBehaviour
 
     void toggleLever()
     {
-        print("PLAYER TRIES TO INTERACT");
+        //print("PLAYER TRIES TO INTERACT");
         if (!isAnimating && !isTiming)
         {
-            print("PLAYER SHOULD TOGGLE");
+            //print("PLAYER SHOULD TOGGLE");
             // Block all interaction during animation
             if (!isToggled)
             {
-                print("LEVER UP");
+                //print("LEVER UP");
                 LeverUp();
             }
             else if (isToggled && canDisable)
             {
-                print("LEVER DOWN");
+                //print("LEVER DOWN");
                 LeverDown();
             }
         }
@@ -58,12 +58,12 @@ public class LeverControls : MonoBehaviour
         isToggled = true;
         isAnimating = true;
         anim.SetTrigger("Up");
-        print("TRIGGER SET");
+        //print("TRIGGER SET");
     }
 
     void LeverUpPostAnim()
     {
-        print("ANIM DELAY OVER");
+        //print("ANIM DELAY OVER");
         isAnimating = false;
         OnLeverActivate();
 
@@ -97,7 +97,7 @@ public class LeverControls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            print("PLAYER IN RANGE");
+            //print("PLAYER IN RANGE");
             // Player enters range of lever
             PlayerMovement pm = other.transform.parent.GetComponent<PlayerMovement>();
             pm.InteractEvent += toggleLever;
@@ -108,10 +108,23 @@ public class LeverControls : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            print("PLAYER OUT OF RANGE");
+            //print("PLAYER OUT OF RANGE");
             // Player leaves range of lever
             PlayerMovement pm = other.transform.parent.GetComponent<PlayerMovement>();
             pm.InteractEvent -= toggleLever;
         }
+    }
+
+    public void Reset()
+    {
+        // Resets the object to its default position and cancels all animations/coroutines
+        isToggled = false;
+        isAnimating = false;
+        isTiming = false;
+        // Handle coroutines
+        if (isTiming)
+            StopCoroutine("OnTimer");
+        // Reset animation
+        anim.SetTrigger("Reset");
     }
 }

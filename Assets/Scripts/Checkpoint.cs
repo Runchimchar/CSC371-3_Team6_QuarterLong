@@ -9,6 +9,7 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] Vector3 spawnLoc;
     public Vector2 spawnDirection;
     public int spawnIndex;
+    public Room nextRoom;
 
     public void Start()
     {
@@ -37,6 +38,10 @@ public class Checkpoint : MonoBehaviour
             passedCheckpoint = true;
             spawnDirection = other.transform.forward;
             rc.SetCurIndex(spawnIndex);
+            if (nextRoom != null)
+            {
+                rc.SetCurRoom(nextRoom);
+            }
         }
     }
     public Vector3 GetSpawnLocation()
