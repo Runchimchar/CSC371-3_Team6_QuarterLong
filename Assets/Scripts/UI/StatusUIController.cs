@@ -28,8 +28,8 @@ public class StatusUIController : MonoBehaviour
     // Cleanup
     private void OnDestroy() {
         // Remove events
-        stat.HealthChangedEvent -= UpdateHealth;
-        stat.StaminaChangedEvent -= UpdateStamina;
+        GameController.playerStatus.HealthChangedEvent -= UpdateHealth;
+        GameController.playerStatus.StaminaChangedEvent -= UpdateStamina;
     }
 
     // Update Health UI
