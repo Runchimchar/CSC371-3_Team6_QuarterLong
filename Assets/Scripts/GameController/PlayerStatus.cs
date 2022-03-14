@@ -11,8 +11,8 @@ public class PlayerStatus : MonoBehaviour
     int currHealth = 3;
 
     // Stamina
-    public int maxStamina = 100;
-    int currStamina = 100;
+    public float maxStamina = 100;
+    float currStamina = 100;
 
     // Grapple
     public bool grappleStatus = true;
@@ -82,27 +82,27 @@ public class PlayerStatus : MonoBehaviour
     // Event called when health changes
     public event System.Action StaminaChangedEvent = delegate { };
 
-    public void SetStamina(int amt) {
+    public void SetStamina(float amt) {
         // Clamp between 0 and maxHealth
         if (!haungsMode) {
-            currStamina = Clamp(amt, maxStamina, 0);
+            currStamina = Mathf.Clamp(amt, 0, maxStamina);
         } else {
             currStamina = maxStamina;
         }
         StaminaChangedEvent();
     }
 
-    public void ChangeStamina(int amt) {
+    public void ChangeStamina(float amt) {
         // Clamp between 0 and maxStamina
         if (!haungsMode) {
-            currStamina = Clamp(currStamina + amt, maxStamina, 0);
+            currStamina = Mathf.Clamp(currStamina + amt, 0, maxStamina);
         } else {
             currStamina = maxStamina;
         }
         StaminaChangedEvent();
     }
 
-    public int GetStamina() {
+    public float GetStamina() {
         return currStamina;
     }
 
