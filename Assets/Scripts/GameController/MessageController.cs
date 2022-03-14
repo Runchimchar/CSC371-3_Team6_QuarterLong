@@ -16,6 +16,8 @@ public class MessageController : MonoBehaviour {
     private Queue<MessageDesc> messageQueue = new Queue<MessageDesc>();
     private GameObject currentMessage = null;
 
+    public event System.Action QueueClearedEvent = delegate { };
+
     // Struct containing all parts of a text message
     [System.Serializable]
     public struct MessageDesc {
@@ -99,6 +101,8 @@ public class MessageController : MonoBehaviour {
         // Prepare next message
         if (messageQueue.Count > 0) {
             CreateMessage(messageQueue.Dequeue());
+        } else {
+            QueueClearedEvent();
         }
     }
 }
