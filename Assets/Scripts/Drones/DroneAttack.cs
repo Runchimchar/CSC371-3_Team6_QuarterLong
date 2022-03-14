@@ -26,7 +26,7 @@ public class DroneAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerStatus = FindObjectOfType<PlayerStatus>();
+        _playerStatus = GameController.playerStatus;
     }
 
     public void Attack(GameObject player)

@@ -13,7 +13,7 @@ public class LaserBeam : MonoBehaviour
     private Collider _collider;
     public void Start()
     {
-        _playerStatus = FindObjectOfType<PlayerStatus>();
+        _playerStatus = GameController.playerStatus;
         _collider = GetComponent<Collider>();
         _attackTimer = _attackCooldown + 1.0f;
     }

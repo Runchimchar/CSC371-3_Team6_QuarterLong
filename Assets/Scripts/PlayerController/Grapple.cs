@@ -58,7 +58,7 @@ public class Grapple : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         holdTransform = transform.Find("PlayerCameraRoot/HoldPosition");
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
-        ps = FindObjectOfType<PlayerStatus>();
+        ps = GameController.playerStatus;
         visibleGrappleGun = grappleGun.Find("GrappleGun").gameObject;
     }
 
