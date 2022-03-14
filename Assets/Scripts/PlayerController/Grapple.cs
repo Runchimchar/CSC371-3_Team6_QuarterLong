@@ -35,7 +35,7 @@ public class Grapple : MonoBehaviour
     // Grapple button attributes (gb)
     private bool gb = false;
     private GameObject gbTarget;
-    private float gbSpeed = 5f;
+    private float gbSpeed = 15f;
     private bool gbGoingOut = true;
 
     private bool retracting = false;

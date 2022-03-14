@@ -127,6 +127,8 @@
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
     <Compile Include="Assets\Scripts\RemoveVentCover.cs" />
     <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
+    <Compile Include="Assets\Scripts\GameController\SceneController.cs" />
+    <Compile Include="Assets\Scripts\SceneChangeTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
