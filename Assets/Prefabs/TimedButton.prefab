@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1016259137845753872}
   - component: {fileID: 1016259137845753884}
   - component: {fileID: 5261962500633607396}
+  - component: {fileID: 8213663870520763055}
   m_Layer: 2
   m_Name: TimedButton
   m_TagString: Untagged
@@ -126,3 +127,15 @@ MonoBehaviour:
   toggleDelay: 2
   inactiveMat: {fileID: 2100000, guid: 1288ea40246fedc4bb1e1aa33f2c4bad, type: 2}
   activeMat: {fileID: 2100000, guid: f67df54b4cc87cb45963f66eea143966, type: 2}
+--- !u!114 &8213663870520763055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016259137845753874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e85082a0d3ddf043817eef4027a328b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

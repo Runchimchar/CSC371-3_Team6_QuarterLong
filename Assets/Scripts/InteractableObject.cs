@@ -14,6 +14,7 @@ public class InteractableObject : MonoBehaviour
         ButtonControls bc;
         DoorOnLever dlc;
         DoorOpenOnButton dbc;
+        MovableObjectRespawn mc;
         if (lc = GetComponent<LeverControls>())
         {
             ResetObject += lc.Reset;
@@ -29,6 +30,10 @@ public class InteractableObject : MonoBehaviour
         else if (dbc = GetComponent<DoorOpenOnButton>())
         {
             ResetObject += dbc.Reset;
+        }
+        else if (mc = GetComponent<MovableObjectRespawn >())
+        {
+            ResetObject += mc.Reset;
         }
         else
         {

@@ -168,7 +168,7 @@ MonoBehaviour:
   colliderMask:
     serializedVersion: 2
     m_Bits: 0
-  isEMP: 1
+  dontDrawArrow: 1
 --- !u!1 &84036092209324713
 GameObject:
   m_ObjectHideFlags: 0

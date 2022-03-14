@@ -31,9 +31,7 @@ public class MovableObjectRespawn : MonoBehaviour
     {
         if (transform.position.y < respawnY)
         {
-            if (yoinking) grappleScript.StopGrapple();
-            transform.position = startPosition;
-            rb.angularVelocity = rb.velocity = Vector3.zero;
+            Reset();
         }
 
         if (yoinking && !dontDrawArrow)
@@ -84,5 +82,11 @@ public class MovableObjectRespawn : MonoBehaviour
     public bool GetYoink()
     {
         return yoinking;
+    }
+    public void Reset()
+    {
+        if (yoinking) grappleScript.StopGrapple();
+        transform.position = startPosition;
+        rb.angularVelocity = rb.velocity = Vector3.zero;
     }
 }
