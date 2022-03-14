@@ -13,7 +13,7 @@ public class StatusUIController : MonoBehaviour
     private PlayerStatus stat;
 
     private int currHealth;
-    private int currStamina;
+    private float currStamina;
 
     // Setup
     void Start() {

@@ -68,7 +68,19 @@ public class PlayerMovement : MonoBehaviour
     bool rotateOnMove = true;
     bool aiming = false;
     bool grappling = false;
+    bool reeling = false;
     bool yoinking = false;
+
+    PlayerStatus ps;
+
+    float staminaMultiplier = 2f;
+    float sprintStamina = 10f;
+    float grappleMoveStamina = 3f;
+    float grappleReelStamina = 1f;
+    float grappleStationaryStamina = 0.1f;
+    float staminaRegen = 20f;
+    int staminaRegenDelay = 1;
+    float staminaRegenDelayCount = 0f;
 
     Vector3 moveDirection;
     Vector3 slopeMoveDirection;
@@ -94,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        ps = GameController.playerStatus;
 
         CinemachineCameraTarget = transform.Find("PlayerCameraRoot").gameObject;
         player = transform.Find("Capsule").gameObject;
@@ -104,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
         aimVirtualCamera = Array.Find(FindObjectsOfType<CinemachineVirtualCamera>(true), x => x.name.Equals("PlayerAimCamera"));
 
         SetLookSensitivity(normalLookSensitivity);
+        ResetStamina();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -150,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         Mathf.Clamp(jumpCooldown, 0f, jumpCooldownSecs);
         
         ControlDrag();
+        ControlStamina();
         ControlSpeed();
 
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
@@ -275,9 +290,55 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = airDrag;
     }
 
+    void ControlStamina()
+    {
+        float dStamina = 0f;
+        staminaRegenDelayCount -= Time.deltaTime;
+        staminaRegenDelayCount = Mathf.Clamp(staminaRegenDelayCount, 0f, staminaRegenDelay);
+
+        if (isGrounded && !sprinting && !grappling)
+        {
+            dStamina = staminaRegenDelayCount > 0 ? 0f : staminaRegen;
+        }
+        else
+        {
+            if (isGrounded && sprinting) dStamina -= sprintStamina;
+            if (grappling)
+            {
+                if (movementX != 0 || movementY != 0) dStamina -= grappleMoveStamina;
+                if (reeling) dStamina -= grappleReelStamina;
+                dStamina -= grappleStationaryStamina;
+            }
+        }
+
+        if (dStamina < 0) DelayStaminaRegen();
+        ps.ChangeStamina(dStamina * staminaMultiplier * Time.deltaTime);
+        if (StaminaOverload())
+        {
+            grappleInstance.StopGrapple();
+            sprinting = false;
+        }
+    }
+
+    bool StaminaOverload()
+    {
+        return ps.GetStamina() <= 0.01;
+    }
+
+    void ResetStamina()
+    {
+        staminaRegenDelayCount = 0;
+        ps.SetStamina(ps.maxStamina);
+    }
+
+    void DelayStaminaRegen()
+    {
+        staminaRegenDelayCount = staminaRegenDelay;
+    }
+
     void OnSprint(InputValue value)
     {
-        sprinting = value.isPressed;
+        sprinting = StaminaOverload() ? false : value.isPressed;
     }
 
     void ControlSpeed()
@@ -359,6 +420,11 @@ public class PlayerMovement : MonoBehaviour
         grappling = newGrapple;
     }
 
+    public void SetReel(bool newReel)
+    {
+        reeling = newReel;
+    }
+
     public void SetYoink(bool newYoink)
     {
         yoinking = newYoink;
@@ -372,10 +438,15 @@ public class PlayerMovement : MonoBehaviour
     public void RespawnAt(Vector3 location, Vector2 lookRotation)
     {
         grappleInstance.StopGrapple();
+        grappling = false;
+        reeling = false;
+        yoinking = false;
+        aiming = false;
+        ResetStamina();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.position = location;
-        player.transform.rotation = Quaternion.Euler(lookRotation.x, lookRotation.y, 0);
+        CinemachineCameraTarget.transform.rotation = Quaternion.Euler(lookRotation.x, lookRotation.y, 0);
         xRotation = lookRotation.x;
         yRotation = lookRotation.y;
     }

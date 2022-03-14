@@ -154,6 +154,7 @@ public class Grapple : MonoBehaviour
         aiming = value.isPressed && !(yoinking || joint != null);
         pm.SetAiming(aiming);
         retracting = value.isPressed;
+        pm.SetReel(retracting || reelingOut);
         if (value.isPressed && yoinking) ThrowObject();
         else if (retracting)
         {
@@ -173,6 +174,7 @@ public class Grapple : MonoBehaviour
     void OnReelOut(InputValue value)
     {
         reelingOut = value.isPressed;
+        pm.SetReel(retracting || reelingOut);
         if (value.isPressed)
         {
             if (joint != null)
