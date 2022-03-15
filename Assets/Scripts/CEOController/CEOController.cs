@@ -17,7 +17,7 @@ public class CEOController : MonoBehaviour
     BossAnimation animate;
     Animator animator;
     GameObject stunLightning;
-    RemovableObject[] removableItems;
+    [SerializeField] RemovableObject[] removableItems;
     GameObject[] removedParticles;
 
     public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
@@ -47,7 +47,6 @@ public class CEOController : MonoBehaviour
         RespawnController.instance.CustomActionsOnRespawnReset += ResetFight;
         laser = boss.parent.Find("Laser");
         stunLightning = boss.Find("StunLightning").gameObject;
-        removableItems = FindObjectsOfType<RemovableObject>();
         for (int i = 0; i < removableItems.Length; i++)
         {
             removableItems[i].SetIndex(i);
@@ -142,7 +141,7 @@ public class CEOController : MonoBehaviour
     Events _idle()
     {
         // Initialize here
-        path = paths[0];
+        path = paths[(int)BossState.idle];
         target = path.NextTarget();
         // set animator state
         return (
@@ -169,7 +168,7 @@ public class CEOController : MonoBehaviour
     Events _entry()
     {
         // Initialize here
-        path = paths[1];
+        path = paths[(int)BossState.entry];
         target = path.NextTarget();
         return (
             new Event(() => // Update
@@ -195,7 +194,7 @@ public class CEOController : MonoBehaviour
     Events _conversation()
     {
         // Initialize here
-        path = paths[2];
+        path = paths[(int)BossState.conversation];
         target = path.NextTarget();
         return (
             new Event(() => // Update
@@ -221,7 +220,7 @@ public class CEOController : MonoBehaviour
     Events _stage1()
     {
         // Initialize here
-        path = paths[3];
+        path = paths[(int)BossState.stage1];
         target = path.NextTarget();
         StartLaser();
         return (
@@ -248,7 +247,8 @@ public class CEOController : MonoBehaviour
     Events _stage2()
     {
         // Initialize here
-
+        path = paths[(int)BossState.stage2];
+        target = path.NextTarget();
         return (
             new Event(() => // Update
             {
@@ -272,7 +272,8 @@ public class CEOController : MonoBehaviour
     Events _stage3()
     {
         // Initialize here
-
+        path = paths[(int)BossState.stage3];
+        target = path.NextTarget();
         return (
             new Event(() => // Update
             {
@@ -296,7 +297,8 @@ public class CEOController : MonoBehaviour
     Events _defeat()
     {
         // Initialize here
-
+        path = paths[(int)BossState.defeat];
+        target = path.NextTarget();
         return (
             new Event(() => // Update
             {
@@ -417,6 +419,7 @@ public class CEOController : MonoBehaviour
 
     void ResetFight()
     {
+        StopAllCoroutines();
         UpdateBossState(BossState.idle); //idle
         vulnerable = false;
         nextPath = false;
@@ -498,6 +501,7 @@ public class CEOController : MonoBehaviour
 
     public void ItemRemoved(int index)
     {
+        print("Item " + index + " removed!");
         removedParticles[index].SetActive(true);
         animate.closeFlaps();
         vulnerable = false;

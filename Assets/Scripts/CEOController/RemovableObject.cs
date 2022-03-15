@@ -11,6 +11,7 @@ public class RemovableObject : MonoBehaviour
     CEOController CEO_ctrl;
     Transform startParent;
     LayerMask startLayer;
+    Grapple grapple;
     Rigidbody rb;
 
     bool materialSetFlip = false;
@@ -22,6 +23,7 @@ public class RemovableObject : MonoBehaviour
     {
         MO_ctrl = GetComponent<MovableObjectRespawn>();
         CEO_ctrl = FindObjectOfType<CEOController>();
+        grapple = FindObjectOfType<Grapple>();
         startParent = transform.parent;
         startLayer = gameObject.layer;
         rb = GetComponent<Rigidbody>();
@@ -70,6 +72,8 @@ public class RemovableObject : MonoBehaviour
     public void ResetObj()
     {
         removed = false;
+        rb.isKinematic = true;
+        MO_ctrl.SetYoink(false, grapple);
         GetComponent<Renderer>().material.CopyPropertiesFromMaterial(startMaterial);
         materialSetFlip = false;
         gameObject.layer = startLayer;

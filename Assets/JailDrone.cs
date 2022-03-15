@@ -51,7 +51,7 @@ public class JailDrone : MonoBehaviour
             //LOAD NEXT SCENE LOGIC
 
 
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("3.2JailScene");
         }
     }
 }
