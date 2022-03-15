@@ -50135,6 +50135,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7937626581079450327, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
+      propertyPath: grappleStatus
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
 --- !u!1001 &2126556131
