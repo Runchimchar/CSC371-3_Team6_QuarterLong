@@ -202,7 +202,7 @@ public class CEOController : MonoBehaviour
         {
             GameController.messageController.QueueMessage(messages[i]);
         }
-        GameController.messageController.QueueClearedEvent += NextPath;
+        GameController.messageController.QueueClearedEvent += ConversationComplete;
         return (
             new Event(() => // Update
             {
@@ -219,7 +219,7 @@ public class CEOController : MonoBehaviour
             }),
             new Event(() => // Cleanup
             {
-                GameController.messageController.QueueClearedEvent -= NextPath;
+                GameController.messageController.QueueClearedEvent -= ConversationComplete;
             })
         );
     }
@@ -419,7 +419,7 @@ public class CEOController : MonoBehaviour
         target = path.NextTarget();
     }
 
-    void NextPath()
+    void ConversationComplete()
     {
         nextPath = true;
     }
