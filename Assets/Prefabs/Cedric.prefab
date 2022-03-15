@@ -852,6 +852,7 @@ GameObject:
   - component: {fileID: 4656230895546694799}
   - component: {fileID: 5925319021312029910}
   - component: {fileID: 5925319021312029911}
+  - component: {fileID: 3314223710669896088}
   - component: {fileID: 4503567393719282643}
   m_Layer: 13
   m_Name: Cedric
@@ -899,6 +900,25 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   stunTime: 6
+  stage2AttackRange: 3
+  stage2AttackCooldown: 2
+  messages:
+  - sender: Cedric E. Oscar
+    message: So. You managed to make it past all of my traps and guards.
+  - sender: Cedric E. Oscar
+    message: I bet you're feeling pretty confident that you'll be able to get those
+      blueprints.
+  - sender: Cedric E. Oscar
+    message: Don't get too full of yourself, you still need to make it through me!
+  defeatMessages:
+  - sender: Cedric E. Oscar
+    message: AAAGH!
+  - sender: Cedric E. Oscar
+    message: PharmaCorp, the company I invested my whole life into...
+  - sender: Cedric E. Oscar
+    message: ...can't be taken down...\n...by such a foolish individual...
+  - sender: Cedric E. Oscar
+    message: ...this isn't over--
   removableItems:
   - {fileID: 2352451976176325870}
   - {fileID: 7567372409708438392}
@@ -937,6 +957,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossAnim: {fileID: 5925319021312029910}
+--- !u!114 &3314223710669896088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5925319021312029896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f4d71541c8edd4a9d3ecf49fda90fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackDamage: 1
+  _lightningPrefab: {fileID: 0}
+  _attackDuration: 1
 --- !u!65 &4503567393719282643
 BoxCollider:
   m_ObjectHideFlags: 0
