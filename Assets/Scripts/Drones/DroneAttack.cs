@@ -9,6 +9,8 @@ public class DroneAttack : MonoBehaviour
     [SerializeField] private int  _attackDamage = 1;
     [SerializeField] private GameObject _lightningPrefab;
     [SerializeField, Range(0.0f, 20.0f)] private float _attackDuration = 1.0f;
+    
+    private bool _canAttack = true;
     private PlayerStatus _playerStatus;
 
     private event Action _droneAttacks;
@@ -23,6 +25,11 @@ public class DroneAttack : MonoBehaviour
         _droneAttacks -= fun;
     }
 
+    public void SetCanAttack(bool val)
+    {
+        _canAttack = val;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +38,8 @@ public class DroneAttack : MonoBehaviour
 
     public void Attack(GameObject player)
     {
+        if (!_canAttack)
+            return;
         if (_droneAttacks != null)
             _droneAttacks.Invoke();
         if (_playerStatus != null)
