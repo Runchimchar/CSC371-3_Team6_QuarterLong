@@ -9,16 +9,20 @@ public class RemovableObject : MonoBehaviour
     [SerializeField] LayerMask movable;
     MovableObjectRespawn MO_ctrl;
     CEOController CEO_ctrl;
+    Transform startParent;
     LayerMask startLayer;
     Rigidbody rb;
 
     bool materialSetFlip = false;
     bool removed = false;
 
+    int index;
+
     void Start()
     {
         MO_ctrl = GetComponent<MovableObjectRespawn>();
         CEO_ctrl = FindObjectOfType<CEOController>();
+        startParent = transform.parent;
         startLayer = gameObject.layer;
         rb = GetComponent<Rigidbody>();
     }
@@ -49,7 +53,7 @@ public class RemovableObject : MonoBehaviour
                 transform.position = tmpPos;
                 transform.rotation = tmpRot;
 
-                CEO_ctrl.ItemRemoved((CEOController.RemovableItem)transform.GetSiblingIndex());
+                CEO_ctrl.ItemRemoved(index);
             }
         }
         else
@@ -61,5 +65,20 @@ public class RemovableObject : MonoBehaviour
                 gameObject.layer = startLayer;
             }
         }
+    }
+
+    public void ResetObj()
+    {
+        removed = false;
+        GetComponent<Renderer>().material.CopyPropertiesFromMaterial(startMaterial);
+        materialSetFlip = false;
+        gameObject.layer = startLayer;
+        transform.parent = startParent;
+        CEO_ctrl.GetAnimator().Rebind();
+    }
+
+    public void SetIndex(int newIndex)
+    {
+        index = newIndex;
     }
 }
