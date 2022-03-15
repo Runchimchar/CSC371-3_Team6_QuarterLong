@@ -899,6 +899,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   stunTime: 6
+  removableItems:
+  - {fileID: 2352451976176325870}
+  - {fileID: 7567372409708438392}
+  - {fileID: 4943737780518930312}
   nextTarget: 0
   nextPath: 0
 --- !u!95 &5925319021312029910
