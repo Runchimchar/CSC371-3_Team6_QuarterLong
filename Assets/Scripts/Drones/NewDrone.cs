@@ -22,6 +22,7 @@ public class NewDrone : MonoBehaviour
     public GameObject lightning;
 
     bool moving = true;
+    private DroneAttack _attackComponent = null;
 
     private void Start()
     {
@@ -31,11 +32,12 @@ public class NewDrone : MonoBehaviour
         GetComponent<FieldOfView>().SubscribeToVisionEvent(seenPlayer);
         GetComponent<FieldOfView>().SubscribeToPlayerNotSeenEvent(doesntSeePlayer);
 
-        DroneAttack da = GetComponent<DroneAttack>();
-        if(da != null)
+        _attackComponent = GetComponent<DroneAttack>();
+        if(_attackComponent != null)
         {
-            da.SubscribeToDroneAttacksEvent(stopMovingDrone);
+            _attackComponent.SubscribeToDroneAttacksEvent(stopMovingDrone);
         }
+
     }
 
     void Update()
@@ -114,6 +116,7 @@ public class NewDrone : MonoBehaviour
             if (thing.gameObject.tag == "EMP")
             {
                 stunned = true;
+                _attackComponent.SetCanAttack(false);
             }
         }
     }
@@ -122,6 +125,7 @@ public class NewDrone : MonoBehaviour
     {
         yield return new WaitForSeconds(timeStunned);
         stunned = false;
+        _attackComponent.SetCanAttack(true);
     }
 
     IEnumerator waitToMove()

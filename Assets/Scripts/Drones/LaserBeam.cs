@@ -7,17 +7,29 @@ public class LaserBeam : MonoBehaviour
     [SerializeField] private float _pushForce = 1.0f;
     [SerializeField] private int _attackDamage = 1;
     [SerializeField] private float _attackCooldown = 5.0f;
+    [SerializeField] private float _defaultLaserTiling = 1.0f;
 
     private float _attackTimer = 0.0f;
     private PlayerStatus _playerStatus;
     private Collider _collider;
+
+    private static int _tilingID = Shader.PropertyToID("_Tiling");
+
     public void Start()
     {
         _playerStatus = GameController.playerStatus;
         _collider = GetComponent<Collider>();
         _attackTimer = _attackCooldown + 1.0f;
+        SetShaderTiling(_defaultLaserTiling);
     }
 
+    public void SetShaderTiling(float tiling)
+    {
+        Renderer renderer = GetComponent<Renderer>();
+        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+        mpb.SetFloat(_tilingID, tiling);
+        renderer.SetPropertyBlock(mpb);
+    }
     public void Update()
     {
         _attackTimer += Time.deltaTime;

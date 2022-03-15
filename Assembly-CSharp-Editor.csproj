@@ -55,6 +55,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Disable.cs" />
+    <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\LightningBolt\LightningBoltScript.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\StarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\Editor\FieldOfViewEditor.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\PackageChecker\PackageChecker.cs" />
@@ -68,13 +69,20 @@
     <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
     <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
     <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
+    <Compile Include="Assets\Scripts\Drones\LaserBeam.cs" />
     <Compile Include="Assets\Scripts\Drones\NewDrone.cs" />
     <Compile Include="Assets\Scripts\Enemies\FieldOfView.cs" />
+    <Compile Include="Assets\Scripts\GameController\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameController\MessageController.cs" />
+    <Compile Include="Assets\Scripts\GameController\PlayerStatus.cs" />
+    <Compile Include="Assets\Scripts\MessageTriggerController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\Grapple.cs" />
     <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
     <Compile Include="Assets\Scripts\RespawnCheckpoints\RespawnController.cs" />
+    <Compile Include="Assets\Scripts\UI\StatusUIController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\settings\PackageImportList_ShaderGraph.txt" />
