@@ -136,6 +136,7 @@
     <Compile Include="Assets\Scripts\RemoveVentCover.cs" />
     <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
     <Compile Include="Assets\Scripts\FloatAndBob.cs" />
+    <Compile Include="Assets\Scripts\RemoveGrappleOnStart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
