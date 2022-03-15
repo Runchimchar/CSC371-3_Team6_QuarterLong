@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\PlayerController\Grapple.cs" />
     <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
     <Compile Include="Assets\Scripts\RespawnCheckpoints\RespawnController.cs" />
     <Compile Include="Assets\Scripts\UI\StatusUIController.cs" />
   </ItemGroup>
