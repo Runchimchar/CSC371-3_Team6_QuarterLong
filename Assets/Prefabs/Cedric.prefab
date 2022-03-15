@@ -891,6 +891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   boss: {fileID: 0}
+  startFightButton: {fileID: 0}
   paths:
   - {fileID: 0}
   - {fileID: 0}
@@ -900,29 +901,35 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   stunTime: 6
-  stage2AttackRange: 3
-  stage2AttackCooldown: 2
+  stage1AttackRange: 3
+  stage1AttackCooldown: 2
   messages:
   - sender: Cedric E. Oscar
     message: So. You managed to make it past all of my traps and guards.
   - sender: Cedric E. Oscar
-    message: I bet you're feeling pretty confident that you'll be able to get those
+    message: I bet you're feeling pretty confident in your chances of getting those
       blueprints.
   - sender: Cedric E. Oscar
-    message: Don't get too full of yourself, you still need to make it through me!
+    message: Don't get too full of yourself, you still haven't made it through me!
+  StartFightMessages:
+  - sender: Cedric E. Oscar
+    message: Push the button on the front of my desk when you're ready to face me...
   defeatMessages:
   - sender: Cedric E. Oscar
     message: AAAGH!
   - sender: Cedric E. Oscar
-    message: PharmaCorp, the company I invested my whole life into...
+    message: This isn't over yet!
   - sender: Cedric E. Oscar
-    message: ...can't be taken down...\n...by such a foolish individual...
+    message: PharmaCorp... the company I invested my whole life into...
   - sender: Cedric E. Oscar
-    message: ...this isn't over--
+    message: ...will not be taken down by such a foolish individual...
+  - sender: Cedric E. Oscar
+    message: ...
   removableItems:
   - {fileID: 2352451976176325870}
   - {fileID: 7567372409708438392}
   - {fileID: 4943737780518930312}
+  blueprint: {fileID: 5447571542060215575, guid: 38c910584ccd6124c8b55ab2201869c3, type: 3}
   nextTarget: 0
   nextPath: 0
 --- !u!95 &5925319021312029910

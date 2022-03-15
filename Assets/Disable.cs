@@ -11,6 +11,9 @@ public class Disable : MonoBehaviour
     Vector3 startScale;
     Quaternion startRotation;
 
+    Coroutine waitingCoroutine;
+    bool waiting;
+
     public int timeToRespawn = 2;
     public float range = 3f;
     public LayerMask enemy;
@@ -29,11 +32,12 @@ public class Disable : MonoBehaviour
         startRotation = transform.rotation;
         startScale = transform.localScale;
         rb = this.GetComponent<Rigidbody>();
+        waiting = false;
     }
 
     void OnCollisionEnter(Collision thing)
     {
-        if(gameObject.layer != LayerMask.NameToLayer("Moving"))
+        if(!waiting && gameObject.layer != LayerMask.NameToLayer("Moving"))
         {
             if (thing.gameObject.tag != "Holder")
             {
@@ -47,26 +51,41 @@ public class Disable : MonoBehaviour
                 if (outs.Length > 0) outs[0].gameObject.GetComponent<CEOController>().Stun();
                 
 
-                StartCoroutine(waiter());
+                waitingCoroutine = StartCoroutine(waiter());
 
                 
             }
         }
     }
 
+    public void DisableNow()
+    {
+        if (waiting) StopCoroutine(waitingCoroutine);
+        waiting = false;
+        transform.localScale = new Vector3(0, 0, 0);
+        hitEffect.Play();
+        StartCoroutine(waiter());
+    }
+
 
     IEnumerator waiter()
     {
-       
-        yield return new WaitForSeconds(timeToRespawn);
+        if (!waiting)
+        {
+            waiting = true;
+            yield return new WaitForSeconds(timeToRespawn);
+            if (waiting) ResetEMP(false);
+        }
+    }
 
+    public void ResetEMP(bool stopCoroutine = true)
+    {
+        if (stopCoroutine && waiting) StopCoroutine(waitingCoroutine);
         transform.localScale = startScale;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.rotation = startRotation;
         transform.position = startPosition;
-        
-
-
+        waiting = false;
     }
 }

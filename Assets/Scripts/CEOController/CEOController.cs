@@ -8,25 +8,33 @@ using Events = System.ValueTuple<CEOController.Event, CEOController.Event, CEOCo
 public class CEOController : MonoBehaviour
 {
     public Transform player, boss;
+    public ButtonControls startFightButton;
     public BossPath[] paths;
     public float stunTime = 6f;
-    [SerializeField, Range(0.001f, 6.0f)] float stage2AttackRange = 3f;
-    [SerializeField, Range(0f, 6.0f)] float stage2AttackCooldown = 2f;
+    [SerializeField, Range(0.001f, 6.0f)] float stage1AttackRange = 3f;
+    [SerializeField, Range(0f, 6.0f)] float stage1AttackCooldown = 2f;
 
     public MessageController.MessageDesc[] messages;
+    public MessageController.MessageDesc[] StartFightMessages;
     public MessageController.MessageDesc[] defeatMessages;
 
     BossPath path;
     BossTarget target;
+    Disable empDisable;
+    Grapple grapple;
 
-    DroneAttack stage2Attack;
+    DroneAttack stage1Attack;
     BossAnimation animate;
     Animator animator;
     GameObject stunLightning;
     [SerializeField] RemovableObject[] removableItems;
     GameObject[] removedParticles;
+    GameObject[] killSmoke;
+    public ParticleSystem killExplosion;
 
-    public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
+    [SerializeField] GameObject blueprint;
+
+    public enum BossState { idle, entry, conversation, startFight, stage1, stage2, stage3, defeat, LEN };
     public enum RemovableItemType { nozzle_back, nozzle_l, nozzle_r }; // in this order
     public delegate void Event(); // run on Unity events
 
@@ -44,7 +52,7 @@ public class CEOController : MonoBehaviour
     float rotationSpeed = 10f;
     float speedMultiplier = 10f;
 
-    float stage2CooldownTimer = 0f;
+    float stage1CooldownTimer = 0f;
 
     // Lasers
     float laserSpeed = -10f;
@@ -67,9 +75,11 @@ public class CEOController : MonoBehaviour
             boss.Find("body/RemovedParticles").GetChild(1).gameObject,
             boss.Find("body/RemovedParticles").GetChild(2).gameObject
         };
-        stage2Attack = GetComponent<DroneAttack>();
+        stage1Attack = GetComponent<DroneAttack>();
         animate = GetComponent<BossAnimation>();
         animator = GetComponent<Animator>();
+        empDisable = FindObjectOfType<Disable>();
+        grapple = FindObjectOfType<Grapple>();
         GetPaths();
         ResetFight();
 
@@ -104,6 +114,9 @@ public class CEOController : MonoBehaviour
                     break;
                 case BossState.conversation:
                     stateEvents = _conversation();
+                    break;
+                case BossState.startFight:
+                    stateEvents = _startFight();
                     break;
                 case BossState.stage1:
                     stateEvents = _stage1();
@@ -159,7 +172,7 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-                nextTarget = NavToWaypoint(target);
+                nextTarget = nextTarget || NavToWaypoint(target);
                 nextPath = nextTarget && path.IsLastTarget();
             }),
             new Event(() => // FixedUpdate
@@ -185,7 +198,7 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-                nextTarget = NavToWaypoint(target);
+                nextTarget = nextTarget || NavToWaypoint(target);
                 nextPath = nextTarget && path.IsLastTarget();
             }),
             new Event(() => // FixedUpdate
@@ -216,7 +229,7 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-                nextTarget = NavToWaypoint(target);
+                nextTarget = nextTarget || NavToWaypoint(target);
                 
             }),
             new Event(() => // FixedUpdate
@@ -234,17 +247,93 @@ public class CEOController : MonoBehaviour
         );
     }
 
-    Events _stage1()
+    Events _startFight()
     {
         // Initialize here
-        path = paths[(int)BossState.stage1];
+        path = paths[(int)BossState.startFight];
         target = path.CurrentTarget();
-        StartLaser();
+        TeleportToWaypoint(target);
+        for (int i = 0; i < StartFightMessages.Length; i++)
+        {
+            GameController.messageController.QueueMessage(StartFightMessages[i]);
+        }
+        GameController.messageController.QueueClearedEvent += StartFightMessagesComplete;
         return (
             new Event(() => // Update
             {
-                nextTarget = NavToWaypoint(target);
-                UpdateLaser();
+                nextTarget = nextTarget || NavToWaypoint(target);
+
+            }),
+            new Event(() => // FixedUpdate
+            {
+
+            }),
+            new Event(() => // LateUpdate
+            {
+
+            }),
+            new Event(() => // Cleanup
+            {
+                GameController.messageController.QueueClearedEvent -= StartFightMessagesComplete;
+            })
+        );
+    }
+
+    Events _stage1()
+    {
+        // Initialize here
+        bool start = true;
+        nextTarget = false;
+        path = paths[(int)BossState.stage1];
+        target = path.CurrentTarget();
+        stage1CooldownTimer = stage1AttackCooldown;
+        return (
+            new Event(() => // Update
+            {
+                bool tmpNextTarget = NavToWaypoint(target);
+                start = start && !tmpNextTarget;
+                nextTarget = nextTarget || ((path.CurrentTargetIndex() == 1) ? false : tmpNextTarget);
+                if (!start && !stunned && stage1CooldownTimer <= 0.01f && Vector3.Distance(boss.position, player.position) <= stage1AttackRange)
+                {
+                    stage1Attack.Attack(player.gameObject);
+                    nextTarget = true;
+                    stage1CooldownTimer = stage1AttackCooldown;
+                }
+
+                stage1CooldownTimer = Mathf.Clamp(stage1CooldownTimer - Time.deltaTime, 0, stage1AttackCooldown);
+            }),
+            new Event(() => // FixedUpdate
+            {
+
+            }),
+            new Event(() => // LateUpdate
+            {
+
+            }),
+            new Event(() => // Cleanup
+            {
+
+            })
+        );
+    }
+
+    Events _stage2()
+    {
+        // Initialize here
+        bool start = true;
+        path = paths[(int)BossState.stage2];
+        target = path.CurrentTarget();
+        return (
+            new Event(() => // Update
+            {
+                nextTarget = nextTarget || NavToWaypoint(target);
+                if (!start) UpdateLaser();
+
+                if (start && nextTarget)
+                {
+                    StartLaser();
+                    start = false;
+                }
             }),
             new Event(() => // FixedUpdate
             {
@@ -261,40 +350,6 @@ public class CEOController : MonoBehaviour
         );
     }
 
-    Events _stage2()
-    {
-        // Initialize here
-        path = paths[(int)BossState.stage2];
-        target = path.CurrentTarget();
-        stage2CooldownTimer = stage2AttackCooldown;
-        return (
-            new Event(() => // Update
-            {
-                nextTarget = NavToWaypoint(target);
-                if (!stunned && stage2CooldownTimer <= 0.01f && Vector3.Distance(boss.position, player.position) <= stage2AttackRange)
-                {
-                    stage2Attack.Attack(player.gameObject);
-                    nextTarget = true;
-                    stage2CooldownTimer = stage2AttackCooldown;
-                }
-
-                stage2CooldownTimer = Mathf.Clamp(stage2CooldownTimer - Time.deltaTime, 0, stage2AttackCooldown);
-            }),
-            new Event(() => // FixedUpdate
-            {
-                
-            }),
-            new Event(() => // LateUpdate
-            {
-
-            }),
-            new Event(() => // Cleanup
-            {
-
-            })
-        );
-    }
-
     Events _stage3()
     {
         // Initialize here
@@ -303,7 +358,7 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-                if (!stunned) Stun();
+                nextPath = true;
             }),
             new Event(() => // FixedUpdate
             {
@@ -336,10 +391,11 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-                if (!queuedMessages) nextTarget = NavToWaypoint(target);
+                if (!queuedMessages) nextTarget = nextTarget || NavToWaypoint(target);
                 if (!queuedMessages && nextTarget && path.IsLastTarget())
                 {
                     queuedMessages = true;
+                    TeleportToWaypoint(target);
                     for (int i = 0; i < defeatMessages.Length; i++)
                     {
                         GameController.messageController.QueueMessage(defeatMessages[i]);
@@ -440,6 +496,14 @@ public class CEOController : MonoBehaviour
         return Vector3.Distance(boss.position, position) < speed;
     }
 
+    void TeleportToWaypoint(BossTarget target)
+    {
+        Vector3 relativePos = player.position - boss.position;
+        Quaternion toRotation = Quaternion.LookRotation(relativePos);
+        boss.position = target.location.position;
+        boss.rotation = toRotation;
+    }
+
     void RotateToPoint(Vector3 position)
     {
         if (stunned) return;
@@ -450,14 +514,34 @@ public class CEOController : MonoBehaviour
 
 
 
-    void NextTarget()
-    {
-        target = path.NextTarget();
-    }
-
     void ConversationComplete()
     {
         nextPath = true;
+    }
+
+    void StartFightMessagesComplete()
+    {
+        startFightButton.OnButtonActivate += StartFightNow;
+    }
+
+    void RemoveStartFightEvents()
+    {
+        startFightButton.OnButtonActivate -= StartFightNow;
+    }
+
+    void StartFightNow()
+    {
+        RemoveStartFightEvents();
+        nextPath = true;
+        grapple.StopGrapple();
+        empDisable.DisableNow();
+    }
+
+
+
+    void NextTarget()
+    {
+        target = path.NextTarget();
     }
 
     void GetPaths()
@@ -468,7 +552,7 @@ public class CEOController : MonoBehaviour
     void ResetFight()
     {
         StopAllCoroutines();
-        UpdateBossState(BossState.stage1); //idle
+        UpdateBossState(BossState.startFight); //idle
         vulnerable = false;
         stunned = false;
         nextPath = false;
@@ -537,7 +621,7 @@ public class CEOController : MonoBehaviour
 
     IEnumerator StartStun()
     {
-        if (state >= BossState.stage1 && state <= BossState.defeat)
+        if (state >= BossState.stage1 && state <= BossState.stage3)
         {
             animate.openFlaps();
             vulnerable = true;
@@ -570,8 +654,14 @@ public class CEOController : MonoBehaviour
     {
         yield return new WaitForSeconds(stunTime);
         boss.gameObject.SetActive(false);
+        GameObject _blueprint = Instantiate(blueprint);
+        Rigidbody bprb = _blueprint.GetComponent<Rigidbody>();
+        bprb.isKinematic = true;
+        _blueprint.transform.position = boss.position;
+        bprb.isKinematic = false;
+        bprb.angularVelocity = bprb.velocity = Vector3.zero;
+
         // spawn particles
-        // spawn blueprint
     }
 
 
