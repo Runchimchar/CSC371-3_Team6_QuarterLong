@@ -132,4 +132,11 @@ public class RespawnController : MonoBehaviour
             Respawn();
         }
     }
+
+    void OnDestroy() {
+        // Cleanup event
+        if (GameController.playerStatus) {
+            GameController.playerStatus.HealthChangedEvent -= RespawnOnDeath;
+        }
+    }
 }
