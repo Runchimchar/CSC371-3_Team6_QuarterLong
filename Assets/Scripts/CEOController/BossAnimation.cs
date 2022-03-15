@@ -14,4 +14,8 @@ public class BossAnimation : MonoBehaviour
     {
         bossAnim.SetTrigger("Close");
     }
+    public bool isFlapsOpen()
+    {
+        return bossAnim.GetCurrentAnimatorStateInfo(10).IsName("nozzle_l_JUST_on");
+    }
 }

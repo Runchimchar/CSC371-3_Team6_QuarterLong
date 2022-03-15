@@ -427,7 +427,6 @@ public class CEOController : MonoBehaviour
         UpdateState = FixedUpdateState = LateUpdateState = CleanupState = null;
         StopLaser();
         stunLightning.SetActive(false);
-        animate.closeFlaps();
         foreach (BossPath path in paths)
         {
             path.ResetTargetNum();
@@ -439,6 +438,12 @@ public class CEOController : MonoBehaviour
         foreach (GameObject obj in removedParticles)
         {
             obj.SetActive(false);
+        }
+        if (animate.isFlapsOpen())
+        {
+            // If the flaps are currently open they will close
+            // This will NOT detect flaps open and close if the trigger was just set.
+            animate.closeFlaps();
         }
     }
 
