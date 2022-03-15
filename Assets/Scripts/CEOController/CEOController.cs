@@ -8,7 +8,6 @@ using Events = System.ValueTuple<CEOController.Event, CEOController.Event, CEOCo
 public class CEOController : MonoBehaviour
 {
     public Transform player, boss;
-    public RemovableObject[] removables;
     public BossPath[] paths;
     public float stunTime = 6f;
 
@@ -16,9 +15,13 @@ public class CEOController : MonoBehaviour
     BossTarget target;
 
     BossAnimation animate;
+    Animator animator;
     GameObject stunLightning;
+    RemovableObject[] removableItems;
+    GameObject[] removedParticles;
 
     public enum BossState { idle, entry, conversation, stage1, stage2, stage3, defeat, LEN };
+    public enum RemovableItemType { nozzle_back, nozzle_l, nozzle_r }; // in this order
     public delegate void Event(); // run on Unity events
 
     BossState state;
@@ -41,9 +44,21 @@ public class CEOController : MonoBehaviour
 
     private void Start()
     {
+        RespawnController.instance.CustomActionsOnRespawnReset += ResetFight;
         laser = boss.parent.Find("Laser");
         stunLightning = boss.Find("StunLightning").gameObject;
+        removableItems = FindObjectsOfType<RemovableObject>();
+        for (int i = 0; i < removableItems.Length; i++)
+        {
+            removableItems[i].SetIndex(i);
+        }
+        removedParticles = new[]{
+            boss.Find("body/RemovedParticles").GetChild(0).gameObject,
+            boss.Find("body/RemovedParticles").GetChild(1).gameObject,
+            boss.Find("body/RemovedParticles").GetChild(2).gameObject
+        };
         animate = GetComponent<BossAnimation>();
+        animator = GetComponent<Animator>();
         GetPaths();
         ResetFight();
 
@@ -237,7 +252,7 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-
+                nextTarget = NavToWaypoint(target);
             }),
             new Event(() => // FixedUpdate
             {
@@ -382,14 +397,6 @@ public class CEOController : MonoBehaviour
 
     void RotateToPoint(Vector3 position)
     {
-        //boss.rotation = Quaternion.Lerp(boss.rotation, Quaternion.Euler(position - boss.position), rotationSpeed * Time.deltaTime);
-
-        //Vector3 direction = position - boss.position;
-        //Quaternion toRotation = Quaternion.FromToRotation(body.forward, direction);
-        //body.rotation = Quaternion.Lerp(body.rotation, toRotation, rotationSpeed * Time.deltaTime);
-
-        //body.LookAt(position);
-
         if (vulnerable) return;
         Vector3 relativePos = position - boss.position;
         Quaternion toRotation = Quaternion.LookRotation(relativePos);
@@ -421,6 +428,14 @@ public class CEOController : MonoBehaviour
         foreach (BossPath path in paths)
         {
             path.ResetTargetNum();
+        }
+        foreach (RemovableObject obj in removableItems)
+        {
+            obj.ResetObj();
+        }
+        foreach (GameObject obj in removedParticles)
+        {
+            obj.SetActive(false);
         }
     }
 
@@ -458,14 +473,35 @@ public class CEOController : MonoBehaviour
 
     IEnumerator StartStun()
     {
-        animate.openFlaps();
-        vulnerable = true;
-        StopLaser();
-        stunLightning.SetActive(true);
-        yield return new WaitForSeconds(stunTime);
+        if (state >= BossState.stage1)
+        {
+            animate.openFlaps();
+            vulnerable = true;
+            StopLaser();
+            stunLightning.SetActive(true);
+            yield return new WaitForSeconds(stunTime);
+            if (vulnerable)
+            {
+                animate.closeFlaps();
+                vulnerable = false;
+                stunLightning.SetActive(false);
+            }
+        }
+    }
+
+
+
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
+
+    public void ItemRemoved(int index)
+    {
+        removedParticles[index].SetActive(true);
         animate.closeFlaps();
         vulnerable = false;
-        StartLaser(false);
         stunLightning.SetActive(false);
+        nextPath = true;
     }
 }

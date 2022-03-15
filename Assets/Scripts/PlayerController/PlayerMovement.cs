@@ -94,6 +94,9 @@ public class PlayerMovement : MonoBehaviour
     // Event for player pressing pause key
     public event Action PauseEvent = delegate { };
 
+    // Event fired on player creation
+    public static event Action CreateEvent = delegate { };
+
     private void Awake()
     {
         // get a reference to our main camera
@@ -121,6 +124,8 @@ public class PlayerMovement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        CreateEvent();
     }
 
     void OnMove(InputValue movementValue)

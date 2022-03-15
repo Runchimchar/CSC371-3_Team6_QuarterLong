@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CAEC3BBE-3D47-485C-7771-F0AE24B05E87}</ProjectGuid>
+    <ProjectGuid>{A39F5B98-82CB-05F7-5DB8-671765E482C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,13 +53,11 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\Guns\TestPlayer.cs" />
     <Compile Include="Assets\Scripts\Drones\StaticDrone.cs" />
     <Compile Include="Assets\Scripts\BasicHealth.cs" />
     <Compile Include="Assets\Scripts\Doors\LeftDoorAnimation.cs" />
+    <Compile Include="Assets\Scripts\InteractableObject.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\VirtualInputs\UIVirtualButton.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\InputSystem\StarterAssetsInputs.cs" />
     <Compile Include="Assets\Scripts\RespawnCheckpoints\KillOnTrigger.cs" />
@@ -74,7 +72,8 @@
     <Compile Include="Assets\Scripts\CEOController\BossAnimation.cs" />
     <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\LightningBolt\LightningBoltScript.cs" />
-    <Compile Include="Assets\Scripts\RespawnCheckpoints\RespawnController.cs" />
+    <Compile Include="Assets\Scripts\SceneChangeTrigger.cs" />
+    <Compile Include="Assets\Scripts\RespawnController.cs" />
     <Compile Include="Assets\Scripts\Useless\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\TestScripts\TESTDoor.cs" />
     <Compile Include="Assets\Scripts\AHealth.cs" />
@@ -84,7 +83,10 @@
     <Compile Include="Assets\Scripts\Doors\RightDoorAnimation.cs" />
     <Compile Include="Assets\Scripts\DoorOpenOnButton.cs" />
     <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
+    <Compile Include="Assets\Scripts\Room.cs" />
+    <Compile Include="Assets\Scripts\GameController\SceneController.cs" />
     <Compile Include="Assets\Scripts\Guns\Projectile.cs" />
+    <Compile Include="Assets\Scripts\ElevatorController.cs" />
     <Compile Include="Assets\Scripts\Guns\HarpoonGun.cs" />
     <Compile Include="Assets\Scripts\Drones\NewDrone.cs" />
     <Compile Include="Assets\Scripts\ToggleLightColorOnButton.cs" />
@@ -115,7 +117,7 @@
     <Compile Include="Assets\Scripts\UI\SliderValueScript.cs" />
     <Compile Include="Assets\Scripts\UI\StaminaImageController.cs" />
     <Compile Include="Assets\Scripts\CEOController\BossPath.cs" />
-    <Compile Include="Assets\Scripts\RespawnCheckpoints\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Scripts\TargetScript.cs" />
@@ -129,9 +131,7 @@
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
     <Compile Include="Assets\Scripts\RemoveVentCover.cs" />
     <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
-    <Compile Include="Assets\Scripts\ElevatorController.cs" />
-    <Compile Include="Assets\Scripts\GameController\SceneController.cs" />
-    <Compile Include="Assets\Scripts\SceneChangeTrigger.cs" />
+    <Compile Include="Assets\Prefabs\Particles\TimeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

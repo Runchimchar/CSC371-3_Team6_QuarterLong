@@ -79,4 +79,13 @@ public class ButtonControls : MonoBehaviour
             pm.InteractEvent -= toggleButtonOn;
         }
     }
+    public void Reset()
+    {
+        if (isToggled)
+        {
+            StopCoroutine("toggleButtonOff");
+            isToggled = false;
+            rend.material = inactiveMat;
+        }
+    }
 }

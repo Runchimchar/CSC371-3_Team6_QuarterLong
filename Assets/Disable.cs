@@ -41,7 +41,7 @@ public class Disable : MonoBehaviour
                 hitEffect.Play();
 
                 Collider[] outs = Array.FindAll(
-                    Physics.OverlapSphere(transform.position, range, enemy, QueryTriggerInteraction.Ignore),
+                    Physics.OverlapSphere(transform.position, range, enemy, QueryTriggerInteraction.Collide),
                     x => x.gameObject.CompareTag("Cedric")
                 );
                 if (outs.Length > 0) outs[0].gameObject.GetComponent<CEOController>().Stun();

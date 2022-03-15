@@ -18,13 +18,19 @@ public class MenuController : MonoBehaviour {
         // Make singleton
         if (instance == null) {
             instance = gameObject;
-            DontDestroyOnLoad(gameObject);
+            // No longer a root object
+            //DontDestroyOnLoad(gameObject);
         } else {
             Destroy(gameObject);
+            return;
         }
         // Add event listener
+        PlayerMovement.CreateEvent += GetPlayer;
+        //GetPlayer();
+    }
+
+    public void GetPlayer() {
         PlayerMovement pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
-        //if (pm == null) Debug.Log("Was null");
         pm.PauseEvent += GetPause;
     }
 

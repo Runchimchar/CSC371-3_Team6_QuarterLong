@@ -4,15 +4,81 @@ using UnityEngine;
 
 public class RemovableObject : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] Material removableMaterial;
+    [SerializeField] Material startMaterial;
+    [SerializeField] LayerMask movable;
+    MovableObjectRespawn MO_ctrl;
+    CEOController CEO_ctrl;
+    Transform startParent;
+    LayerMask startLayer;
+    Rigidbody rb;
+
+    bool materialSetFlip = false;
+    bool removed = false;
+
+    int index;
+
     void Start()
     {
-        
+        MO_ctrl = GetComponent<MovableObjectRespawn>();
+        CEO_ctrl = FindObjectOfType<CEOController>();
+        startParent = transform.parent;
+        startLayer = gameObject.layer;
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (removed) return;
+
+        if (CEO_ctrl.GetVulnerable())
+        {
+            if (!materialSetFlip)
+            {
+                GetComponent<Renderer>().material.CopyPropertiesFromMaterial(removableMaterial);
+                materialSetFlip = true;
+                gameObject.layer = (int)Mathf.Log(movable.value, 2);
+            }
+
+            if (MO_ctrl.GetYoink())
+            {
+                removed = true;
+                rb.isKinematic = false;
+
+                Vector3 tmpPos = transform.position;
+                Quaternion tmpRot = transform.rotation;
+                //Vector3 tmpParentPos = transform.parent.position;
+                transform.parent = null;
+                CEO_ctrl.GetAnimator().Rebind();
+                transform.position = tmpPos;
+                transform.rotation = tmpRot;
+
+                CEO_ctrl.ItemRemoved(index);
+            }
+        }
+        else
+        {
+            if (materialSetFlip)
+            {
+                GetComponent<Renderer>().material.CopyPropertiesFromMaterial(startMaterial);
+                materialSetFlip = false;
+                gameObject.layer = startLayer;
+            }
+        }
+    }
+
+    public void ResetObj()
+    {
+        removed = false;
+        GetComponent<Renderer>().material.CopyPropertiesFromMaterial(startMaterial);
+        materialSetFlip = false;
+        gameObject.layer = startLayer;
+        transform.parent = startParent;
+        CEO_ctrl.GetAnimator().Rebind();
+    }
+
+    public void SetIndex(int newIndex)
+    {
+        index = newIndex;
     }
 }

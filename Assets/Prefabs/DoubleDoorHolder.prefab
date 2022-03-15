@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2017679310972608724}
   - component: {fileID: 1130054690853685423}
+  - component: {fileID: 2077467054725717668}
   m_Layer: 0
   m_Name: DoubleDoorHolder
   m_TagString: Untagged
@@ -47,6 +48,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftDoor: {fileID: 7375961228587706077}
   _rightDoor: {fileID: 2853309424248361590}
+--- !u!114 &2077467054725717668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7884500357690573297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e85082a0d3ddf043817eef4027a328b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8051792711756689721
 PrefabInstance:
   m_ObjectHideFlags: 0
