@@ -20,7 +20,17 @@ public class BossPath : MonoBehaviour
         if (++targetNum >= path.Length)
         {
             if (loopPath) targetNum = 0;
-            else return null;
+            else { targetNum--; return null; }
+        }
+        return path[targetNum];
+    }
+
+    public BossTarget CurrentTarget()
+    {
+        if (targetNum >= path.Length)
+        {
+            if (loopPath) targetNum = 0;
+            else { targetNum--; return null; }
         }
         return path[targetNum];
     }
