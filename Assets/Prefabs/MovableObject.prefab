@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3077644846182799184}
   - component: {fileID: 4819480111560337667}
   - component: {fileID: 7552453940401585963}
+  - component: {fileID: 6620132544168225275}
   m_Layer: 9
   m_Name: MovableObject
   m_TagString: Untagged
@@ -131,7 +132,7 @@ MonoBehaviour:
   colliderMask:
     serializedVersion: 2
     m_Bits: 1011
-  isEMP: 0
+  dontDrawArrow: 0
 --- !u!120 &7552453940401585963
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -228,3 +229,15 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &6620132544168225275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3077644846182799187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e85082a0d3ddf043817eef4027a328b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,5 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Official Levels/4.1.unity
     guid: 07353b69dc2203a4786516b7dd999ad1
+  - enabled: 1
+    path: Assets/Scenes/Official Levels/1.2GettingGrapple.unity
+    guid: f1506c88850cbdd4091b15f7615c83f6
+  - enabled: 1
+    path: Assets/Scenes/Official Levels/1.1OutdoorScene.unity
+    guid: c846f4d3c06b4ea43af478be87071ee6
+  - enabled: 1
+    path: Assets/Scenes/Official Levels/3.1Vault.unity
+    guid: e27f4959441bb8644af8a27246b341f7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}

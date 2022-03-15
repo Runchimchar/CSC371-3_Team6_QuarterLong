@@ -7,7 +7,7 @@ public class MovableObjectRespawn : MonoBehaviour
     [SerializeField] float respawnY;
     [SerializeField] float indicatorDistance = 5;
     [SerializeField] LayerMask colliderMask;
-    [SerializeField] bool isEMP = false;
+    [SerializeField] bool dontDrawArrow = false;
     Vector3 startPosition;
     float indCurLen = 0;
     float indSpeed = 20f;
@@ -22,7 +22,7 @@ public class MovableObjectRespawn : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        if (!isEMP) lr = GetComponent<LineRenderer>();
+        if (!dontDrawArrow) lr = GetComponent<LineRenderer>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -31,17 +31,15 @@ public class MovableObjectRespawn : MonoBehaviour
     {
         if (transform.position.y < respawnY)
         {
-            if (yoinking) grappleScript.StopGrapple();
-            transform.position = startPosition;
-            rb.angularVelocity = rb.velocity = Vector3.zero;
+            Reset();
         }
 
-        if (yoinking && !isEMP)
+        if (yoinking && !dontDrawArrow)
         {
             if (!startRotation.HasValue) startRotation = transform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(startRotation.Value * Vector3.up) * Quaternion.Euler(grappleScript.GetMovableRotationOffset() * Vector3.up), rotateSpeed * Time.fixedDeltaTime);
         }
-        else if (!isEMP)
+        else if (!dontDrawArrow)
         {
             startRotation = null;
         }
@@ -49,7 +47,7 @@ public class MovableObjectRespawn : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (yoinking && !isEMP)
+        if (yoinking && !dontDrawArrow)
         {
             lr.positionCount = 2;
             lr.SetPosition(0, transform.position);
@@ -63,7 +61,7 @@ public class MovableObjectRespawn : MonoBehaviour
 
             lr.SetPosition(1, transform.position - new Vector3(0, indCurLen - 0.3f, 0));
         }
-        else if (!isEMP)
+        else if (!dontDrawArrow)
         {
             lr.positionCount = 0;
             indCurLen = 0;
@@ -79,5 +77,16 @@ public class MovableObjectRespawn : MonoBehaviour
     {
         yoinking = newYoink;
         grappleScript = grapple;
+    }
+
+    public bool GetYoink()
+    {
+        return yoinking;
+    }
+    public void Reset()
+    {
+        if (yoinking) grappleScript.StopGrapple();
+        transform.position = startPosition;
+        rb.angularVelocity = rb.velocity = Vector3.zero;
     }
 }

@@ -31,4 +31,13 @@ public class DoorOpenOnButton : MonoBehaviour
             doorOpen = true;
         }
     }
+    public void Reset()
+    {
+        // If its been opened, close it
+        // TODO: close without animating
+        if (doorOpen)
+        {
+            ToggleDoor();
+        }
+    }
 }
