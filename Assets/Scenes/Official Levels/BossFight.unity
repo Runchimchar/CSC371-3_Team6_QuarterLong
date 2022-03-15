@@ -39824,6 +39824,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EMPSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5657531833765725963, guid: edce796a308a6814bbc5a04c733a105c, type: 3}
+      propertyPath: timeToRespawn
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5660359282299356164, guid: edce796a308a6814bbc5a04c733a105c, type: 3}
       propertyPath: m_RootOrder
       value: 0
