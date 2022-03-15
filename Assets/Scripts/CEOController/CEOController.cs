@@ -484,7 +484,6 @@ public class CEOController : MonoBehaviour
             {
                 animate.closeFlaps();
                 vulnerable = false;
-                StartLaser(false);
                 stunLightning.SetActive(false);
             }
         }
@@ -502,7 +501,6 @@ public class CEOController : MonoBehaviour
         removedParticles[index].SetActive(true);
         animate.closeFlaps();
         vulnerable = false;
-        StartLaser(false);
         stunLightning.SetActive(false);
         nextPath = true;
     }
