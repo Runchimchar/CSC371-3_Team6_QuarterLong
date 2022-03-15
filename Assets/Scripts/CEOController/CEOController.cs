@@ -11,6 +11,8 @@ public class CEOController : MonoBehaviour
     public BossPath[] paths;
     public float stunTime = 6f;
 
+    public MessageController.MessageDesc[] messages;
+
     BossPath path;
     BossTarget target;
 
@@ -61,7 +63,7 @@ public class CEOController : MonoBehaviour
         GetPaths();
         ResetFight();
 
-        laserAngleOffset = laser.rotation;
+        UpdateBossState(BossState.idle);
     }
 
     private void FixedUpdate()
@@ -196,11 +198,16 @@ public class CEOController : MonoBehaviour
         // Initialize here
         path = paths[(int)BossState.conversation];
         target = path.NextTarget();
+        for (int i = 0; i < messages.Length; i++)
+        {
+            GameController.messageController.QueueMessage(messages[i]);
+        }
+        GameController.messageController.QueueClearedEvent += NextPath;
         return (
             new Event(() => // Update
             {
                 nextTarget = NavToWaypoint(target);
-                nextPath = nextTarget && path.IsLastTarget();
+                
             }),
             new Event(() => // FixedUpdate
             {
@@ -212,7 +219,7 @@ public class CEOController : MonoBehaviour
             }),
             new Event(() => // Cleanup
             {
-
+                GameController.messageController.QueueClearedEvent -= NextPath;
             })
         );
     }
@@ -412,6 +419,11 @@ public class CEOController : MonoBehaviour
         target = path.NextTarget();
     }
 
+    void NextPath()
+    {
+        nextPath = true;
+    }
+
     void GetPaths()
     {
         paths = boss.parent.Find("BossPaths").GetComponentsInChildren<BossPath>();
@@ -420,7 +432,7 @@ public class CEOController : MonoBehaviour
     void ResetFight()
     {
         StopAllCoroutines();
-        UpdateBossState(BossState.idle); //idle
+        UpdateBossState(BossState.stage1); //idle
         vulnerable = false;
         nextPath = false;
         nextTarget = false;

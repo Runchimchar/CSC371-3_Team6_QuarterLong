@@ -10444,6 +10444,7 @@ MonoBehaviour:
   - {fileID: 1073771448}
   - {fileID: 187928827}
   - {fileID: 1751768813}
+  - {fileID: 692960980}
   - {fileID: 866443085}
   - {fileID: 1368622977}
   - {fileID: 1485827740}
@@ -46041,6 +46042,63 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2067657748}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: messages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: paths.Array.data[0]
+      value: 
+      objectReference: {fileID: 673079262}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: paths.Array.data[1]
+      value: 
+      objectReference: {fileID: 106122730}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: paths.Array.data[2]
+      value: 
+      objectReference: {fileID: 1486262199}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: paths.Array.data[3]
+      value: 
+      objectReference: {fileID: 243324939}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: paths.Array.data[4]
+      value: 
+      objectReference: {fileID: 1386540958}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: paths.Array.data[5]
+      value: 
+      objectReference: {fileID: 1179888537}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: paths.Array.data[6]
+      value: 
+      objectReference: {fileID: 1006275296}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: messages.Array.data[0].sender
+      value: Cedric E. Oscar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: messages.Array.data[1].sender
+      value: Cedric E. Oscar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: messages.Array.data[2].sender
+      value: Cedric E. Oscar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: messages.Array.data[0].message
+      value: So. You managed to make it past all of my traps and guards.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: messages.Array.data[1].message
+      value: I bet you're feeling pretty confident that you'll be able to get those
+        blueprints.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4656230895546694799, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
+      propertyPath: messages.Array.data[2].message
+      value: Don't get too full of yourself, you still need to make it through me!
+      objectReference: {fileID: 0}
     - target: {fileID: 5925319021116155454, guid: 3ad3ebbf63099b34097d851dea8de043, type: 3}
       propertyPath: m_Layer
       value: 13
