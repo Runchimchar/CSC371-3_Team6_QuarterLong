@@ -20,5 +20,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Official Levels/3.1Vault.unity
     guid: e27f4959441bb8644af8a27246b341f7
+  - enabled: 1
+    path: Assets/Scenes/Official Levels/3.2JailScene.unity
+    guid: b212224e6687b1145b3bff748b75f0dd
+  - enabled: 1
+    path: Assets/Scenes/Official Levels/4.2.unity
+    guid: 2c40721a96d0e40458687618128fe933
+  - enabled: 1
+    path: Assets/Scenes/Official Levels/BossFight.unity
+    guid: 414f8f230d7af4c449b6b5e5110c9ac7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
