@@ -271,9 +271,6 @@ public class CEOController : MonoBehaviour
             new Event(() => // Update
             {
                 nextTarget = NavToWaypoint(target);
-            }),
-            new Event(() => // FixedUpdate
-            {
                 if (!stunned && stage2CooldownTimer <= 0.01f && Vector3.Distance(boss.position, player.position) <= stage2AttackRange)
                 {
                     stage2Attack.Attack(player.gameObject);
@@ -281,7 +278,11 @@ public class CEOController : MonoBehaviour
                     stage2CooldownTimer = stage2AttackCooldown;
                 }
 
-                stage2CooldownTimer = Mathf.Clamp(stage2CooldownTimer - Time.fixedDeltaTime, 0, stage2AttackCooldown);
+                stage2CooldownTimer = Mathf.Clamp(stage2CooldownTimer - Time.deltaTime, 0, stage2AttackCooldown);
+            }),
+            new Event(() => // FixedUpdate
+            {
+                
             }),
             new Event(() => // LateUpdate
             {
