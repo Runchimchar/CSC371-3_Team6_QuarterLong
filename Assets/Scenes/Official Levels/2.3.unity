@@ -1069,6 +1069,96 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1032257855
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7277882018191026982, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_Name
+      value: MessageTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7931142243743560537, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_Radius
+      value: 1.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 61.14272
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 269.68488
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240405745961266533, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: messages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: messages.Array.data[0].sender
+      value: Cedrick E. Oscar
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: messages.Array.data[1].sender
+      value: Cedrick E. Oscar
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: messages.Array.data[2].sender
+      value: Cedrick E. Oscar
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: messages.Array.data[0].message
+      value: I've been told informed you're making your way to my precious vault...
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: messages.Array.data[1].message
+      value: I'll assume you're trying to get at the blueprints for the well sought
+        after air purifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
+      propertyPath: messages.Array.data[2].message
+      value: Your attempts will be futile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
 --- !u!1001 &1063659915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2392,7 +2482,7 @@ Transform:
   - {fileID: 1098728644}
   - {fileID: 1740966879}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2236146789590560034
 GameObject:
