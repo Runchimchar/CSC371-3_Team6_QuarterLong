@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{D7040452-0CFF-72B4-0D09-3C42C8B31221}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -54,8 +53,9 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Disable.cs" />
-    <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\LightningBolt\LightningBoltScript.cs" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\StarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\Editor\FieldOfViewEditor.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\PackageChecker\PackageChecker.cs" />
@@ -63,26 +63,6 @@
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\ScriptingDefineUtils.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Editor\ThirdPersonStarterAssetsDeployMenu.cs" />
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\PackageChecker.cs" />
-    <Compile Include="Assets\Scripts\CEOController\BossAnimation.cs" />
-    <Compile Include="Assets\Scripts\CEOController\BossPath.cs" />
-    <Compile Include="Assets\Scripts\CEOController\BossTarget.cs" />
-    <Compile Include="Assets\Scripts\CEOController\CEOController.cs" />
-    <Compile Include="Assets\Scripts\CEOController\RemovableObject.cs" />
-    <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
-    <Compile Include="Assets\Scripts\Drones\LaserBeam.cs" />
-    <Compile Include="Assets\Scripts\Drones\NewDrone.cs" />
-    <Compile Include="Assets\Scripts\Enemies\FieldOfView.cs" />
-    <Compile Include="Assets\Scripts\GameController\GameController.cs" />
-    <Compile Include="Assets\Scripts\GameController\MessageController.cs" />
-    <Compile Include="Assets\Scripts\GameController\PlayerStatus.cs" />
-    <Compile Include="Assets\Scripts\MessageTriggerController.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\Grapple.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
-    <Compile Include="Assets\Scripts\RespawnCheckpoints\RespawnController.cs" />
-    <Compile Include="Assets\Scripts\UI\StatusUIController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\Scripts\Editor\PackageChecker\settings\PackageImportList_ShaderGraph.txt" />
@@ -321,11 +301,14 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\15.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
     <Reference Include="GitHub.Logging">
       <HintPath>Assets\Plugins\GitHub\Editor\GitHub.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.StandardEvents">
+      <HintPath>Library\PackageCache\com.unity.analytics@3.2.3\AnalyticsStandardEvents\Unity.Analytics.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\PackageCache\com.unity.purchasing@2.0.3\Editor\UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="GitHub.Unity.45">
       <HintPath>Assets\Plugins\GitHub\Editor\GitHub.Unity.45.dll</HintPath>
@@ -335,6 +318,9 @@
     </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.12\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Editor">
+      <HintPath>Library\PackageCache\com.unity.analytics@3.2.3\Editor\Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.12\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
@@ -356,6 +342,9 @@
     </Reference>
     <Reference Include="GitHub.Api.45">
       <HintPath>Assets\Plugins\GitHub\Editor\GitHub.Api.45.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.Tracker">
+      <HintPath>Library\PackageCache\com.unity.analytics@3.2.3\Editor\Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.7.0\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
@@ -750,6 +739,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>Library\ScriptAssemblies\Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.EditorCoroutines.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
     </Reference>
@@ -866,7 +858,6 @@
       <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

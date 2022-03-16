@@ -61,3 +61,5 @@ Icon
 ehthumbs.db
 Thumbs.db
 connectwebgl.zip
+WindowsBuilds/Test/*
+WebGL Builds/*

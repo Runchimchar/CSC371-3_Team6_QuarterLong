@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CAEC3BBE-3D47-485C-7771-F0AE24B05E87}</ProjectGuid>
+    <ProjectGuid>{A39F5B98-82CB-05F7-5DB8-671765E482C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Guns\TestPlayer.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Useless\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\TestScripts\TESTDoor.cs" />
     <Compile Include="Assets\Scripts\AHealth.cs" />
+    <Compile Include="Assets\Scripts\RemoveGrappleOnStart.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\Mobile\Scripts\Utilities\MobileDisableAutoSwitchControls.cs" />
     <Compile Include="Assets\JailDrone.cs" />
     <Compile Include="Assets\Scripts\Guns\AGun.cs" />
@@ -108,18 +109,21 @@
     <Compile Include="Assets\Scripts\UI\HaungsModeController.cs" />
     <Compile Include="Assets\ExternalPackages\StarterAssets\ThirdPersonController\Scripts\BasicRigidBodyPush.cs" />
     <Compile Include="Assets\ExternalPackages\AssetStoreOriginals\_SNAPS_PrototypingAssets\About\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\FloatAndBob.cs" />
     <Compile Include="Assets\Scripts\MessageTriggerController.cs" />
     <Compile Include="Assets\Disable.cs" />
     <Compile Include="Assets\Scripts\TESTAnimation.cs" />
     <Compile Include="Assets\Scripts\UI\StatusUIController.cs" />
     <Compile Include="Assets\Scripts\PlayerController\MovableObjectRespawn.cs" />
     <Compile Include="Assets\Scripts\UI\TextMessageDestroyer.cs" />
+    <Compile Include="Assets\Scripts\EnableTrigger.cs" />
     <Compile Include="Assets\Scripts\GameController\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\LeverControls.cs" />
     <Compile Include="Assets\Scripts\PlayerController\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Enemies\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\UI\SliderValueScript.cs" />
     <Compile Include="Assets\Scripts\UI\StaminaImageController.cs" />
+    <Compile Include="Assets\Scripts\PickUpBlueprint.cs" />
     <Compile Include="Assets\Scripts\CEOController\BossPath.cs" />
     <Compile Include="Assets\Scripts\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Drones\DroneAttack.cs" />
@@ -135,10 +139,6 @@
     <Compile Include="Assets\Scripts\PlayerController\AudioController.cs" />
     <Compile Include="Assets\Scripts\RemoveVentCover.cs" />
     <Compile Include="Assets\Scripts\PlayerController\VirtualCameraController.cs" />
-    <Compile Include="Assets\Scripts\PickUpBlueprint.cs" />
-    <Compile Include="Assets\Scripts\EnableTrigger.cs" />
-    <Compile Include="Assets\Scripts\FloatAndBob.cs" />
-    <Compile Include="Assets\Scripts\RemoveGrappleOnStart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

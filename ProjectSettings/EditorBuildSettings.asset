@@ -12,8 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Official Levels/1.2GettingGrapple.unity
     guid: f1506c88850cbdd4091b15f7615c83f6
   - enabled: 1
-    path: Assets/Scenes/Official Levels/Floor 2.unity
+    path: Assets/Scenes/Official Levels/2.1.unity
     guid: 1309c0dc1b597c24887dcef3a2c16e69
+  - enabled: 1
+    path: Assets/Scenes/Official Levels/2.2.unity
+    guid: cd2c685570382c04a8f5716c68fe164c
+  - enabled: 1
+    path: Assets/Scenes/Official Levels/2.3.unity
+    guid: 2c95aca08dfe21a4896feda109369d3e
   - enabled: 1
     path: Assets/Scenes/Official Levels/3.1Vault.unity
     guid: e27f4959441bb8644af8a27246b341f7
