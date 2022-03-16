@@ -31,8 +31,10 @@ public class MenuController : MonoBehaviour {
     }
 
     public void GetPlayer() {
+        GameController.messageController.QueueMessage("DEBUG", "Top of GetPlayer");
         if (GameObject.FindWithTag("Player")) {
             PlayerMovement pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+            GameController.messageController.QueueMessage("DEBUG", "GetPlayer: Got PM");
             pm.PauseEvent -= GetPause;
             pm.PauseEvent += GetPause;
         }
@@ -42,7 +44,9 @@ public class MenuController : MonoBehaviour {
     public void GetPause() {
         // Tab = menu 
         //Debug.Log("Got Pause");
+        GameController.messageController.QueueMessage("DEBUG", "Top of GetPause");
         if (isControllable) {
+            GameController.messageController.QueueMessage("DEBUG", "GetPause: Past controllable");
             if (isPaused) {
                 Resume();
             }
@@ -54,7 +58,7 @@ public class MenuController : MonoBehaviour {
 
     // Pause game and pull up menu
     public void Pause() {
-        //Debug.Log("Paused");
+        GameController.messageController.QueueMessage("DEBUG", "Top of Pause");
         isPaused = true;
         Time.timeScale = 0f;
 
@@ -66,6 +70,7 @@ public class MenuController : MonoBehaviour {
 
     // Resume game and close all menus
     public void Resume() {
+        GameController.messageController.QueueMessage("DEBUG", "Top of Resume");
         //Debug.Log("Resume");
         isPaused = false;
         Time.timeScale = 1f;
