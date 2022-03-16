@@ -741,9 +741,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 669631522351072616, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1601356695206103972, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
       propertyPath: m_Name
       value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601356695206103972, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2509909358123129847, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
       propertyPath: m_RootOrder
@@ -788,6 +796,14 @@ PrefabInstance:
     - target: {fileID: 2509909358123129847, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863961136733765016, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863961136733765016, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4876680202016023170, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
       propertyPath: m_AnchorMax.x
