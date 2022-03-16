@@ -11,19 +11,20 @@ public class CEOController : MonoBehaviour
     public ButtonControls startFightButton;
     public BossPath[] paths;
     public float stunTime = 6f;
-    [SerializeField, Range(0.001f, 6.0f)] float stage1AttackRange = 3f;
-    [SerializeField, Range(0f, 6.0f)] float stage1AttackCooldown = 2f;
+    [SerializeField, Range(0.001f, 6.0f)] float stage2AttackRange = 3f;
+    [SerializeField, Range(0f, 6.0f)] float stage2AttackCooldown = 2f;
 
     public MessageController.MessageDesc[] messages;
     public MessageController.MessageDesc[] StartFightMessages;
+    public MessageController.MessageDesc[] winStage1Messages;
+    public MessageController.MessageDesc[] winStage2Messages;
     public MessageController.MessageDesc[] defeatMessages;
 
     BossPath path;
     BossTarget target;
     Disable empDisable;
-    Grapple grapple;
 
-    DroneAttack stage1Attack;
+    DroneAttack stage2Attack;
     BossAnimation animate;
     Animator animator;
     GameObject stunLightning;
@@ -48,10 +49,12 @@ public class CEOController : MonoBehaviour
     public bool nextTarget;
     public bool nextPath;
 
+    bool restartLevelMusic;
+
     float rotationSpeed = 10f;
     float speedMultiplier = 10f;
 
-    float stage1CooldownTimer = 0f;
+    float stage2CooldownTimer = 0f;
 
     // Lasers
     float laserSpeed = -10f;
@@ -76,13 +79,14 @@ public class CEOController : MonoBehaviour
             boss.Find("body/RemovedParticles").GetChild(1).gameObject,
             boss.Find("body/RemovedParticles").GetChild(2).gameObject
         };
-        stage1Attack = GetComponent<DroneAttack>();
+        stage2Attack = GetComponent<DroneAttack>();
         animate = GetComponent<BossAnimation>();
         animator = GetComponent<Animator>();
         empDisable = FindObjectOfType<Disable>();
-        grapple = FindObjectOfType<Grapple>();
         GetPaths();
+        restartLevelMusic = false;
         ResetFight();
+        restartLevelMusic = true;
 
         UpdateBossState(BossState.idle);
     }
@@ -258,7 +262,7 @@ public class CEOController : MonoBehaviour
         {
             GameController.messageController.QueueMessage(StartFightMessages[i]);
         }
-        GameController.messageController.QueueClearedEvent += StartFightMessagesComplete;
+        startFightButton.OnButtonActivate += StartFightNow;
         return (
             new Event(() => // Update
             {
@@ -275,7 +279,7 @@ public class CEOController : MonoBehaviour
             }),
             new Event(() => // Cleanup
             {
-                GameController.messageController.QueueClearedEvent -= StartFightMessagesComplete;
+                
             })
         );
     }
@@ -283,25 +287,12 @@ public class CEOController : MonoBehaviour
     Events _stage1()
     {
         // Initialize here
-        bool start = true;
-        nextTarget = false;
         path = paths[(int)BossState.stage1];
         target = path.CurrentTarget();
-        stage1CooldownTimer = stage1AttackCooldown;
         return (
             new Event(() => // Update
             {
-                bool tmpNextTarget = NavToWaypoint(target);
-                start = start && !tmpNextTarget;
-                nextTarget = nextTarget || ((path.CurrentTargetIndex() == 1) ? false : tmpNextTarget);
-                if (!start && !stunned && stage1CooldownTimer <= 0.01f && Vector3.Distance(boss.position, player.position) <= stage1AttackRange)
-                {
-                    stage1Attack.Attack(player.gameObject);
-                    nextTarget = true;
-                    stage1CooldownTimer = stage1AttackCooldown;
-                }
-
-                stage1CooldownTimer = Mathf.Clamp(stage1CooldownTimer - Time.deltaTime, 0, stage1AttackCooldown);
+                nextTarget = nextTarget || NavToWaypoint(target);
             }),
             new Event(() => // FixedUpdate
             {
@@ -322,8 +313,54 @@ public class CEOController : MonoBehaviour
     {
         // Initialize here
         bool start = true;
+        nextTarget = false;
         path = paths[(int)BossState.stage2];
         target = path.CurrentTarget();
+        stage2CooldownTimer = stage2AttackCooldown;
+        for (int i = 0; i < winStage1Messages.Length; i++)
+        {
+            GameController.messageController.QueueMessage(winStage1Messages[i]);
+        }
+        return (
+            new Event(() => // Update
+            {
+                bool tmpNextTarget = NavToWaypoint(target);
+                start = start && !tmpNextTarget;
+                nextTarget = nextTarget || ((path.CurrentTargetIndex() == 1) ? false : tmpNextTarget);
+                if (!start && !stunned && stage2CooldownTimer <= 0.01f && Vector3.Distance(boss.position, player.position) <= stage2AttackRange)
+                {
+                    stage2Attack.Attack(player.gameObject);
+                    nextTarget = true;
+                    stage2CooldownTimer = stage2AttackCooldown;
+                }
+
+                stage2CooldownTimer = Mathf.Clamp(stage2CooldownTimer - Time.deltaTime, 0, stage2AttackCooldown);
+            }),
+            new Event(() => // FixedUpdate
+            {
+
+            }),
+            new Event(() => // LateUpdate
+            {
+
+            }),
+            new Event(() => // Cleanup
+            {
+
+            })
+        );
+    }
+
+    Events _stage3()
+    {
+        // Initialize here
+        bool start = true;
+        path = paths[(int)BossState.stage3];
+        target = path.CurrentTarget();
+        for (int i = 0; i < winStage2Messages.Length; i++)
+        {
+            GameController.messageController.QueueMessage(winStage2Messages[i]);
+        }
         return (
             new Event(() => // Update
             {
@@ -350,32 +387,7 @@ public class CEOController : MonoBehaviour
             })
         );
     }
-
-    Events _stage3()
-    {
-        // Initialize here
-        path = paths[(int)BossState.stage3];
-        target = path.CurrentTarget();
-        return (
-            new Event(() => // Update
-            {
-                nextPath = true;
-            }),
-            new Event(() => // FixedUpdate
-            {
-
-            }),
-            new Event(() => // LateUpdate
-            {
-
-            }),
-            new Event(() => // Cleanup
-            {
-
-            })
-        );
-    }
-
+    
     Events _defeat()
     {
         // Initialize here
@@ -392,7 +404,7 @@ public class CEOController : MonoBehaviour
         return (
             new Event(() => // Update
             {
-                if (!queuedMessages) nextTarget = nextTarget || NavToWaypoint(target);
+                nextTarget = nextTarget || NavToWaypoint(target);
                 if (!queuedMessages && nextTarget && path.IsLastTarget())
                 {
                     queuedMessages = true;
@@ -402,7 +414,7 @@ public class CEOController : MonoBehaviour
                         GameController.messageController.QueueMessage(defeatMessages[i]);
                     }
                     GameController.messageController.QueueClearedEvent += Defeated;
-                    nextPath = true;
+                    //nextPath = true;
                 }
             }),
             new Event(() => // FixedUpdate
@@ -513,11 +525,6 @@ public class CEOController : MonoBehaviour
         nextPath = true;
     }
 
-    void StartFightMessagesComplete()
-    {
-        startFightButton.OnButtonActivate += StartFightNow;
-    }
-
     void RemoveStartFightEvents()
     {
         startFightButton.OnButtonActivate -= StartFightNow;
@@ -527,8 +534,7 @@ public class CEOController : MonoBehaviour
     {
         RemoveStartFightEvents();
         nextPath = true;
-        grapple.StopGrapple();
-        empDisable.DisableNow();
+        GameController.instance.StartBossMusic();
     }
 
 
@@ -557,10 +563,6 @@ public class CEOController : MonoBehaviour
         stunLightning.SetActive(false);
         boss.gameObject.SetActive(true);
 
-        Rigidbody rb = boss.gameObject.GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-        rb.useGravity = false;
-
         foreach (BossPath path in paths)
         {
             path.ResetTargetNum();
@@ -579,6 +581,7 @@ public class CEOController : MonoBehaviour
             // This will NOT detect flaps open and close if the trigger was just set.
             animate.closeFlaps();
         }
+        if (restartLevelMusic) GameController.instance.StartLevelMusic();
     }
 
     private void OnDrawGizmosSelected()
@@ -641,6 +644,9 @@ public class CEOController : MonoBehaviour
         //rb.angularVelocity = new Vector3(1f, 1f, 1f);
         //rb.velocity = new Vector3(1f, 1f, 1f);
         GameController.messageController.QueueClearedEvent -= Defeated;
+        UpdateState = FixedUpdateState = LateUpdateState = null;
+        CleanupState?.Invoke();
+        CleanupState = null;
         UpdateState = new Event(() => boss.Rotate(Vector3.up, 360 * Time.deltaTime));
         StartCoroutine(KillBoss());
     }
