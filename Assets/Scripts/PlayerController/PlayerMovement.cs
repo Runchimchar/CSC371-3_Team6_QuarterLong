@@ -301,7 +301,7 @@ public class PlayerMovement : MonoBehaviour
         staminaRegenDelayCount -= Time.deltaTime;
         staminaRegenDelayCount = Mathf.Clamp(staminaRegenDelayCount, 0f, staminaRegenDelay);
 
-        if (isGrounded && !sprinting && ((!grappling && !yoinking) || (yoinking && movementX == 0 && movementY == 0)))
+        if (isGrounded && (!sprinting || (movementX == 0 && movementY == 0)) && ((!grappling && !yoinking) || (yoinking && movementX == 0 && movementY == 0)))
         {
             dStamina = staminaRegenDelayCount > 0 ? 0f : staminaRegen;
         }
