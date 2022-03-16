@@ -177,6 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 4095540566856145976}
+  _levelMusic: {fileID: 6183022284533297478}
+  _bossMusic: {fileID: 540552364722194897}
 --- !u!114 &7937626581079450327
 MonoBehaviour:
   m_ObjectHideFlags: 0
