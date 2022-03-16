@@ -29,7 +29,6 @@ public class CEOController : MonoBehaviour
     GameObject stunLightning;
     [SerializeField] RemovableObject[] removableItems;
     GameObject[] removedParticles;
-    GameObject[] killSmoke;
     public ParticleSystem killExplosion;
 
     [SerializeField] GameObject blueprint;
@@ -653,6 +652,7 @@ public class CEOController : MonoBehaviour
     IEnumerator KillBoss()
     {
         yield return new WaitForSeconds(stunTime);
+        killExplosion.Play();
         boss.gameObject.SetActive(false);
         GameObject _blueprint = Instantiate(blueprint);
         Rigidbody bprb = _blueprint.GetComponent<Rigidbody>();
