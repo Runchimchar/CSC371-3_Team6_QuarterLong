@@ -400,6 +400,7 @@ public class CEOController : MonoBehaviour
                         GameController.messageController.QueueMessage(defeatMessages[i]);
                     }
                     GameController.messageController.QueueClearedEvent += Defeated;
+                    nextPath = true;
                 }
             }),
             new Event(() => // FixedUpdate
@@ -412,7 +413,7 @@ public class CEOController : MonoBehaviour
             }),
             new Event(() => // Cleanup
             {
-                GameController.messageController.QueueClearedEvent -= Defeated;
+                
             })
         );
     }
@@ -430,22 +431,14 @@ public class CEOController : MonoBehaviour
         state = newState;
     }
 
-    public void UpdateBossState(int newState)
-    {
-        if (newState >= (int)BossState.LEN)
-        {
-            Debug.LogError("BossState out of bounds");
-            return;
-        }
-        initState = true;
-        state = (BossState)newState;
-    }
-
     public void UpdateBossState()
     {
         if (state + 1 >= BossState.LEN)
         {
-            Debug.LogError("BossState out of bounds");
+            //Debug.LogError("BossState out of bounds");
+            UpdateState = FixedUpdateState = LateUpdateState = null;
+            CleanupState?.Invoke();
+            CleanupState = null;
             return;
         }
         initState = true;
@@ -639,12 +632,14 @@ public class CEOController : MonoBehaviour
 
     void Defeated()
     {
-        Rigidbody rb = boss.gameObject.GetComponent<Rigidbody>();
-        stunned = true;
-        rb.isKinematic = false;
-        rb.useGravity = true;
-        rb.angularVelocity = new Vector3(1f, 1f, 1f);
-        rb.velocity = new Vector3(1f, 1f, 1f);
+        //Rigidbody rb = boss.gameObject.GetComponent<Rigidbody>();
+        //stunned = true;
+        //rb.isKinematic = false;
+        //rb.useGravity = true;
+        //rb.angularVelocity = new Vector3(1f, 1f, 1f);
+        //rb.velocity = new Vector3(1f, 1f, 1f);
+        GameController.messageController.QueueClearedEvent -= Defeated;
+        UpdateState = new Event(() => boss.Rotate(Vector3.up, 360 * Time.deltaTime));
         StartCoroutine(KillBoss());
     }
 
@@ -652,14 +647,11 @@ public class CEOController : MonoBehaviour
     IEnumerator KillBoss()
     {
         yield return new WaitForSeconds(stunTime);
+        killExplosion.gameObject.transform.position = boss.position;
         killExplosion.Play();
+        UpdateState = null;
+        GameObject _blueprint = Instantiate(blueprint, boss.position, Quaternion.identity);
         boss.gameObject.SetActive(false);
-        GameObject _blueprint = Instantiate(blueprint);
-        Rigidbody bprb = _blueprint.GetComponent<Rigidbody>();
-        bprb.isKinematic = true;
-        _blueprint.transform.position = boss.position;
-        bprb.isKinematic = false;
-        bprb.angularVelocity = bprb.velocity = Vector3.zero;
 
         // spawn particles
     }

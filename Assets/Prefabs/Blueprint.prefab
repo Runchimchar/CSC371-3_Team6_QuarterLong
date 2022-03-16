@@ -9733,8 +9733,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4006230022348013779}
+  - component: {fileID: 6312843354578734198}
   - component: {fileID: 4349295264846946422}
   - component: {fileID: 356608109969014010}
+  - component: {fileID: 6401332194957296690}
   m_Layer: 0
   m_Name: Blueprint
   m_TagString: Untagged
@@ -9759,6 +9761,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6312843354578734198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447571542060215575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bef281a6044fec4eb4e085367b9d653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &4349295264846946422
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9788,6 +9802,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.901176, y: 0.029277515, z: 1.2605011}
   m_Center: {x: 0.0022805333, y: 0.047217853, z: 0.17099202}
+--- !u!65 &6401332194957296690
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447571542060215575}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.75, y: 1, z: 2.25}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6864245351715418298
 PrefabInstance:
   m_ObjectHideFlags: 0
