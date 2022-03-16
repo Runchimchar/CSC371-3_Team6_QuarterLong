@@ -57,13 +57,15 @@ public class CEOController : MonoBehaviour
     float laserSpeed = -10f;
     float laserAngle;
     Quaternion laserAngleOffset;
-    Transform laser;
+    Transform laserAll;
+    Transform laser1;
 
 
     private void Start()
     {
         RespawnController.instance.CustomActionsOnRespawnReset += ResetFight;
-        laser = boss.parent.Find("Laser");
+        laserAll = boss.parent.Find("Laser");
+        laser1 = boss.parent.Find("Laser/LaserL1");
         stunLightning = boss.Find("StunLightning").gameObject;
         for (int i = 0; i < removableItems.Length; i++)
         {
@@ -589,18 +591,18 @@ public class CEOController : MonoBehaviour
     // Lasers
     void StartLaser(bool resetRotation = true)
     {
-        if (resetRotation) laser.rotation = laserAngleOffset;
-        laser.gameObject.SetActive(true);
+        if (resetRotation) laserAll.rotation = laserAngleOffset;
+        laserAll.gameObject.SetActive(true);
     }
 
     void UpdateLaser()
     {
-        laser.Rotate(Vector3.up, laserSpeed * Time.deltaTime);
+        laserAll.Rotate(Vector3.up, laserSpeed * Time.deltaTime);
     }
 
     void StopLaser()
     {
-        laser.gameObject.SetActive(false);
+        laserAll.gameObject.SetActive(false);
     }
 
 
