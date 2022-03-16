@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
     public static SceneController sceneController = null;
 
     public GameObject UI = null;
+    [SerializeField] private GameObject _levelMusic = null;
+    [SerializeField] private GameObject _bossMusic = null;
 
     public void EnableUI(bool enabled) {
         CanvasGroup cg = UI.GetComponent<CanvasGroup>();
@@ -41,5 +43,17 @@ public class GameController : MonoBehaviour
         playerStatus = GetComponent<PlayerStatus>();
         messageController = GetComponent<MessageController>();
         sceneController = GetComponent<SceneController>();
+    }
+
+    public void StartBossMusic()
+    {
+        _levelMusic.SetActive(false);
+        _bossMusic.SetActive(true);
+    }
+
+    public void StartLevelMusic()
+    {
+        _levelMusic.SetActive(true);
+        _bossMusic.SetActive(false);
     }
 }
