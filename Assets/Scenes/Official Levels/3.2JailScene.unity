@@ -15449,7 +15449,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].message
-      value: You fell right into my trap!
+      value: You fell right into my trap! Of course I don't keep the blueprints in
+        the vault! I securely by my side...
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[1].message
