@@ -9,6 +9,7 @@ public class MenuController : MonoBehaviour {
 
     public GameObject pauseMenu;
     public GameObject optionsMenu;
+    public bool isControllable = true;
 
     private bool isPaused = false;
 
@@ -38,11 +39,13 @@ public class MenuController : MonoBehaviour {
     public void GetPause() {
         // Tab = menu 
         //Debug.Log("Got Pause");
-        if (isPaused) {
-            Resume();
-        }
-        else {
-            Pause();
+        if (isControllable) {
+            if (isPaused) {
+                Resume();
+            }
+            else {
+                Pause();
+            }
         }
     }
 

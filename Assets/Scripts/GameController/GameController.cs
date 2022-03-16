@@ -9,6 +9,22 @@ public class GameController : MonoBehaviour
     public static MessageController messageController = null;
     public static SceneController sceneController = null;
 
+    public GameObject UI = null;
+
+    public void EnableUI(bool enabled) {
+        CanvasGroup cg = UI.GetComponent<CanvasGroup>();
+        MenuController mc = UI.GetComponent<MenuController>();
+
+        if (enabled) {
+            cg.alpha = 1f;
+            mc.isControllable = true;
+        } else {
+            cg.alpha = 0f;
+            mc.isControllable = false;
+            mc.Resume();
+        }
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
