@@ -657,6 +657,7 @@ public class CEOController : MonoBehaviour
         killExplosion.Play();
         UpdateState = null;
         GameObject _blueprint = Instantiate(blueprint, boss.position, Quaternion.identity);
+        GameController.instance.StartLevelMusic();
         boss.gameObject.SetActive(false);
 
         // spawn particles

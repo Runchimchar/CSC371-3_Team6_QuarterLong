@@ -248,7 +248,6 @@ public class PlayerMovement : MonoBehaviour
     void OnPause(InputValue value) {
         if (value.isPressed) {
             // Notifies all listeners that pause key was pressed
-            GameController.messageController.QueueMessage("DEBUG", "PauseEvent called at " + this.GetHashCode());
             PauseEvent();
         }
     }

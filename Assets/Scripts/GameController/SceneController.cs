@@ -41,6 +41,7 @@ public class SceneController : MonoBehaviour {
         if (blackScreen.alpha < 0.999f) {
             Invoke("FadeToBlack", fadeTime * fadeStep);
         } else {
+            GameController.instance.EnableUI(true);
             // Done fading to black, change scenes
             SceneManager.LoadScene(sceneName);
         }
