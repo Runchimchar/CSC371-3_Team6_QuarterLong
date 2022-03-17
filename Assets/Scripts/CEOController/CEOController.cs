@@ -49,7 +49,7 @@ public class CEOController : MonoBehaviour
     public bool nextTarget;
     public bool nextPath;
 
-    bool restartLevelMusic;
+    bool isRespawn;
 
     float rotationSpeed = 10f;
     float speedMultiplier = 10f;
@@ -84,9 +84,9 @@ public class CEOController : MonoBehaviour
         animator = GetComponent<Animator>();
         empDisable = FindObjectOfType<Disable>();
         GetPaths();
-        restartLevelMusic = false;
+        isRespawn = false;
         ResetFight();
-        restartLevelMusic = true;
+        isRespawn = true;
 
         UpdateBossState(BossState.idle);
     }
@@ -552,7 +552,8 @@ public class CEOController : MonoBehaviour
     void ResetFight()
     {
         StopAllCoroutines();
-        UpdateBossState(BossState.startFight); //idle
+        if (isRespawn) UpdateBossState(BossState.startFight); //idle
+        else UpdateBossState(BossState.idle);
         vulnerable = false;
         stunned = false;
         nextPath = false;
@@ -567,10 +568,7 @@ public class CEOController : MonoBehaviour
         {
             path.ResetTargetNum();
         }
-        foreach (RemovableObject obj in removableItems)
-        {
-            obj.ResetObj();
-        }
+        if (isRespawn) foreach (RemovableObject obj in removableItems) obj.ResetObj();
         foreach (GameObject obj in removedParticles)
         {
             obj.SetActive(false);
@@ -581,7 +579,7 @@ public class CEOController : MonoBehaviour
             // This will NOT detect flaps open and close if the trigger was just set.
             animate.closeFlaps();
         }
-        if (restartLevelMusic) GameController.instance.StartLevelMusic();
+        if (isRespawn) GameController.instance.StartLevelMusic();
     }
 
     private void OnDrawGizmosSelected()
