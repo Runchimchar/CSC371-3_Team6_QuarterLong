@@ -15433,33 +15433,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[1].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[2].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[3].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].message
       value: You fell right into my trap! Of course I don't keep the blueprints in
-        the vault! I securely by my side...
+        the vault! I securely keep them by my side...
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[1].message
-      value: I'm sorry I have to imprison you, but you must understand...
+      value: I'm sorry to have to imprison you, but you must understand...
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[2].message
       value: Pharmacorp gets its profits from the rich paying for medication to help
-        their lungs from the smog we produce
+        their lungs from the smog, which  we produce
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[3].message

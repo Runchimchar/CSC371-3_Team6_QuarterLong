@@ -1134,15 +1134,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[1].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[2].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].message

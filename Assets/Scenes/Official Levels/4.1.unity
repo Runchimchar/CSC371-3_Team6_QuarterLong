@@ -10354,11 +10354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].message
-      value: It seems I need to update our security...
+      value: It seems we need to update our security...
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
@@ -11346,19 +11346,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[1].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].message
-      value: Alright Alex, it not too late to turn back
+      value: Alright Alex, its not too late to turn back
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[1].message
-      value: I know you're angry, but we can resolve this
+      value: I know you're angry, but we can still resolve this
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
@@ -65719,11 +65719,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].sender
-      value: Cedrick E. Oscar
+      value: Cedric E. Oscar
       objectReference: {fileID: 0}
     - target: {fileID: 9007986873342923841, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
       propertyPath: messages.Array.data[0].message
-      value: There's no way im letting you in...
+      value: There's no way I'm letting you in...
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d6f053a36d78949a84d2934c160ed7, type: 3}
