@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5559358632517528398}
   - component: {fileID: 6273395782886962405}
   - component: {fileID: 8313944054048431973}
+  - component: {fileID: 7106151449855433060}
   m_Layer: 0
   m_Name: Stats Container
   m_TagString: Untagged
@@ -96,6 +97,18 @@ MonoBehaviour:
   - {fileID: 1061517765193592601}
   - {fileID: 3036858144530414031}
   staminaBar: {fileID: 8968787105696272758}
+--- !u!225 &7106151449855433060
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398370537507300796}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5146007476143141787
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class GameController : MonoBehaviour
     public static SceneController sceneController = null;
 
     public GameObject UI = null;
+    [SerializeField] private GameObject _crosshair = null;
+    [SerializeField] private CanvasGroup _statsContainer = null;
     [SerializeField] private GameObject _levelMusic = null;
     [SerializeField] private GameObject _bossMusic = null;
 
@@ -18,12 +20,17 @@ public class GameController : MonoBehaviour
         MenuController mc = UI.GetComponent<MenuController>();
 
         if (enabled) {
-            cg.alpha = 1f;
+            //cg.alpha = 1f;
             mc.isControllable = true;
+            _crosshair.SetActive(true);
+            _statsContainer.alpha = 1;
+
         } else {
-            cg.alpha = 0f;
+            //cg.alpha = 0f;
             mc.isControllable = false;
-            mc.Resume();
+            _crosshair.SetActive(false);
+            _statsContainer.alpha = 0;
+            //mc.Resume();
         }
     }
 
