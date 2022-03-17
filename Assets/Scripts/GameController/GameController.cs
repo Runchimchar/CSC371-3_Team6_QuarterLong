@@ -27,6 +27,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public static void QuitGame()
+    {
+        Application.Quit();
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
