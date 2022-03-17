@@ -27,14 +27,14 @@ public class MenuController : MonoBehaviour {
         }
         // Add event listener
         PlayerMovement.CreateEvent += GetPlayer;
-        GetPlayer();
+        //GetPlayer();
     }
 
     public void GetPlayer() {
         GameController.messageController.QueueMessage("DEBUG", "Top of GetPlayer");
         if (GameObject.FindWithTag("Player")) {
             PlayerMovement pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
-            GameController.messageController.QueueMessage("DEBUG", "GetPlayer: Got PM");
+            GameController.messageController.QueueMessage("DEBUG", "GetPlayer: Got PM "+pm.GetHashCode());
             pm.PauseEvent -= GetPause;
             pm.PauseEvent += GetPause;
         }

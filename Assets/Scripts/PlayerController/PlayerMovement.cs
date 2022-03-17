@@ -244,10 +244,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void OnPause(InputValue value) {
-        GameController.messageController.QueueMessage("DEBUG", "OnPause Reached");
         if (value.isPressed) {
             // Notifies all listeners that pause key was pressed
-            GameController.messageController.QueueMessage("DEBUG", "PauseEvent Called");
+            GameController.messageController.QueueMessage("DEBUG", "PauseEvent called at " + this.GetHashCode());
             PauseEvent();
         }
     }
