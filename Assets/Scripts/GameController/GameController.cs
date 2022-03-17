@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour
             mc.isControllable = false;
             _crosshair.SetActive(false);
             _statsContainer.alpha = 0;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             //mc.Resume();
         }
     }

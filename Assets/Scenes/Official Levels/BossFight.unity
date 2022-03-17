@@ -76543,6 +76543,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9082433337395239918, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
+      propertyPath: m_Volume
+      value: 0.123
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082433337395239918, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 390f1b77d4595c141bc1bc9b98127bd0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e77310c8789aa845b35f77b7d19204d, type: 3}
 --- !u!4 &2042317775 stripped

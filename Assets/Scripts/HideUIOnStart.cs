@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class HideUIOnStart : MonoBehaviour
 {
-    void Start()
+    public void Start()
     {
         GameController.instance.EnableUI(false);
+
+    }
+    public void GameQuit()
+    {
+        Application.Quit();
     }
 }

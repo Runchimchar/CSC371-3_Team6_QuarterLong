@@ -444,7 +444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 560, y: -339.78}
   m_SizeDelta: {x: 800, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1370272738
@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 1370272741}
   - component: {fileID: 1370272740}
   - component: {fileID: 1370272739}
+  - component: {fileID: 1370272743}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -549,6 +550,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1370272743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370272738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802794b7ac482994a9047980f88898cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1619227280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -630,11 +643,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5559358632517528398, guid: 7eca88bcf7fc2e946b0def881b7e7208, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -310.568
+      value: -310.57
       objectReference: {fileID: 0}
     - target: {fileID: 5559358632517528398, guid: 7eca88bcf7fc2e946b0def881b7e7208, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -68.953
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 5559358632517528398, guid: 7eca88bcf7fc2e946b0def881b7e7208, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -659,18 +672,18 @@ PrefabInstance:
     - target: {fileID: 7356389166130344452, guid: 7eca88bcf7fc2e946b0def881b7e7208, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1370272743}
     - target: {fileID: 7356389166130344452, guid: 7eca88bcf7fc2e946b0def881b7e7208, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7356389166130344452, guid: 7eca88bcf7fc2e946b0def881b7e7208, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: GameQuit
       objectReference: {fileID: 0}
     - target: {fileID: 7356389166130344452, guid: 7eca88bcf7fc2e946b0def881b7e7208, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameController, Assembly-CSharp
+      value: HideUIOnStart, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7356389166130344452, guid: 7eca88bcf7fc2e946b0def881b7e7208, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
