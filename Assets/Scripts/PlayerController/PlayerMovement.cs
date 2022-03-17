@@ -96,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Event fired on player creation
     public static event Action CreateEvent = delegate { };
+    public static PlayerMovement instance = null;
 
     private void Awake()
     {
@@ -125,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        instance = this;
         CreateEvent();
     }
 
