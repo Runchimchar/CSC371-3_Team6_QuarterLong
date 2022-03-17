@@ -31,13 +31,14 @@ public class MenuController : MonoBehaviour {
     }
 
     public void GetPlayer() {
-        GameController.messageController.QueueMessage("DEBUG", "Top of GetPlayer");
-        if (GameObject.FindWithTag("Player")) {
-            PlayerMovement pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        //if (GameObject.FindWithTag("Player")) {
+            //PlayerMovement pm = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+            PlayerMovement pm = PlayerMovement.instance;
+
             GameController.messageController.QueueMessage("DEBUG", "GetPlayer: Got PM "+pm.GetHashCode());
             pm.PauseEvent -= GetPause;
             pm.PauseEvent += GetPause;
-        }
+        //}
     }
 
     // Get inputs
