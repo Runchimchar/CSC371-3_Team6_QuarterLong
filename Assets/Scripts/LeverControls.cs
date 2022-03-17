@@ -11,6 +11,7 @@ public class LeverControls : MonoBehaviour
     bool isAnimating;
     public Animator anim;
     public bool canDisable; // user is allowed to turn off the lever
+    AudioSource sound;
 
     public event Action OnLeverActivate = delegate { }; // user turns it on
 
@@ -26,6 +27,7 @@ public class LeverControls : MonoBehaviour
         isAnimating = false;
         isTiming = false;
         // anim = GetComponent<Animator>();
+        sound = GetComponent<AudioSource>();
     }
 
     public void Interact()
@@ -71,6 +73,7 @@ public class LeverControls : MonoBehaviour
         {
             // This is a timed button
             isTiming = true;
+            sound.Play();
             StartCoroutine(OnTimer());
         }
     }
@@ -78,6 +81,7 @@ public class LeverControls : MonoBehaviour
     IEnumerator OnTimer() {
         yield return new WaitForSeconds(timerLength);
         isTiming = false;
+        sound.Stop();
         LeverDown();
     }
 
@@ -118,12 +122,15 @@ public class LeverControls : MonoBehaviour
     public void Reset()
     {
         // Resets the object to its default position and cancels all animations/coroutines
+        // Handle coroutines
+        if (isTiming)
+        {
+            sound.Stop();
+            StopCoroutine("OnTimer");
+        }
         isToggled = false;
         isAnimating = false;
         isTiming = false;
-        // Handle coroutines
-        if (isTiming)
-            StopCoroutine("OnTimer");
         // Reset animation
         anim.SetTrigger("Reset");
     }
